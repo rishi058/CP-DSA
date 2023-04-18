@@ -1,0 +1,1 @@
+{"name":"Local: 0101_TSP","url":"d:\\STUDY\\C++ course\\DP\\0101_TSP.cpp","tests":[{"id":1664087776095,"input":"4\n0 20 42 25\n20 0 30 34\n42 30 0 10\n25 34 10 0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\STUDY\\C++ course\\DP\\0101_TSP.cpp","group":"local","local":true}
