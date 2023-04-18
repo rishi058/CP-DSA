@@ -1,1 +1,0 @@
-{"name":"Local: 25_Longest_repeating_Subsequence","url":"d:\\STUDY\\C++ course\\DP\\25_Longest_repeating_Subsequence.cpp","tests":[{"id":1659806355660,"input":"1\nAABEBCDD","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\STUDY\\C++ course\\DP\\25_Longest_repeating_Subsequence.cpp","group":"local","local":true}

@@ -1,1 +1,0 @@
-{"name":"Local: 17_LCS","url":"d:\\STUDY\\C++ course\\DP\\17_LCS.cpp","tests":[{"id":1659253330091,"input":"3\nAGGTAB\nGXTXAYB\nabcdefq \nakcfgdhe\nrishiraj\navbirjl","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\STUDY\\C++ course\\DP\\17_LCS.cpp","group":"local","local":true}

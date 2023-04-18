@@ -1,1 +1,0 @@
-{"name":"Local: 19_Print_LCSubsequence","url":"d:\\STUDY\\C++ course\\DP\\19_Print_LCSubsequence.cpp","tests":[{"id":1659623859298,"input":"2\nAGGTAB\nGXTXAYB\nabcdefq \nkacfgdhe","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\STUDY\\C++ course\\DP\\19_Print_LCSubsequence.cpp","group":"local","local":true}

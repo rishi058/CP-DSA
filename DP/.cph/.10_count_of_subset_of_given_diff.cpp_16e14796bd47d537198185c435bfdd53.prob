@@ -1,1 +1,0 @@
-{"name":"Local: 10_count_of_subset_of_given_diff","url":"d:\\STUDY\\C++ course\\DP\\10_count_of_subset_of_given_diff.cpp","tests":[{"id":1658141797072,"input":"1\n6 3\n7 4 1 0 2 5 ","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\STUDY\\C++ course\\DP\\10_count_of_subset_of_given_diff.cpp","group":"local","local":true}

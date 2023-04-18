@@ -1,5 +1,7 @@
+*.bin
+*.prob
 *.vscode
 *.cph
-*.bin
 
 .*
+!/.gitignore
