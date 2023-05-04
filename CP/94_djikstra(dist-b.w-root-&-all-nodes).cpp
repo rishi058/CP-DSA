@@ -23,7 +23,7 @@ vector<int> dist(N, inf);
 
 
 void dijkstra(int source){
-    vector<int> vis(N,0);               //also can be declared in global..
+    // vector<int> vis(N,0);               //also can be declared in global..
 
     set<pair<int,int>> st;      // set will auto. sort with it pair.first (there first -> wt.)
     st.insert({0, source});
@@ -37,8 +37,8 @@ void dijkstra(int source){
 
         st.erase(st.begin());
 
-        if(vis[v]==1){continue;}
-        vis[v] = 1;
+        // if(vis[v]==1){continue;}       No use until now..
+        // vis[v] = 1;
 
         for(auto child : g[v]){
             int child_v = child.first;
