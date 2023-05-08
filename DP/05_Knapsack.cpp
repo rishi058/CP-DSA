@@ -15,6 +15,33 @@ Given a weigth arr nd price arr nd wt limit, pik some items so that prfit is max
 NEXT 6 - 12 ARE BASED ON THIS..
 */
 
+/*
+
+Intuition Breakdown -->
+
+dp[i][j] = max_profit if we use products only from 0th to ith index and have wt_limit as j.
+
+NOTE :- 0th index means currently no products.
+
+Therefore, if(i==0 || j==0) { dp[i][j] = 0; }
+ 
+if(wt[i]<=j){  // if the wt of curr_product we're standing on is less than or equal to the curr_wt_limit(i.e j).
+
+int ans1 = va[i] + dp[i-1][j-wt[i]] ;       // if_i_is_selected
+int ans2 = dp[i-1][j] ;                     // if_not_selected
+
+NOTE :- dp[i-1][j-wt[i]] = max_profit if we use products ranging from 0 to i-1 and has a wt_limit = (j-wt[i]);
+
+dp[i][j] = max(ans1, ans2);
+
+}
+else{
+    dp[i][j] = dp[i-1][j]                   // if_i_isn't_not_selected
+}
+
+
+
+*/
 
 int32_t main()
 {
@@ -46,7 +73,7 @@ int32_t main()
                     dp[i][j]=0;
                 }
                 else{
-                    if(wt[i]<=j){
+                    if(wt[i]<=j){ 
                         dp[i][j]=max(val[i]+dp[i-1][j-wt[i]], dp[i-1][j]);
                     }
                     else{

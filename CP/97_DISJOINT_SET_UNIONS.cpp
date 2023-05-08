@@ -31,18 +31,27 @@ NOTE :-
 
 3. Types of union ->
      a.)   weighted union / union by size (mention above)
-     b.)   union by size.
+     b.)   union by rank.
+
+In union by rank, each node in the tree has an associated rank, 
+When performing a union operation, the tree with the smaller rank is merged into the tree with the larger rank.
+By default, rank is the HEIGHT of the tree.
+It's ensure that when we combine two trees, we try to keep the overall depth of the resulting tree small.
+
+NOTE :- HEIGHT of tree and SIZE(total no. of node) of tree aren't same thing.
 
 */
 
 const int N = 1e5+7;
 int parent[N];
 int Size[N];
+int Rank[N];
 
 
-void make(int v){
+void make(int v){                   
     parent[v] = v;
     Size[v] = 1;
+    Rank[v] = 0;
 }
 
 int find(int v){                                      // Recursion 
@@ -50,13 +59,30 @@ int find(int v){                                      // Recursion
     else { return parent[v] = find(parent[v]); }     // path compression 
 }
 
-void Union(int a, int b){    // use uppercase U bcz union is a reserved keyword..
+void UnionBySize(int a, int b){   
     a = find(a);
     b = find(b);
     if( a!=b ){   
         if(Size[a] < Size[b]) { swap(a,b); }      // logic for weighted union..
         parent[b] = a;                            // we may also use if else statement..
         Size[a] += Size[b];
+    }
+}
+
+void UnionByRank(int a, int b){
+    a = find(a);
+    b = find(b);
+    if(a!=b){
+        if(Rank[a]<Rank[b]){
+            parent[a] = b;
+        }
+        else if(Rank[a]>Rank[b]){
+            parent[b] = a;
+        }
+        else{
+            parent[b] = a;
+            Rank[a]++;
+        }
     }
 }
 
@@ -71,13 +97,13 @@ int main()
     {
         int u,v;
         cin>>u>>v;
-        Union(u, v);
+        UnionBySize(u, v);
     }
 
     int connected_comp = 0;
     // connected components = no. of nodes whose parent node is himself.
     for(int i=1; i<=n; i++){
-        if(find(i)==i ){connected_comp++;}
+        if(find(i)==i){connected_comp++;}
     }
     cout<<connected_comp;
 

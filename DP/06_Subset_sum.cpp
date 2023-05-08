@@ -11,7 +11,35 @@ typedef vector<int> vi;
 //------------------------------------------------------
 
 /*
-given an arr nd a sum print yes if there is a subet of arr whose sum is equal to given sum...else no..
+given an arr nd a sum print YES if there is a subet of arr whose sum is equal to given sum...else NO..
+*/
+
+/*
+Intuition BreakDown -->
+
+dp[i][j] = represents ans(TRUE/FALSE) if we use elements of arr ranging from 0 to "i" and the req_sum is "j".
+
+NOTE :- 0th index means currently no element.
+
+if(j==0){               // req_sum is Zero(0) i.e ans = select no elements.
+    dp[i][j] = TRUE;
+}
+else if(j>0 && i==0){   // req_sum(j) is greater than Zero(0) but we have no elements to select(i.e i==0) Therefore ans is not_possible. 
+    dp[i][j] = FALSE;
+}
+else{
+    if(v[i]<=j){        // if curr_element is less than equal to required_sum..
+        int ans1 = dp[i-1][j-v[i]] ;   // use ith element..
+        int ans2 = dp[i-1][j] ;        // don't use ith element..
+        dp[i][j] = ans1 || ans2;  
+
+        NOTE :- dp[i-1][j-v[i]] = if it is possible to achieve req_sum = (j-v[i]) using elements from 0 to i-1. [1 row up and little back]
+    }
+    else{
+        dp[i][j] = dp[i-1][j];  
+        NOTE :- dp[i-1][j] represents if it is possible to achieve req_sum = "j" using upto i-1 elements. [ just up (1 row up only) ]
+    }  
+}
 */
 
 int32_t main()

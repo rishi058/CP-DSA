@@ -11,9 +11,30 @@ typedef vector<int> vi;
 //------------------------------------------------------
 
 /*
-given an arr print yes if it is possible to divide it into 2 subset of equal sum...else no..
+given an arr print YES if it is possible to divide it into 2 subset of equal sum...else NO..
 
 Can be done usig 1D D.P --> chk gfg....
+*/
+
+/*
+Intution Breakdown -->
+
+int total_sum = sum of arr.
+
+if(total_sum%2==1){           // if total_sum is odd we can't divide it into twoe qual parts
+    cout<<"NO\n";
+}
+
+else{
+    check if there is any subset present whose sum == total_sum/2 ;   // use prev problem
+    if(present){
+        cout<<"YES\n";
+    }
+    else{
+        cout<<"NO\n"
+    }
+}
+
 */
 
 int32_t main()

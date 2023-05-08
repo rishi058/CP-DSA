@@ -11,7 +11,7 @@ typedef vector<int> vi;
 //------------------------------------------------------
 
 /*
-Given a arr, divide it into 2 parts such that there diifrence of sum is min..
+Given a arr, divide it into 2 parts such that there difference of sum is min..
 
 APPROACH -->
 

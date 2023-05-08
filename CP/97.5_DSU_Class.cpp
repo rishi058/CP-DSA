@@ -11,31 +11,74 @@ typedef vector<int> vi;
 
 //------------------------------------------------------
 
-int minFallingPathSum(vector<vector<int>>& dp) {
-    int n = dp.size(), m = dp[0].size();
+class DSU{
+    public :
 
-    for(int i=1; i<n; i++){
-        for(int j=0; j<m; j++){
-            int ans = dp[i-1][j];
-            if(j!=0){ans=min(ans,dp[i-1][j-1]);}
-            if(j!=m-1){ans=min(ans,dp[i-1][j+1]);}
-            dp[i][j] += ans;
+    vector<int> parent, Size, Rank;
+    
+    // this func create n independent nodes automatically
+    void makeNodes(int sz){
+        for(int i=0; i<sz; i++){
+            Size[i] = 1;
+            parent[i] = i;
         }
     }
 
-    int sum = INT_MAX;
-    for(int i=0; i<m; i++){
-        sum = min(sum, dp[n-1][i]);
+    DSU(int sz){
+        parent.resize(sz, 0);   // use 0, for avoiding bugs.
+        Size.resize(sz, 0);
+        Rank.resize(sz, 0);
     }
-    return sum;
-}
+
+    // If we are using make function , don't use initilizer
+    void make(int v){                   
+        parent[v] = v;
+        Size[v] = 1;
+    }
+
+
+    int find(int v){                                      // Recursion 
+        if(v==parent[v]) { return v; }
+        else { return parent[v] = find(parent[v]); }     // path compression 
+    }
+
+    void UnionBySize(int a, int b){   
+        a = find(a);
+        b = find(b);
+        if( a!=b ){   
+            if(Size[a] < Size[b]) { swap(a,b); }      
+            parent[b] = a;                          
+            Size[a] += Size[b];
+        }
+    }
+
+    void UnionByRank(int a, int b){
+        a = find(a);
+        b = find(b);
+        if(a!=b){
+            if(Rank[a]<Rank[b]){
+                parent[a] = b;
+            }
+            else if(Rank[a]>Rank[b]){
+                parent[b] = a;
+            }
+            else{
+                parent[b] = a;
+                Rank[a]++;
+            }
+        }
+    }
+
+};
 
 int32_t main()
 {
     RISHI
-    vector<vi> v =  {{2},{3,4},{6,5,7},{4,1,8,3}};
-    
-    
+    int t; cin>>t;
+    while(t--)
+    {
+        
+    }
 
 }
 
