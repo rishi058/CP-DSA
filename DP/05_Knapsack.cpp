@@ -27,8 +27,8 @@ Therefore, if(i==0 || j==0) { dp[i][j] = 0; }
  
 if(wt[i]<=j){  // if the wt of curr_product we're standing on is less than or equal to the curr_wt_limit(i.e j).
 
-int ans1 = va[i] + dp[i-1][j-wt[i]] ;       // if_i_is_selected
-int ans2 = dp[i-1][j] ;                     // if_not_selected
+int ans1 = va[i] + dp[i-1][j-wt[i]] ;       // if_i_is_selected         [Looking Just 1 Row Up & some columns back]
+int ans2 = dp[i-1][j] ;                     // if_not_selected          [Looking Just 1 Row Up]
 
 NOTE :- dp[i-1][j-wt[i]] = max_profit if we use products ranging from 0 to i-1 and has a wt_limit = (j-wt[i]);
 
@@ -36,7 +36,7 @@ dp[i][j] = max(ans1, ans2);
 
 }
 else{
-    dp[i][j] = dp[i-1][j]                   // if_i_isn't_not_selected
+    dp[i][j] = dp[i-1][j]                   // if_i_isn't_not_selected  [Looking Just 1 Row Up]
 }
 
 
@@ -96,3 +96,11 @@ int32_t main()
     }
 
 }
+
+/*
+1
+5
+2 4 6 2 3
+10 18 30 11 12
+9
+*/

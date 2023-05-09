@@ -11,31 +11,46 @@ typedef vector<int> vi;
 
 //------------------------------------------------------
 
-int minFallingPathSum(vector<vector<int>>& dp) {
-    int n = dp.size(), m = dp[0].size();
-
-    for(int i=1; i<n; i++){
-        for(int j=0; j<m; j++){
-            int ans = dp[i-1][j];
-            if(j!=0){ans=min(ans,dp[i-1][j-1]);}
-            if(j!=m-1){ans=min(ans,dp[i-1][j+1]);}
-            dp[i][j] += ans;
+bool canPartition(vector<int>& nums) {
+        int sum = 0, n = nums.size();
+        for(int i=0; i<n; i++){
+            sum += nums[i];
         }
-    }
 
-    int sum = INT_MAX;
-    for(int i=0; i<m; i++){
-        sum = min(sum, dp[n-1][i]);
+        if(sum%2==1){return false;}
+        else{sum/=2;}
+
+        nums.insert(nums.begin(), 0);
+        
+        bool dp[n+1][sum+1];
+        memset(dp, 0, sizeof(dp));
+
+        for(int i=0; i<=n; i++){
+            for(int j=0; j<=sum; j++){
+                if(j==0){dp[i][j]=1;}
+                else if(i==0){dp[i][j]=0;}
+                else{
+                    if(nums[i]<=j){
+                        dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i]];
+                    }
+                    else{
+                        dp[i][j] = dp[i-1][j];
+                    }
+                }
+            }
+        }
+
+        return dp[n][sum];
     }
-    return sum;
-}
 
 int32_t main()
 {
     RISHI
-    vector<vi> v =  {{2},{3,4},{6,5,7},{4,1,8,3}};
-    
-    
+    int t; cin>>t;
+    while(t--)
+    {
+        
+    }
 
 }
 

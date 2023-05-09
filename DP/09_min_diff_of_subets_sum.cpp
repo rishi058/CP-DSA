@@ -15,7 +15,7 @@ Given a arr, divide it into 2 parts such that there difference of sum is min..
 
 APPROACH -->
 
-let sum=sum of arr. s1 , s2, be the subset sum of two any subet of arr..
+let sum = sum of arr [ s1 , s2 be the subset sum of any two subset of arr.. ]
 we have to min = |s2-s1|... s1 be subset sum of 1st sum then sum of the leftover subset is automaticallu sum-s1...
 Now we have to min = |sum - 2*s1|,   ---  { [s2 = sum-s1] }
 In best case [ min = sum - 2*s1 = 0 ] i.e s1 = sum/2;
