@@ -11,37 +11,39 @@ typedef vector<int> vi;
 
 //------------------------------------------------------
 
- bool isMatch(string s1, string s2) {
+// https://leetcode.com/problems/edit-distance/
+
+int minDistance(string s1, string s2) {
+    
+    s1 = '0'+s1;
+    s2 = '0'+s2;
 
     int n = s1.size(), m = s2.size();
-    s1 = '0'+s1, s2 = '0'+s2; 
 
-    bool dp[m+1][n+1];
-    memset(dp,false,sizeof(dp));
-
-    dp[0][0]=true;
-    for(int i=1; i<=m; i++){
-        if(s2[i]=='*'){
-            dp[i][0] = dp[i-1][0];
-        }
-        for(int j=1; j<=n; j++){
-            if(s2[i]=='*'){
-                dp[i][j] = dp[i-1][j] || dp[i][j-1];
+    int dp[n][m];
+    
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            if(i+j==0){dp[i][j]=0;}
+            else if(i==0){dp[i][j] = dp[i][j-1]+1;}
+            else if(j==0){dp[i][j] = dp[i-1][j]+1;}
+            else if(s1[i]==s2[j]){
+                dp[i][j] = dp[i-1][j-1];
             }
-            else if(s2[i]==s1[j] || s2[i]=='?'){
-                dp[i][j]=dp[i-1][j-1];
+            else{
+                dp[i][j] = min({dp[i-1][j], dp[i][j-1], dp[i-1][j-1]})+1;
             }
         }
     }
-    return dp[m][n];
-} 
+
+    return dp[n-1][m-1]; 
+}
 
 int32_t main()
 {
     RISHI
     string s1 = "LOVE", s2 = "MOVIE";
-    // cout<<minDistance(s1, s2);
-
+    // ans = 2 [ c++ cheat sheet pdf page-84 ]
 
 }
 

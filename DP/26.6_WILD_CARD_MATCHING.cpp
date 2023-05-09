@@ -10,8 +10,22 @@ typedef long double ld;
 typedef vector<int> vi;
 
 //------------------------------------------------------
+// https://leetcode.com/problems/wildcard-matching/description/
 
- bool isMatch(string s1, string s2) {
+/*
+Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for '?' and '*' where:
+'?' Matches any single character.
+'*' Matches any sequence of characters (including the empty sequence).
+The matching should cover the entire input string (not partial).
+
+abc*k, absdfhk  -> TRUE
+abc??l, abcdedl -> TRUE
+abcd?, abckd     -> FALSE
+
+*/
+
+
+bool isMatch(string s1, string s2) {
 
     int n = s1.size(), m = s2.size();
     s1 = '0'+s1, s2 = '0'+s2; 
@@ -20,6 +34,7 @@ typedef vector<int> vi;
     memset(dp,false,sizeof(dp));
 
     dp[0][0]=true;
+
     for(int i=1; i<=m; i++){
         if(s2[i]=='*'){
             dp[i][0] = dp[i-1][0];
@@ -33,15 +48,16 @@ typedef vector<int> vi;
             }
         }
     }
+
     return dp[m][n];
+    
 } 
+
 
 int32_t main()
 {
     RISHI
-    string s1 = "LOVE", s2 = "MOVIE";
-    // cout<<minDistance(s1, s2);
-
+    
 
 }
 

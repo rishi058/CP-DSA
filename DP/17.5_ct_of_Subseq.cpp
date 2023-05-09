@@ -43,13 +43,13 @@ int32_t main()
                 }
 
                 else{
-                    // dp[i][j]=-1;
                     dp[i][j]=dp[i-1][j];
                 }
             }
         }
 
         cout<<dp[n-1][m-1]<<"\n";
+        
         F(0,n,i){
             F(0,m,j){
                 cout<<dp[i][j]<<" ";
