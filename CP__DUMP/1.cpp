@@ -11,37 +11,38 @@ typedef vector<int> vi;
 
 //------------------------------------------------------
 
-bool canPartition(vector<int>& nums) {
-        int sum = 0, n = nums.size();
-        for(int i=0; i<n; i++){
-            sum += nums[i];
-        }
+int solve(int len, vector<int> &length, vector<int> &price){
+    int limit = len;
+    int dp[len+1][limit+1];
 
-        if(sum%2==1){return false;}
-        else{sum/=2;}
-
-        nums.insert(nums.begin(), 0);
-        
-        bool dp[n+1][sum+1];
-        memset(dp, 0, sizeof(dp));
-
-        for(int i=0; i<=n; i++){
-            for(int j=0; j<=sum; j++){
-                if(j==0){dp[i][j]=1;}
-                else if(i==0){dp[i][j]=0;}
+    F(0,len+1,i){
+        F(0,limit+1, j){
+            if(i==0||j==0){
+                dp[i][j]=0;
+            }
+            else{
+                if(length[i]<=j){
+                    dp[i][j]=max(price[i]+dp[i][j-length[i]], dp[i-1][j]);  // this line is chnged from 0/1 knapsack..
+                }
                 else{
-                    if(nums[i]<=j){
-                        dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i]];
-                    }
-                    else{
-                        dp[i][j] = dp[i-1][j];
-                    }
+                    dp[i][j] = dp[i-1][j];
                 }
             }
         }
-
-        return dp[n][sum];
     }
+
+    return dp[len][limit];
+}
+
+int cutRod(int price[], int n) {
+    vector<int> cost(n+1), length(n+1);
+
+    for(int i=0; i<n; i++){cost[i+1]=price[i];}
+    for(int i=0; i<=n; i++){length[i]=i;}
+
+    int ans = solve(n, length, cost);
+    return ans;
+}
 
 int32_t main()
 {

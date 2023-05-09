@@ -10,9 +10,33 @@ typedef vector<int> vi;
 
 //------------------------------------------------------
 
+// https://leetcode.com/problems/coin-change-ii/description/
+
 /*
-given an arr having types of coins and a sum.
-Find the max no. of ways you can make the sum..
+
+given an arr having types of coins and a sum. [NOTE :- quantity of each coin is infinity]
+Find the total no. of ways in which we can make the sum..
+
+UNBOUNDED + SUBSEQUENCE MIX -->
+
+dp[i][j] = no._of_ways to achieve sum = "j" using coins only ranging from 0 to "i" ;
+
+if(j==0){dp[i][j]=1;}       // if req_sum(i.e "j") = 0, then 1 ans is always possible which is selecting 0 coins. [high priority].
+
+else if(i==0){dp[i][j]=0;}  // if we have 0 coins , then no ans is possible ( except when sum=0 ) , therfore [low_priority]. 
+
+if(coins[i]<=j){                         // if coins[i] is selectable..
+
+    int first_way = dp[i][j-coins[i]] ;  // select coins[i] + no._of_ways to achieve sum = "j-coins[i]" using coins ranging from 0 to "i";
+    int second_way = dp[i-1][j]          // don't select coins[i] + no._of_ways to achieve sum = "j" using coins ranging from 0 to "i";
+    dp[i][j] = first_wat + second_way ;  // Add to get total no. of ways
+
+}
+
+else{
+    dp[i][j] = dp[i-1][j];
+}
+
 */
 
 int32_t main()
@@ -39,8 +63,8 @@ int32_t main()
 
         F(0,n+1,i){
             F(0,sum+1, j){
-                if(j>0 && i==0 ){dp[i][j]=0;}
-                else if(j==0){dp[i][j]=1;}
+                if(j==0){dp[i][j]=1;}
+                else if(i==0){dp[i][j]=0;}
                 
                 else{
                     if(coins[i]<=j){

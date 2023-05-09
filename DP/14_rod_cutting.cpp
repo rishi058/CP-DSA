@@ -12,6 +12,15 @@ typedef vector<int> vi;
 
 /*
 Given a rod nd price of its partial parts, cut rod into a particular way so that price is max..
+
+UNBOUNDED KNAPSACK -->   // [ NOTE :- Always a square matrix ]
+
+wt_arr = len_arr ;
+price_arr = price_arr ;
+wt_limit  = total_len_of_rod ;
+
+maximize_profit = maximize_profit
+ 
 */
 
 

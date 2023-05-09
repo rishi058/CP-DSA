@@ -11,6 +11,7 @@ typedef vector<int> vi;
 //------------------------------------------------------
 
 /*
+
 Derivatives of LCS -->
 1. Longest common Subsequence.
 2. Print LCS.
@@ -33,6 +34,22 @@ aabbc
 
 */
 
+/*
+
+Intuiton Breakdown --> 
+
+if(i==0 || j==0){ dp[i][j] = 0;}  // i.e if any 1 of the string is empty LCS will obviously 0.
+
+ 
+else if(s1[i]==s2[j]){              // IMP -> if s1[i]==s2[j] then we will include this in our LCS , and we will need to add it in LCS
+    dp[i][j] = 1 + dp[i-1][j-1];    // when s1[i] & s2[j] is not the part, therfore + dp[i-1][j-1];
+}
+
+else{
+    dp[i][j]=max(dp[i-1][j], dp[i][j-1]);  // since s1[i]!=s2[j], we can't include it, but we need to fill dp[i][j] with curr_optimal LCS, 
+}                                          // therefore we take max_LCS of 2 cases -> (include s1[i] & not s2[j]), vice-versa. 
+
+*/
 
 int32_t main()
 {

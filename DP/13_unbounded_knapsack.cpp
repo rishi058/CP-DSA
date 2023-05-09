@@ -13,6 +13,17 @@ typedef vector<int> vi;
 /*
 Given a weigth arr nd price arr, wt limit. pik some items so that prfit is max..
 NOTE -> you can pick a single items as many time u want...
+
+Intiution Breakdown -->
+
+if(wt[i]<=j){                           // if the i'th element is selectable
+    int ans1 = val[i]+dp[i][j-wt[i]] ;  // selecting i'th element + max_profit when we can select items ranging from 0 to "i" and wt_limit is "j-wt[i]" ;     
+    int ans2 = dp[i-1][j] ;
+    dp[i][j]=max(asn1, ans2); 
+}
+else{
+    dp[i][j] = dp[i-1][j];
+}
 */
 
 

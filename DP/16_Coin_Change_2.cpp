@@ -20,6 +20,25 @@ Find the min no. of coins using which you can achieve the sum..
 IF THERE IS NOT ANY COMBINATION OF COINS WHICH SUMS UP TO GIVEN SUM ..
 THIS ALGO GIVES INT_MAX-1 value (try ->7,5 sum=16)
 
+Intuition Breakdown -->
+
+dp[i][j] = min_no._of_coins to achieve sum = "j" and using coins ranging from 0 to "i";
+
+if(j==0){dp[i][j]=0;}               // fill column-0 with 0 as to achieve sum("j")=0, min_mo._of_coins req = 0 ;
+
+else if(i==0){dp[i][j]=INT_MAX-1;}  // fill Row-0 with inf since it isn't possible to achieve any sum if we have no coins.
+
+else{
+    if(coins[i]<=j){
+        int ans1 = dp[i][j-coins[i]] + 1 ;      // +1 for selecting i'th coin + min_no._of_ways to achieve sum = "j-coins[i]", using coins from 0 to "i",
+        int ans2 =  dp[i-1][j] ;                // not_selecting i'th + min_no._of_ways to achieve sum = "j", using coins from 0 to "i-1",
+        dp[i][j] = min(ans1, ans2) ;
+    }
+    else{
+        dp[i][j] = dp[i-1][j];
+    }
+}
+
 */
 
 int32_t main()
@@ -46,8 +65,8 @@ int32_t main()
 
         F(0,n+1,i){
             F(0,sum+1, j){
-                if(i==0){dp[i][j]=INT_MAX-1;}
-                else if(i==0 && j>0){dp[i][j]=0;}
+                if(j==0){dp[i][j]=0;}
+                else if(i==0){dp[i][j]=INT_MAX-1;}
                 else if(i==1){
                     if(j%coins[i]==0){dp[i][j]=j/coins[i];}
                     else{dp[i][j]=INT_MAX-1;}
@@ -68,6 +87,7 @@ int32_t main()
         cout<<dp[n][sum]<<"\n";
         F(0,n+1,i){
             F(0,sum+1, j){
+                if(dp[i][j]==INT_MAX-1){cout<<"inf "; continue;}
                 cout<<dp[i][j]<<" ";
             }
             cout<<"\n";
