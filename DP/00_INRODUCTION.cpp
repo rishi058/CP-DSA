@@ -10,46 +10,31 @@ typedef long double ld;
 typedef vector<int> vi;
 
 //------------------------------------------------------
+/*
+REFER ADITYA VERMA + STRIVER DP SERIES.
 
-class CircularArray{
-    public:
+SOLVE SUB-PROBLEMS OF THE MAIN PROBLEM TO REACH THE ANSWER OF THE MAIN PROBLEM .
 
-    vector<int> v;
+RECURSION + MEMOIZATION  ->  TOP - DOWN
 
-    CircularArray(){};
+TABULATION + SPACE OPTIMIZATION ->  BOTTOM-UP
 
-    CircularArray(int n){
-        v.resize(n,0);
-    }
+BEST PRACTICE ( GENERALLY WHEN QUESTION IS HARD || REQUIRE 3-D DP || U R NOT ABLE TO UNDERSTAND WHERE TO START, WHAT TO DO )  -> 
+WRITE RECURSION TO GENERATE ALL COMBO AND ADD MEMOIZATION TO IT.. 
 
-    void insert(int ind, int val){
-        v[ind] = val;
-    }
+ELSE USE TOP-DOWN OR BOTTOM UP AS PER YOUR CONVENIENCE ..
 
-    void push_back(int val){
-        v.push_back(val);
-    }
+IN COMPETETIVE .. WE ONLY CARE ABOUT THE SOLUTION ( NO SAPCE OPTIMAZTION )
 
-    int at(int ind){
-        int n = v.size();
-        if(ind<0){
-            ind=abs(ind);
-            ind = n%ind;
-            ind = n-ind;
-            return v[ind];
-        }
-        else if(ind>=n){
-            ind = ind%n;
-            return v[ind];
-        }
-        return v[ind];
-    }
+FOR INTERVIEW PRUPOSE .. PRACTICE HOW TO OPTIMIZE SPACE OF ( 2-D TO 1-D ) AND ( 3-D TO 1-D ) [only pssible in tablulation].
 
-};
+*/
 
-int32_t main(){
+int32_t main()
+{
+    RISHI
+    
 
- 
 }
 
 

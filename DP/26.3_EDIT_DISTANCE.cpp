@@ -10,8 +10,28 @@ typedef long double ld;
 typedef vector<int> vi;
 
 //------------------------------------------------------
+//https://leetcode.com/problems/edit-distance/
 
-// https://leetcode.com/problems/edit-distance/
+/*
+
+QUESTION -->
+
+Given two strings word1 and word2, return the minimum number of operations required to convert word1 to word2.
+You have the following three operations permitted on a word:
+Insert a character
+Delete a character
+Replace a character
+
+NOTE :- converting s1 to s2 or s2 to s1 require same no. of steps. [Delete opr is rev of Insert opr]
+
+if(s1[i]!=s2[j]){
+    int a = dp[i][j-1] ;           // insert a character at the end of s1
+    int b = dp[i-1][j] ;           // remove the last character from of s1
+    int c = dp[i-1][j-1] ;         // modify the last character of s1
+    dp[i][j] = min(a,b,c) + 1 ;
+}
+
+*/
 
 int minDistance(string s1, string s2) {
     

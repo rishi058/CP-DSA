@@ -39,6 +39,7 @@ int MCM(int arr[], int i, int j){
     F(i,j,k){
 
         int temp_ans = MCM(arr, i , k) + MCM(arr, k+1, j) + arr[i-1]*arr[k]*arr[j] ;
+        cout<<i-1<<" ";
 
         ans = min(temp_ans, ans);
 
