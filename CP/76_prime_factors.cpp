@@ -21,7 +21,7 @@ map<int,int> primeFact(int n) { // Upgraded version..
                 n = n/i;
             }
         }
-        else if(n%(i+2)==0){
+        if(n%(i+2)==0){
             while(n % (i+2) == 0){
                 mapp[i+2]++;
                 n = n/(i+2);
@@ -58,7 +58,7 @@ map<int,int> primeFact2(int n) { // old version
 int main()
 {
     int n; cin>>n;
-    map<int,int> mapp = primeFact(n);
+    map<int,int> mapp = primeFact(343);
 
     for(auto x : mapp){
         cout<<x.first<<":"<<x.second<<"\n";

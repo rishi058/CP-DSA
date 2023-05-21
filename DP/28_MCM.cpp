@@ -11,6 +11,7 @@ typedef vector<int> vi;
 //------------------------------------------------------
 
 /*
+REFER ABDUL BARI FOR UNDERSTANDING
 
 Given an array -> { 40, 20, 30, 10, 30 } where n = 5;
 representing the dimesion for (n-1) Matrices whose  dimensions are arr[0]*arr[1], arr[1]*arr[2], arr[2]*arr[3] ...;
@@ -26,6 +27,14 @@ S.C -> O(1) -> {brute force recursion}
 T.C = O(N^3) -> {while memoization or tabulation}
 S.C -> O(N^2) -> {while memoization or tabulation}
 
+A = (2x6), B = (6x4), C = (4x7), D = (7x3)
+
+(((A*B)*C)*D), ((A*(B*C))*D), ... total no. of ways to multilply = nth catalan number.
+
+m[a,b] = min cost to multilply matrices in range (a,b)
+
+m[i,j] = for(k=i, k<j; k++){ m[i,k] + m[k+1,j] + v[i-1]*v[k]*v[j] }  {v[x] = represents dimension of matrix}
+
 */
 
 int dp[1000][1000] ;   // [arr.size()][arr.size()] --> [i][j] represents answer of arr range ( i to j ) .
@@ -36,14 +45,12 @@ int MCM(int arr[], int i, int j){
 
     int ans = INT_MAX ;
 
-    F(i,j,k){
+    for(int k=i; k<j; k++){
 
         int temp_ans = MCM(arr, i , k) + MCM(arr, k+1, j) + arr[i-1]*arr[k]*arr[j] ;
-        cout<<i-1<<" ";
 
         ans = min(temp_ans, ans);
 
-        dp[i][j] = ans;
     }
 
     return dp[i][j] = ans;
