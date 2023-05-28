@@ -15,43 +15,62 @@ typedef vector<int> vi;
 
 //------------------------------------------------------
 
-vector<vector<string>> ans;
-string str = "aabccded";
-int n = str.size();
+// Prefect Binary Tree -> each node have 2 or 0 child. 
 
-void solve(int ind, vector<string> &curr){
-    if(ind==n){                    //  use { && curr.size()==3 } for printing exactly k partitions type.
-        ans.push_back(curr);
-        return;
+void bfsTraversal(vector<int>& tree) {
+    int size = tree.size();
+    queue<int> q;
+
+    // Start BFS from the root node (index 1)
+    q.push(1);
+
+    while (!q.empty()) {
+        int node = q.front();
+        q.pop();
+
+        // Process current node
+        cout << tree[node] << " ";
+
+        // Push left child if within bounds
+        if (2 * node < size)
+            q.push(2 * node);
+
+        // Push right child if within bounds
+        if (2 * node + 1 < size)
+            q.push(2 * node + 1);
     }
-    if(curr.size()==3){return;}   // when you want to do at least k partitions (here k = 2).
-
-    string temp;
-    for(int i=ind; i<n; i++){
-        // if(temp.size()==3){break;}  //  when there is a condition that partition size must be less than k (here k = 3).
-        temp.push_back(str[i]);
-        curr.push_back(temp);
-        solve(i+1, curr);
-        curr.pop_back();
-    }
-
 }
 
-int32_t main()
-{
-    RISHI
-    vector<string> v;
-    solve(0, v);
+void dfs(int node, int par, vector<int>& tree, vector<int> &dp) {  // dp is used to store prefix sum of tree(ignore).
+    int size = tree.size();
+    if (node >= size){return;}
 
-    cout<<ans.size()<<"\n";
+    dp[node] = tree[node] + dp[par];
+    // cout << tree[node] << " ";
 
-    for(auto it : ans){
-        cout<<"[ ";
-        for(auto x : it){
-            cout<<x<<", ";
-        }
-        cout<<"]\n";
+    dfs(2 * node, node, tree, dp);        // left child
+    dfs(2 * node + 1, node, tree, dp);    // right child
+}
+
+int32_t main(){
+
+    vector<int> tree = {0,1,5,2,2,3,3,1};  // 1 based indexing. 1 is the root node, tree[i] = value of ith node
+
+    int n = tree.size();
+
+    vector<int> dp(n, 0);
+
+    int size = tree.size();
+    dfs(1, 0, tree, dp);
+
+    int sum = 0, mx = 0;
+    for(int i=(n/2); i<n; i++){    // iterating the leaf nodes
+        sum += dp[i];
+        mx = max(mx, dp[i]);
     }
+    int ans = (n/2)*mx - sum;    // when total no. of node is n, no. of leaf nodes = (n+1)/2. 
+    cout<<ans<<"\n";
+
 }
 
 

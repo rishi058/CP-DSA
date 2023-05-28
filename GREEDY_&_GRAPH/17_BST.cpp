@@ -8,6 +8,7 @@ struct Node {
     Node *left;  
     Node *right;  
 };  
+
 Node* create(int item)  
 {  
     Node* node = new Node;  

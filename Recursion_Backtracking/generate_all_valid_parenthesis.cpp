@@ -15,23 +15,22 @@ typedef vector<int> vi;
 
 //------------------------------------------------------
 
-vector<vector<string>> ans;
-string str = "aabccded";
-int n = str.size();
+vector<string> all;
 
-void solve(int ind, vector<string> &curr){
-    if(ind==n){                    //  use { && curr.size()==3 } for printing exactly k partitions type.
-        ans.push_back(curr);
-        return;
+void solve(int open, int close, int n, string curr){
+    if(curr.size()==2*n){
+        all.push_back(curr);
+        return ;
     }
-    if(curr.size()==3){return;}   // when you want to do at least k partitions (here k = 2).
 
-    string temp;
-    for(int i=ind; i<n; i++){
-        // if(temp.size()==3){break;}  //  when there is a condition that partition size must be less than k (here k = 3).
-        temp.push_back(str[i]);
-        curr.push_back(temp);
-        solve(i+1, curr);
+    if(open>=close){
+        if(open!=n){
+            curr.push_back('{');
+            solve(open+1, close, n, curr);
+            curr.pop_back();
+        }
+        curr.push_back('}');
+        solve(open, close+1, n, curr);
         curr.pop_back();
     }
 
@@ -40,18 +39,10 @@ void solve(int ind, vector<string> &curr){
 int32_t main()
 {
     RISHI
-    vector<string> v;
-    solve(0, v);
+    string s;
+    solve(0, 0, 3, s);
+    for(auto s : all){cout<<s<<"\n";}
 
-    cout<<ans.size()<<"\n";
-
-    for(auto it : ans){
-        cout<<"[ ";
-        for(auto x : it){
-            cout<<x<<", ";
-        }
-        cout<<"]\n";
-    }
 }
 
 

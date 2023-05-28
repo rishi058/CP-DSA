@@ -1,87 +1,34 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+
 using namespace std;
 
-#define int long long
-#define all(v) v.begin(), v.end()
-#define F(a,b,i) for (int i = a; i < b; i++)
-#define Rev(a,b,i) for (int i = a; i >= b; i--)
-#define RISHI ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+void dfs(int node, int par, vector<int>& tree, vector<int> &dp) {
+    int size = tree.size();
+    if (node >= size){return;}
 
-#define inf LONG_LONG_MAX
-#define Min LONG_LONG_MIN
+    dp[node] = tree[node] + dp[par];
+    // cout << tree[node] << " ";
 
-typedef long double ld;
-typedef vector<int> vi;
-
-//------------------------------------------------------
-
-bool isPal(string s){
-    int a = 0, b = s.size()-1;
-    while(a<b){
-        if(s[a]!=s[b]){return false;}
-        a++; b--;
-    }
-    return true;
+    dfs(2 * node, node, tree, dp);
+    dfs(2 * node + 1, node, tree, dp);
 }
 
-vector<vector<string>> allPartitions;
-int n;
+int main() {
+    vector<int> tree = {0,1,5,2,2,3,3,1};
+    int n = tree.size();
 
-void solve(int ind, string &str, vector<string> &curr){
-    if(ind==n){
-        allPartitions.push_back(curr);
-        return;
-    }
+    vector<int> dp(n, 0);
 
-    string temp;
-    for(int i=ind; i<n; i++){
-        temp.push_back(str[i]);
-        curr.push_back(temp);
-        solve(i+1, str, curr);
-        curr.pop_back();
+    int size = tree.size();
+    dfs(1, 0, tree, dp);
+
+    int sum = 0, mx = 0;
+    for(int i=(n/2); i<n; i++){
+        sum += dp[i];
+        mx = max(mx, dp[i]);
     }
+    int ans = (n/2)*mx - sum;
+    cout<<ans<<"\n";
 
 }
-
-vector<vector<string>> partition(string str) {
-    n = str.size();
-    vector<string> v;
-    solve(0, str, v);
-
-    vector<vector<string>> ans;
-    for(auto vec : allPartitions){
-        bool ok = true;
-        for(string s : vec){
-            ok &= isPal(s);
-        }
-        if(ok){
-            ans.push_back(vec);
-        }
-    }
-
-    return ans;
-}
-
-
-int32_t main()
-{
-    RISHI
-    string s = "aab";
-    vector<vector<string>> ans = partition(s);
-    for(auto it : ans){
-        cout<<"[ ";
-        for(auto x : it){
-            cout<<x<<", ";
-        }
-        cout<<"]\n";
-    }
-}
-
-
-
-// ███████╗██╗███╗   ██╗██╗███████╗██╗  ██╗    ██╗    ██╗██╗  ██╗ █████╗ ████████╗    ██╗   ██╗ ██████╗ ██╗   ██╗    ███████╗████████╗ █████╗ ██████╗ ████████╗    ██╗
-// ██╔════╝██║████╗  ██║██║██╔════╝██║  ██║    ██║    ██║██║  ██║██╔══██╗╚══██╔══╝    ╚██╗ ██╔╝██╔═══██╗██║   ██║    ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝    ██║
-// █████╗  ██║██╔██╗ ██║██║███████╗███████║    ██║ █╗ ██║███████║███████║   ██║        ╚████╔╝ ██║   ██║██║   ██║    ███████╗   ██║   ███████║██████╔╝   ██║       ██║
-// ██╔══╝  ██║██║╚██╗██║██║╚════██║██╔══██║    ██║███╗██║██╔══██║██╔══██║   ██║         ╚██╔╝  ██║   ██║██║   ██║    ╚════██║   ██║   ██╔══██║██╔══██╗   ██║       ╚═╝
-// ██║     ██║██║ ╚████║██║███████║██║  ██║    ╚███╔███╔╝██║  ██║██║  ██║   ██║          ██║   ╚██████╔╝╚██████╔╝    ███████║   ██║   ██║  ██║██║  ██║   ██║       ██╗
-// ╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝          ╚═╝    ╚═════╝  ╚═════╝     ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝       ╚═╝
