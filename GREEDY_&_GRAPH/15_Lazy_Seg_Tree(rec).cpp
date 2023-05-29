@@ -25,229 +25,149 @@ segment tree before making any query operation..
 
 */
 
-// Program to show segment tree to demonstrate lazy
-// propagation
-#include <stdio.h>
-#include <math.h>
-#define MAX 10000
+// Program to show segment tree to demonstrate lazy propagation (range - min)
 
-// Ideally, we should not use global variables and large
-// constant-sized arrays, we have done it here for simplicity.
-int tree[MAX] = {0}; // To store segment tree
-int lazy[MAX] = {0}; // To store pending updates
+// https://www.hackerearth.com/problem/algorithm/range-update-range-max-queries/   --> for code testing
 
-/* si -> index of current node in segment tree
-	ss and se -> Starting and ending indexes of elements for
-				which current nodes stores sum.
-	us and ue -> starting and ending indexes of update query
-	diff -> which we need to add in the range us to ue */
-void updateRangeUtil(int si, int ss, int se, int us,
-					int ue, int diff)
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+#define all(v) v.begin(), v.end()
+#define F(a,b,i) for (int i = a; i < b; i++)
+#define Rev(a,b,i) for (int i = a; i >= b; i--)
+#define RISHI ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+
+#define inf LONG_LONG_MAX
+#define Min LONG_LONG_MIN
+
+typedef long double ld;
+typedef vector<int> vi;
+
+//------------------------------------------------------
+
+class lazySegment {
+private:
+    int n;
+    vector<int> tree;
+    vector<int> lazy;
+    
+    void buildTree(vector<int>& arr, int node, int start, int end) {
+        if (start == end) {
+            tree[node] = arr[start];
+        } else {
+            int mid = (start + end) / 2;
+            buildTree(arr, 2 * node, start, mid);
+            buildTree(arr, 2 * node + 1, mid + 1, end);
+            tree[node] = min(tree[2 * node], tree[2 * node + 1]);
+        }
+    }
+    
+    void updateLazy(int node, int start, int end, int l, int r, int val) {
+        if (lazy[node] != 0) {
+            tree[node] += lazy[node];
+            if (start != end) {
+                lazy[2 * node] += lazy[node];
+                lazy[2 * node + 1] += lazy[node];
+            }
+            lazy[node] = 0;
+        }
+        
+        if (start > end || start > r || end < l)
+            return;
+        
+        if (start >= l && end <= r) {
+            tree[node] += val;
+            if (start != end) {
+                lazy[2 * node] += val;
+                lazy[2 * node + 1] += val;
+            }
+            return;
+        }
+        
+        int mid = (start + end) / 2;
+        updateLazy(2 * node, start, mid, l, r, val);
+        updateLazy(2 * node + 1, mid + 1, end, l, r, val);
+        
+        tree[node] = min(tree[2 * node], tree[2 * node + 1]);
+    }
+    
+    int queryMin(int node, int start, int end, int l, int r) {
+        if (start > end || start > r || end < l)
+            return INT_MAX;
+        
+        if (lazy[node] != 0) {
+            tree[node] += lazy[node];
+            if (start != end) {
+                lazy[2 * node] += lazy[node];
+                lazy[2 * node + 1] += lazy[node];
+            }
+            lazy[node] = 0;
+        }
+        
+        if (start >= l && end <= r)
+            return tree[node];
+        
+        int mid = (start + end) / 2;
+        int left = queryMin(2 * node, start, mid, l, r);
+        int right = queryMin(2 * node + 1, mid + 1, end, l, r);
+        
+        return min(left, right);
+    }
+    
+public:
+    lazySegment(vector<int>& arr) {
+        n = arr.size();
+        tree.resize(4 * n);
+        lazy.resize(4 * n);
+        buildTree(arr, 1, 0, n - 1);
+    }
+    
+    void rangeUpdate(int l, int r, int val) {
+        updateLazy(1, 0, n - 1, l, r, val);
+    }
+    
+    int queryMin(int l, int r) {
+        return queryMin(1, 0, n - 1, l, r);
+    }
+};
+
+int32_t main()
 {
-	// If lazy value is non-zero for current node of segment
-	// tree, then there are some pending updates. So we need
-	// to make sure that the pending updates are done before
-	// making new updates. Because this value may be used by
-	// parent after recursive calls (See last line of this
-	// function)
-	if (lazy[si] != 0)
-	{
-		// Make pending updates using value stored in lazy
-		// nodes
-		tree[si] += (se-ss+1)*lazy[si];
+    RISHI
+    int n, q;
+	cin>>n>>q;
 
-		// checking if it is not leaf node because if
-		// it is leaf node then we cannot go further
-		if (ss != se)
-		{
-			// We can postpone updating children we don't
-			// need their new values now.
-			// Since we are not yet updating children of si,
-			// we need to set lazy flags for the children
-			lazy[si*2 + 1] += lazy[si];
-			lazy[si*2 + 2] += lazy[si];
+	vi v(n);
+	F(0,n,i){cin>>v[i];}
+
+	lazySegment tree(v);
+
+	while(q--)
+	{
+		char ch; cin>>ch;
+		if(ch=='q'){
+			int l, r;
+			cin>>l>>r;
+			l--; r--;
+			cout<<tree.queryMin(l,r)<<"\n";
 		}
-
-		// Set the lazy value for current node as 0 as it
-		// has been updated
-		lazy[si] = 0;
-	}
-
-	// out of range
-	if (ss>se || ss>ue || se<us)
-		return ;
-
-	// Current segment is fully in range
-	if (ss>=us && se<=ue)
-	{
-		// Add the difference to current node
-		tree[si] += (se-ss+1)*diff;
-
-		// same logic for checking leaf node or not
-		if (ss != se)
-		{
-			// This is where we store values in lazy nodes,
-			// rather than updating the segment tree itself
-			// Since we don't need these updated values now
-			// we postpone updates by storing values in lazy[]
-			lazy[si*2 + 1] += diff;
-			lazy[si*2 + 2] += diff;
+		else{
+			int l, r, x;
+			cin>>l>>r>>x;
+			l--; r--;
+			tree.rangeUpdate(l,r,x);
 		}
-		return;
 	}
 
-	// If not completely in rang, but overlaps, recur for
-	// children,
-	int mid = (ss+se)/2;
-	updateRangeUtil(si*2+1, ss, mid, us, ue, diff);
-	updateRangeUtil(si*2+2, mid+1, se, us, ue, diff);
-
-	// And use the result of children calls to update this
-	// node
-	tree[si] = tree[si*2+1] + tree[si*2+2];
-}
-
-// Function to update a range of values in segment
-// tree
-/* us and eu -> starting and ending indexes of update query
-	ue -> ending index of update query
-	diff -> which we need to add in the range us to ue */
-void updateRange(int n, int us, int ue, int diff)
-{
-updateRangeUtil(0, 0, n-1, us, ue, diff);
 }
 
 
-/* A recursive function to get the sum of values in given
-	range of the array. The following are parameters for
-	this function.
-	si --> Index of current node in the segment tree.
-		Initially 0 is passed as root is always at'
-		index 0
-	ss & se --> Starting and ending indexes of the
-				segment represented by current node,
-				i.e., tree[si]
-	qs & qe --> Starting and ending indexes of query
-				range */
-int getSumUtil(int ss, int se, int qs, int qe, int si)
-{
-	// If lazy flag is set for current node of segment tree,
-	// then there are some pending updates. So we need to
-	// make sure that the pending updates are done before
-	// processing the sub sum query
-	if (lazy[si] != 0)
-	{
-		// Make pending updates to this node. Note that this
-		// node represents sum of elements in arr[ss..se] and
-		// all these elements must be increased by lazy[si]
-		tree[si] += (se-ss+1)*lazy[si];
 
-		// checking if it is not leaf node because if
-		// it is leaf node then we cannot go further
-		if (ss != se)
-		{
-			// Since we are not yet updating children os si,
-			// we need to set lazy values for the children
-			lazy[si*2+1] += lazy[si];
-			lazy[si*2+2] += lazy[si];
-		}
-
-		// unset the lazy value for current node as it has
-		// been updated
-		lazy[si] = 0;
-	}
-
-	// Out of range
-	if (ss>se || ss>qe || se<qs)
-		return 0;
-
-	// At this point we are sure that pending lazy updates
-	// are done for current node. So we can return value
-	// (same as it was for query in our previous post)
-
-	// If this segment lies in range
-	if (ss>=qs && se<=qe)
-		return tree[si];
-
-	// If a part of this segment overlaps with the given
-	// range
-	int mid = (ss + se)/2;
-	return getSumUtil(ss, mid, qs, qe, 2*si+1) +
-		getSumUtil(mid+1, se, qs, qe, 2*si+2);
-}
-
-// Return sum of elements in range from index qs (query
-// start) to qe (query end). It mainly uses getSumUtil()
-int getSum(int n, int qs, int qe)
-{
-	// Check for erroneous input values
-	if (qs < 0 || qe > n-1 || qs > qe)
-	{
-		printf("Invalid Input");
-		return -1;
-	}
-
-	return getSumUtil(0, n-1, qs, qe, 0);
-}
-
-// A recursive function that constructs Segment Tree for
-// array[ss..se]. si is index of current node in segment
-// tree st.
-void constructSTUtil(int arr[], int ss, int se, int si)
-{
-	// out of range as ss can never be greater than se
-	if (ss > se)
-		return ;
-
-	// If there is one element in array, store it in
-	// current node of segment tree and return
-	if (ss == se)
-	{
-		tree[si] = arr[ss];
-		return;
-	}
-
-	// If there are more than one elements, then recur
-	// for left and right subtrees and store the sum
-	// of values in this node
-	int mid = (ss + se)/2;
-	constructSTUtil(arr, ss, mid, si*2+1);
-	constructSTUtil(arr, mid+1, se, si*2+2);
-
-	tree[si] = tree[si*2 + 1] + tree[si*2 + 2];
-}
-
-/* Function to construct segment tree from given array.
-This function allocates memory for segment tree and
-calls constructSTUtil() to fill the allocated memory */
-void constructST(int arr[], int n)
-{
-	// Fill the allocated memory st
-	constructSTUtil(arr, 0, n-1, 0);
-}
-
-
-// Driver program to test above functions
-int main()
-{
-	int arr[] = {1, 3, 5, 7, 9, 11};
-	int n = sizeof(arr)/sizeof(arr[0]);
-
-	// Build segment tree from given array
-	constructST(arr, n);
-
-	// Print sum of values in array from index 1 to 3
-	printf("Sum of values in given range = %d\n",
-		getSum(n, 0, 5));
-
-	// Add 10 to all nodes at indexes from 1 to 5.
-	updateRange(n, 0, 5, 10);
-
-	// Find sum after the value is updated
-	printf("Updated sum of values in given range = %d\n",
-			getSum( n, 0, 5));
-
-	return 0;
-}
-
+// ███████╗██╗███╗   ██╗██╗███████╗██╗  ██╗    ██╗    ██╗██╗  ██╗ █████╗ ████████╗    ██╗   ██╗ ██████╗ ██╗   ██╗    ███████╗████████╗ █████╗ ██████╗ ████████╗    ██╗
+// ██╔════╝██║████╗  ██║██║██╔════╝██║  ██║    ██║    ██║██║  ██║██╔══██╗╚══██╔══╝    ╚██╗ ██╔╝██╔═══██╗██║   ██║    ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝    ██║
+// █████╗  ██║██╔██╗ ██║██║███████╗███████║    ██║ █╗ ██║███████║███████║   ██║        ╚████╔╝ ██║   ██║██║   ██║    ███████╗   ██║   ███████║██████╔╝   ██║       ██║
+// ██╔══╝  ██║██║╚██╗██║██║╚════██║██╔══██║    ██║███╗██║██╔══██║██╔══██║   ██║         ╚██╔╝  ██║   ██║██║   ██║    ╚════██║   ██║   ██╔══██║██╔══██╗   ██║       ╚═╝
+// ██║     ██║██║ ╚████║██║███████║██║  ██║    ╚███╔███╔╝██║  ██║██║  ██║   ██║          ██║   ╚██████╔╝╚██████╔╝    ███████║   ██║   ██║  ██║██║  ██║   ██║       ██╗
+// ╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝          ╚═╝    ╚═════╝  ╚═════╝     ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝       ╚═╝
 
