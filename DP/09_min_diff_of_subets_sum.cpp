@@ -35,8 +35,10 @@ int32_t main()
     int t; cin>>t;
     while(t--)
     {
-        int n; cin>>n;
-        vi v(n+1);
+        vi v = {76,8,45,20,74,84,28,1};
+        int n = v.size();
+        v.insert(v.begin(), 0);
+
         int sum1,sum=0;
         F(0,n,i){cin>>v[i+1]; sum += v[i+1];}
 

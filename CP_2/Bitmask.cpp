@@ -15,11 +15,28 @@ typedef vector<int> vi;
 
 //------------------------------------------------------
 
-vector<vector<int>> dp;
+/*
 
-bool isNthBitSet(int& number, int& n){
+1. 1 << x ==> 2^x  [left shift]  0011 << 1 = 0110
+
+2. x >> 1 ==> x/2  [right shift] 1100 >> 1 = 0110
+
+3. Bitmask takes space of 2^n, 
+   therefore if working with 1-D, make sure n ~ 23 [bcz 2^23 is 1e7]
+   if working with multiple dimension make sure product of constraints does exceed the limit.
+   Bitmask used to store state [e.g -> visited]
+
+*/
+
+
+void setNthBit(int& number, int& n){
    int mask = 1 << n;
-   return (number & mask) != 0;
+   number = number | mask;
+}
+
+void unsetsetNthBit(int& number, int n){
+   int mask = ~(1 << n);
+   number = number & mask;
 }
 
 void flipNthBit(int& number, int n){
@@ -27,51 +44,21 @@ void flipNthBit(int& number, int n){
    number = number ^ mask;
 }
 
-int solve(int start, int par, int mask, vector<vector<int>>& graph){
-    if(__builtin_popcount(mask)==graph.size()){
-        return 0;
-    }
-    if(dp[start][mask]!=-1){return dp[start][mask];}
-    
-    int ans = INT_MAX;
-    for(int child : graph[start]){
-        if(child==par){continue;}
-        int temp=0;
-        if(!isNthBitSet(mask, child)){
-            flipNthBit(mask, child);
-            temp = solve(child, start, mask, graph) + 1;
-            flipNthBit(mask, child);
-        }
-        else{
-            temp = solve(child, start, mask, graph) + 1;
-        }
-        ans = min(ans, temp);
-    }
-
-    dp[start][mask] = ans;
+bool isNthBitSet(int& number, int& n){
+   int mask = 1 << n;
+   return (number & mask) != 0;
 }
 
-int shortestPathLength(vector<vector<int>>& graph) {
-    int n = graph.size();
-    dp.resize(n, vector<int>(1<<n, -1));
-    solve(0, -1, 0, graph);
-    int vis = (1<<n) - 1;
-    int res = INT_MAX;
-    for(int i=0; i<n; i++){
-        res = min(res, dp[vis][i]);
-    }
-    return res;
-}
+// __builtin_popcountll(x)  --> to find no. of set bits.
+
+
 
 int32_t main()
 {
     RISHI
-    int T; cin>>T;
-    while(T--)
-    {
-        
-    }
-
+    int num = 15;
+   //  cout<<isNthBitSet(num, 7);
+   //  int x = __builtin_popcountll(3);
 }
 
 

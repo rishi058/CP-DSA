@@ -1,7 +1,7 @@
-#include <iostream>
-#include <vector>
-
+#include <bits/stdc++.h>
 using namespace std;
+
+// T.C --> BELL NUMBERS
 
 void printPartition(const vector<vector<int>>& partition) {
     cout << "{ ";
@@ -15,34 +15,27 @@ void printPartition(const vector<vector<int>>& partition) {
     cout << "}\n" << endl;
 }
 
-void generatePartitionsHelper(const vector<int>& nums, vector<vector<int>>& partition, vector<int>& currentPartition, int index) {
+void generatePartitions(const vector<int>& nums, vector<vector<int>>& partition, int index) {
     if (index == nums.size()) {
         printPartition(partition);
         return;
     }
 
-    for (size_t i = 0; i < partition.size(); i++) {
+    for (int i = 0; i < partition.size(); i++) {
         partition[i].push_back(nums[index]);
-        generatePartitionsHelper(nums, partition, currentPartition, index + 1);
+        generatePartitions(nums, partition, index + 1);
         partition[i].pop_back();
     }
 
-    vector<int> newSubset;
-    newSubset.push_back(nums[index]);
-    partition.push_back(newSubset);
-    generatePartitionsHelper(nums, partition, currentPartition, index + 1);
+    partition.push_back({nums[index]});
+    generatePartitions(nums, partition, index + 1);
     partition.pop_back();
 }
 
-void generatePartitions(const vector<int>& nums) {
-    vector<vector<int>> partition;
-    vector<int> currentPartition;
-    generatePartitionsHelper(nums, partition, currentPartition, 0);
-}
 
 int main() {
-    vector<int> nums = {1, 2, 3, 4};
-    generatePartitions(nums);
-
+    vector<int> nums = {1,2,3,4};
+    vector<vector<int>> partition;
+    generatePartitions(nums, partition, 0);
     return 0;
 }

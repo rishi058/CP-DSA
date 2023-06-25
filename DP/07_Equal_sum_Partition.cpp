@@ -10,11 +10,9 @@ typedef vector<int> vi;
 
 //------------------------------------------------------
 
-/*
-given an arr print YES if it is possible to divide it into 2 subset of equal sum...else NO..
+// given an arr print YES if it is possible to divide it into 2 subset of equal sum...else NO..
 
-Can be done usig 1D D.P --> chk gfg....
-*/
+// Can be done usig 1D D.P --> chk gfg....
 
 /*
 Intution Breakdown -->

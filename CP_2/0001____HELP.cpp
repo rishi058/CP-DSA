@@ -30,18 +30,14 @@ typedef vector<int> vi;
 
 */
 
+
 int log3(int x){
-    return log2(x)/log2(3);
+   return log2(x)/log2(3);
 }
 
 int32_t main()
 {
    RISHI
-   int t; cin>>t;
-   while(t--)
-   {
-      
-   }
 
 }
 

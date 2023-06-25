@@ -32,9 +32,9 @@ int upperBound(vector<int> &v, int target){
 
 int32_t main()
 {
-    vi arr = {1,2,2,2,2,2,2,3};
+    vi arr = {1,2,5,9,100,120,900,10002};
     int n = arr.size()-1;
-    int target = 3;
+    int target = 9;
     int ind = upperBound(arr,target);
     cout<<"Index : "<<ind;
 }
