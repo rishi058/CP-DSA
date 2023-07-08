@@ -49,6 +49,14 @@ bool isNthBitSet(int& number, int& n){
    return (number & mask) != 0;
 }
 
+void unsetLeftmostBit(int &num){
+   num &= (-num);
+}
+
+void unsetRightmostBit(int &num) {
+   num &= (num - 1);
+}
+
 // __builtin_popcountll(x)  --> to find no. of set bits.
 
 
@@ -56,7 +64,9 @@ bool isNthBitSet(int& number, int& n){
 int32_t main()
 {
     RISHI
-    int num = 15;
+    int num = 5;
+    unsetRightmostBit(num);
+    cout<<num;
    //  cout<<isNthBitSet(num, 7);
    //  int x = __builtin_popcountll(3);
 }
