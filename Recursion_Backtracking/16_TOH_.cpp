@@ -16,14 +16,10 @@ FOLLOW THE SAME STEPS TO MOVE N DISCS...
 */
 
 
-void TOH(int n, char from_rod, char to_rod, char aux_rod)
-{
-    if (n == 0) {return;}
-
+void TOH(int n, char from_rod, char to_rod, char aux_rod){
+    if(n == 0){return;}
     TOH(n - 1, from_rod, aux_rod, to_rod);
-
     cout << "Move disk " << n << " from rod " << from_rod <<  " to rod " << to_rod << endl;
-
     TOH(n - 1, aux_rod, to_rod, from_rod);
 }
 

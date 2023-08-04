@@ -12,7 +12,7 @@ typedef vector<int> vi;
 //------------------------------------------------------
 
 
-const int MAX = 1e5+19;
+const int MAX = 2e5+1;
 vector<int> factors[MAX];
 
 void facto(){
