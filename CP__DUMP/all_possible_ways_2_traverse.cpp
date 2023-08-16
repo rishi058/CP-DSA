@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define int long long
+// #define int long long
 #define all(v) v.begin(), v.end()
 #define F(a,b,i) for (int i = a; i < b; i++)
 #define Rev(a,b,i) for (int i = a; i >= b; i--)

@@ -1,11 +1,5 @@
 #include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-
-using namespace __gnu_pbds;
 using namespace std;
-
-template<class T> using oset = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 #define int long long
 #define all(v) v.begin(), v.end()
@@ -27,22 +21,31 @@ typedef vector<int> vi;
 
 /*---------------------------------------->   MAGIC STARTS   <--------------------------------------------*/
 
+vector<int> maxSlidingWindow(vector<int>&v, int k) {
+    multiset<int, greater<int>> st;
+    vector<int> ans;
+    for(int i=0; i<k; i++){
+        st.insert(v[i]);
+    }        
+    ans.push_back(*st.begin());
+    for(int i=k; i<v.size(); i++){
+        int x = v[i-k];
+        auto it = st.find(x);
+        st.erase(it);
+        st.insert(v[i]);
+        ans.push_back(*st.begin());
+    }
+
+    return ans;
+}
+
 int32_t main()
 {
     RISHI
-    int n, k;
-    cin>>n>>k;
-
-    oset<int> st;
-    F(1,n+1,i){st.insert(i);}
-
-    int idx = k;
-    while(!st.empty()){
-        idx %= st.size();
-        int x = *st.find_by_order(idx);
-        cout<<x<<" ";
-        st.erase(x);
-        idx += k;
+    int T; cin>>T;
+    while(T--)
+    {
+        
     }
 
 }

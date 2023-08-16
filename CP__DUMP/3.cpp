@@ -13,7 +13,7 @@ template <typename dStruct>
 void print2(dStruct& vName){for(auto &it : vName){cout<<"{"<<it.first<<", "<<it.second<<"} ";} cout<<"\n";}
  
 const int mod = 1e9 + 7;
-#define inf LONG_LONG_MAX
+#define inf INT_MAX - 1
 #define Min LONG_LONG_MIN
  
 typedef long double ld;
@@ -24,13 +24,27 @@ typedef vector<int> vi;
 int32_t main()
 {
     RISHI
-    int n; cin>>n;
-    unordered_set<int> st;
+    int n, sum;
+    cin>>n>>sum;
+ 
+    vi coins(n);
+    F(0,n,i){cin>>coins[i];}
+    sort(all(coins));
+ 
+    vi dp(sum+1,0);
+    dp[0] = 1;
+ 
     F(0,n,i){
-        int x; cin>>x;
-        st.insert(x);
+        int coin = coins[i];
+        F(1, sum+1, wt){
+            if(wt-coin>=0){
+                dp[wt] += dp[wt-coin];
+                dp[wt]%=mod;
+            }
+        }
     }
-    cout<<st.size()<<"\n";
+ 
+    cout<<dp[sum];
 }
  
  
