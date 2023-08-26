@@ -4,86 +4,53 @@ using namespace std;
 #define int long long
 #define all(v) v.begin(), v.end()
 #define F(a,b,i) for (int i = a; i < b; i++)
+#define Rev(a,b,i) for (int i = a; i >= b; i--)
 #define RISHI ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+
+template <typename dStruct>
+void print(dStruct& vName){for(auto &it : vName){cout<<it<<" ";} cout<<"\n";}
+template <typename dStruct>
+void print2(dStruct& vName){for(auto &it : vName){cout<<"{"<<it.first<<", "<<it.second<<"} ";} cout<<"\n";}
+
+const int mod = 1e9 + 7;
+#define inf LONG_LONG_MAX
+#define Min LONG_LONG_MIN
 
 typedef long double ld;
 typedef vector<int> vi;
 
-//------------------------------------------------------
-#define ull unsigned long long
-ull power(ull x,int y, int p){
-    ull res = 1; 
-    x = x % p; 
-    while (y > 0){
-        if (y & 1){res = (res * x) % p;}
-        y = y >> 1; 
-        x = (x * x) % p;
-    }
-    return res;
-}
+/*---------------------------------------->   MAGIC STARTS   <--------------------------------------------*/
+vector<int> dp;
  
-ull modInv(ull n, int p){
-    return power(n, p - 2, p);
-}
-
-ull nCrModP(ull n,int r, int p){
-    // Fermat's Lttle Theorem
-    if (n < r){return 0;}
-    if (r == 0){return 1;}
-    ull fac[n + 1];
-    fac[0] = 1;
-    for (int i = 1; i <= n; i++){
-        fac[i] = (fac[i - 1] * i) % p;
+int solve(int sum, vector<int>&coins){
+    if(dp[sum]!=-1){return dp[sum];}
+ 
+    int ans = 0;
+    for(int coin : coins){
+        if(sum-coin<0){break;}
+        ans = (ans + solve(sum-coin, coins))%mod;
     }
  
-    return (fac[n] * modInv(fac[r], p) % p* modInv(fac[n - r], p) % p)% p;
+    return dp[sum] = ans;
 }
-//-------------------------------------------------------------------
-
-
-// #define mod (int)(1e9 + 7)
-// int Fact[100001];
-// int binExp(int n, int x)
-// {
-//     int ans = 1;
-//     while (x)
-//     {
-//         if (x & 1)
-//             ans = (ans * 1LL * n) % mod;
-//         n = (n * 1LL * n) % mod;
-//         x >>= 1;
-//     }
-//     return ans;
-// }
-// void CreateFactorial()
-// {
-//     Fact[0] = 1;
-//     for (int i = 1; i <= 100000; i++)
-//     {
-//         Fact[i] = (i * 1LL * Fact[i - 1]) % mod;
-//     }
-// }
-// int nCr(int N, int i)
-// {
-//     // N!/i!*(N-i)!
-//     int numerator = Fact[N];
-//     int denominator = (Fact[i] * 1LL * Fact[N - i]) % mod;
-//     return (numerator * 1LL * binExp(denominator, mod - 2)) % mod;
-// }
-
-//-------------------------------------------------------------------
-
+ 
+ 
 int32_t main()
 {
     RISHI
-    int t; cin>>t;
-    while(t--)
-    {
-        
-    }
-
+    int n, sum;
+    cin>>n>>sum;
+ 
+    vi coins(n);
+    F(0,n,i){cin>>coins[i];}
+    sort(all(coins));
+ 
+    dp.resize(sum+1, -1);
+    dp[0] = 1;
+ 
+    cout<<solve(sum, coins);
 }
-
+ 
 
 
 // ███████╗██╗███╗   ██╗██╗███████╗██╗  ██╗    ██╗    ██╗██╗  ██╗ █████╗ ████████╗    ██╗   ██╗ ██████╗ ██╗   ██╗    ███████╗████████╗ █████╗ ██████╗ ████████╗    ██╗

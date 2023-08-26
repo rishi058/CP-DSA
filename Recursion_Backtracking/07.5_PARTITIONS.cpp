@@ -15,8 +15,10 @@ typedef vector<int> vi;
 
 //------------------------------------------------------
 
+// T.C = 2^n
+
 vector<vector<string>> ans;
-string str = "aabccded";
+string str = "aabcced";
 int n = str.size();
 
 void solve(int ind, vector<string> &curr){
@@ -24,7 +26,7 @@ void solve(int ind, vector<string> &curr){
         ans.push_back(curr);
         return;
     }
-    if(curr.size()==3){return;}   // when you want to do at least k partitions (here k = 2).
+    // if(curr.size()==3){return;}   // when you want to do at least k partitions (here k = 2).
 
     string temp;
     for(int i=ind; i<n; i++){

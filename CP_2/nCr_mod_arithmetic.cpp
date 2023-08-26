@@ -1,72 +1,74 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define int long long
 #define all(v) v.begin(), v.end()
 #define F(a,b,i) for (int i = a; i < b; i++)
-#define Rev(a,b,i) for (int i = a; i >= b; i--)
 #define RISHI ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-
-template <typename dStruct>
-void print(dStruct& vName){for(auto &it : vName){cout<<it<<" ";} cout<<"\n";}
-template <typename dStruct>
-void print2(dStruct& vName){for(auto &it : vName){cout<<"{"<<it.first<<", "<<it.second<<"} ";} cout<<"\n";}
-
-// const int mod = 1e9 + 7;
-#define inf LONG_LONG_MAX
-#define Min LONG_LONG_MIN
 
 typedef long double ld;
 typedef vector<int> vi;
 
-/*---------------------------------------->   MAGIC STARTS   <--------------------------------------------*/
+//------------------------------------------------------
 
-#define ll long long
+const int mod = 1e9 + 7;
+const int N = 1e6+1;
+int fac[N];
 
-long long modpow(long long a, long long b)
-{
-    long long MOD = 1000000007;
-    long long ans = 1;
-    a %= MOD;
-    while (b)
-    {
-        if (b & 1)
-            ans = (ans * a) % MOD;
-        b >>= 1;
-        a = (a * a) % MOD;
+
+int power(int x, int y){
+    int res = 1; 
+    x = x % mod; 
+    while (y){
+        if (y & 1){res = (res * x) % mod;}
+        y >>= 1; 
+        x = (x * x) % mod;
     }
-    return ans;
+    return res;
+}
+ 
+int modInv(int n){
+    return power(n, mod - 2);
 }
 
-int solve(int A, string B, string C) {
-    vector<int> pos[26];
-    
-    for(int a=0; a<A; a++){
-        pos[B[a]-'a'].push_back(a);
-    }
-    
-    ll ans = 0;
-    int cur[26] = {};
-    
-    for(int a=0; a<A; a++){
-        int c = C[a] - 'a';
-        auto itr = lower_bound(pos[c].begin() + cur[c], pos[c].end(), a);
-        cur[c] = itr - pos[c].begin();
-        if(itr==pos[c].end()){
-            ans++;
-        }
-        else{
-            ans += *itr - a;
-        }
-    }
-    
-    return (modpow(2, ans) * modpow(ans, 1000000005)) % 1000000007; 
+int nCrMod(int n, int r){
+    // Fermat's Lttle Theorem
+    if (n < r){return 0;}
+    if (r == 0){return 1;}
+    return ( ( ( ( fac[n] * modInv(fac[r] ) ) % mod ) * modInv(fac[n - r]) ) % mod ) % mod;
 }
 
+void preCompute(){
+    fac[0] = 1;
+    for(int i=1; i<N; i++){
+        fac[i] = (fac[i-1] * i) % mod;
+    }
+}
+
+//------------------------------------------------------
+
+/*
+NOTE :-
+
+Modular Division :-
+
+-->  (a/b) % mod = ( a*modInv(b) ) % mod;
+--> modInv(b) = ( b^(mod-2) ) % mod  [ can only be achieved via binExp ]
+
+Modular Sub :-
+
+--> (a-b) % M = ((a % M) - (b % M) + M) % M
+
+*/
 
 int32_t main()
 {
-   RISHI
-   cout<<solve(2, "dk", "jc");
+    RISHI
+    int t; cin>>t;
+    while(t--)
+    {
+        
+    }
 
 }
 

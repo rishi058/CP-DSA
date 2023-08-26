@@ -1,57 +1,68 @@
 #include <bits/stdc++.h>
 using namespace std;
- 
-#define int long long
-#define all(v) v.begin(), v.end()
-#define F(a,b,i) for (int i = a; i < b; i++)
-#define Rev(a,b,i) for (int i = a; i >= b; i--)
-#define RISHI ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
- 
-template <typename dStruct>
-void print(dStruct& vName){for(auto &it : vName){cout<<it<<" ";} cout<<"\n";}
-template <typename dStruct>
-void print2(dStruct& vName){for(auto &it : vName){cout<<"{"<<it.first<<", "<<it.second<<"} ";} cout<<"\n";}
- 
-const int mod = 1e9 + 7;
-#define inf INT_MAX - 1
-#define Min LONG_LONG_MIN
- 
-typedef long double ld;
-typedef vector<int> vi;
- 
-/*---------------------------------------->   MAGIC STARTS   <--------------------------------------------*/
- 
-int32_t main()
+#define ll long long
+typedef vector<int> vll;
+
+
+const int MOD=1000000007;
+long long int inverse(long long int i){
+    if(i==1) return 1;
+    return (MOD - ((MOD/i)*inverse(MOD%i))%MOD+MOD)%MOD;
+}
+ll POW(ll a,ll b)
 {
-    RISHI
-    int n, sum;
-    cin>>n>>sum;
- 
-    vi coins(n);
-    F(0,n,i){cin>>coins[i];}
-    sort(all(coins));
- 
-    vi dp(sum+1,0);
-    dp[0] = 1;
- 
-    F(0,n,i){
-        int coin = coins[i];
-        F(1, sum+1, wt){
-            if(wt-coin>=0){
-                dp[wt] += dp[wt-coin];
-                dp[wt]%=mod;
+    if(b==0) return 1;
+    if(b==1) return a%MOD;
+    ll temp=POW(a,b/2);
+    if(b%2==0) return (temp*temp)%MOD;
+    else return (((temp*temp)%MOD)*a)%MOD;
+}
+
+vector<vll> mul(vector<vll> x, vector<vll> y) {
+    vector<vll> r(6, vll(6));
+    for (int j = 0; j < 6; j++)
+    {
+        for (int k = 0; k < 6; k++) 
+        {
+            for (int l = 0; l < 6; l++)
+            {
+                r[j][k] = (r[j][k]+(x[j][l]*y[l][k])%MOD)%MOD;
             }
         }
     }
- 
-    cout<<dp[sum];
+    return r;
 }
- 
- 
- 
-// ███████╗██╗███╗   ██╗██╗███████╗██╗  ██╗    ██╗    ██╗██╗  ██╗ █████╗ ████████╗    ██╗   ██╗ ██████╗ ██╗   ██╗    ███████╗████████╗ █████╗ ██████╗ ████████╗    ██╗
-// ██╔════╝██║████╗  ██║██║██╔════╝██║  ██║    ██║    ██║██║  ██║██╔══██╗╚══██╔══╝    ╚██╗ ██╔╝██╔═══██╗██║   ██║    ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝    ██║
-// █████╗  ██║██╔██╗ ██║██║███████╗███████║    ██║ █╗ ██║███████║███████║   ██║        ╚████╔╝ ██║   ██║██║   ██║    ███████╗   ██║   ███████║██████╔╝   ██║       ██║
-// ██╔══╝  ██║██║╚██╗██║██║╚════██║██╔══██║    ██║███╗██║██╔══██║██╔══██║   ██║         ╚██╔╝  ██║   ██║██║   ██║    ╚════██║   ██║   ██╔══██║██╔══██╗   ██║       ╚═╝
-// ██║     ██║██║ ╚████║██║███████║██║  ██║    ╚███╔███╔╝██║  ██║██║  ██║   ██║          ██║   ╚██████╔╝╚██████╔╝    ███████║   ██║   ██║  ██║██║  ██║   ██║       ██╗
-// ╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝          ╚═╝    ╚═════╝  ╚═════╝     ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝       ╚═╝
+
+vector<vll> modpow(vector<vll> x, ll n) 
+{
+    if (n == 0)
+    {
+        vector<vll> r(6, vll(6));
+        for (int i = 0; i < 6; i++) r[i][i] = 1;
+        return r;
+    }
+    vector<vll> u = modpow(x, n/2);
+    u = mul(u, u);
+    if (n%2==1) u = mul(u, x);
+    return u;
+}
+
+int main()
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    ll n;
+    cin>>n;
+    vector<vll> a(6,vll(6));
+    for(int i=0;i<5;i++)
+    {
+        a[i][i+1]=1;
+    }
+    for(int i=0;i<6;i++)
+    {
+        a[5][i]=1;
+    }
+    vector<vll> ans=modpow(a,n);
+    cout<<ans[5][5];
+}
