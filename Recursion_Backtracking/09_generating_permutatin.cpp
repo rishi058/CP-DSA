@@ -9,18 +9,19 @@ vector<bool> chosen(N,0);
 void search(vector<int> permutation,vector<int> values) {  // repeated permutation is stored in case of identical elements.
 
     if (permutation.size() == values.size()) {
-        // process permutation
         vv.push_back(permutation);
-    } else {
-        for (int i = 0; i < values.size(); i++) {
-            if (chosen[i]) { continue; }
-            chosen[i] = true;
-            permutation.push_back(values[i]);
-            search(permutation, values);
-            chosen[i] = false;
-            permutation.pop_back();
-        }
+        return;
     }
+    
+    for (int i = 0; i < values.size(); i++) {
+        if (chosen[i]) { continue; }
+        chosen[i] = true;
+        permutation.push_back(values[i]);
+        search(permutation, values);
+        chosen[i] = false;
+        permutation.pop_back();
+    }
+    
 }
 
 
@@ -33,6 +34,7 @@ void getPerm(string str, int index){     // recursion with swap approach more ea
 
     for(int i=index; i<str.size(); i++){
         swap(str[index],str[i]);
+
         getPerm(str,index+1);
 
         swap(str[index],str[i]);

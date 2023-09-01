@@ -64,9 +64,11 @@ Modular Sub :-
 int32_t main()
 {
     RISHI
-    int t; cin>>t;
+    int t=1;
     while(t--)
     {
+        int ok = modInv(784);
+        cout<<ok;
         
     }
 

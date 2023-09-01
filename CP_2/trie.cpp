@@ -21,22 +21,68 @@ typedef vector<int> vi;
 
 /*---------------------------------------->   MAGIC STARTS   <--------------------------------------------*/
 
-vector<int> buildSuffixArray(string text) {
-    int n = text.length();
-    vector<int> suffixArray(n);
+class TrieNode {
+public:
+    TrieNode *child[26];
+    bool isWord = false;
+    TrieNode(){for(auto&a : child){a = nullptr;}}
+};
 
-    // Initialize the suffix array with indices
-    for (int i = 0; i < n; ++i) {
-        suffixArray[i] = i;
+class Trie {
+    TrieNode* root;
+
+    void deleteKey(TrieNode* node, string key, int depth) {
+        if(depth==key.size()){node->isWord=0; return;}
+        int i = key[depth] - 'a';
+        if (!node->child[i]){return; }
+        deleteKey(node->child[i], key, depth + 1);
+        if (!node->child[i]->isWord && isNodeEmpty(node->child[i])) {
+            delete node->child[i];
+            node->child[i] = nullptr;
+        }
     }
 
-    // Sort the suffixes based on substrings
-    sort(suffixArray.begin(), suffixArray.end(), [&](int a, int b) {
-        return text.substr(a) < text.substr(b);
-    });
+    bool isNodeEmpty(TrieNode* node){
+        for(auto* child : node->child){
+            if(child!=nullptr){return false;}
+        }
+        return true;
+    }
 
-    return suffixArray;
-}
+public:
+    Trie(){root = new TrieNode();}
+
+    void insert(string s) {
+        TrieNode *p = root;
+        for (auto &a : s) {
+            int i = a - 'a';
+            if (!p->child[i]) p->child[i] = new TrieNode();
+            p = p->child[i];
+        }
+        p->isWord = true;
+    }
+
+    bool search(string key, bool prefix=false) {
+        TrieNode *p = root;
+        for (auto &a : key) {
+            int i = a - 'a';
+            if (!p->child[i]) return false;
+            p = p->child[i];
+        }
+        if (prefix==false) return p->isWord;
+        return true;
+    }
+
+    bool startsWith(string prefix) {
+        return search(prefix, true);
+    }
+
+    void deleteKey(string key) {
+        deleteKey(root, key, 0);
+    }
+
+};
+
 
 int32_t main()
 {
@@ -44,9 +90,15 @@ int32_t main()
     int T = 1;
     while(T--)
     {
-        string str = "aybabtu";
-        vi v = buildSuffixArray(str);
-        print(v);
+        Trie dic;
+        dic.insert("abcd");
+        dic.insert("abcd");
+        dic.insert("rishi");
+        cout<<dic.search("rishi")<<"\n";
+        cout<<dic.search("risi")<<"\n";
+        dic.deleteKey("abcd");
+        cout<<dic.search("abcd")<<"\n";
+        
     }
 
 }

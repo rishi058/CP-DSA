@@ -1,68 +1,99 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-typedef vector<int> vll;
 
+#define int long long
+#define all(v) v.begin(), v.end()
+#define F(a,b,i) for (int i = a; i < b; i++)
+#define Rev(a,b,i) for (int i = a; i >= b; i--)
+#define RISHI ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 
-const int MOD=1000000007;
-long long int inverse(long long int i){
-    if(i==1) return 1;
-    return (MOD - ((MOD/i)*inverse(MOD%i))%MOD+MOD)%MOD;
-}
-ll POW(ll a,ll b)
-{
-    if(b==0) return 1;
-    if(b==1) return a%MOD;
-    ll temp=POW(a,b/2);
-    if(b%2==0) return (temp*temp)%MOD;
-    else return (((temp*temp)%MOD)*a)%MOD;
-}
+template <typename dStruct>
+void print(dStruct& vName){for(auto &it : vName){cout<<it<<" ";} cout<<"\n";}
+template <typename dStruct>
+void print2(dStruct& vName){for(auto &it : vName){cout<<"{"<<it.first<<", "<<it.second<<"} ";} cout<<"\n";}
 
-vector<vll> mul(vector<vll> x, vector<vll> y) {
-    vector<vll> r(6, vll(6));
-    for (int j = 0; j < 6; j++)
-    {
-        for (int k = 0; k < 6; k++) 
-        {
-            for (int l = 0; l < 6; l++)
-            {
-                r[j][k] = (r[j][k]+(x[j][l]*y[l][k])%MOD)%MOD;
+const int mod = 1e9 + 7;
+#define inf HorizontalONG_HorizontalONG_MAX
+#define Min HorizontalONG_HorizontalONG_MIN
+
+typedef long double ld;
+typedef vector<int> vi;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n, m;
+        cin >> n >> m;
+
+        vector<string> grid(n);
+        F(0,n,i){cin>>grid[i];}
+        
+
+        vector<vi> Horizontal(m), Vertical(n);
+
+        F(0,n,i){
+            F(0,m,j){
+                if (grid[i][j] == 'L') {
+                    Horizontal[j].push_back(i);
+                } else if (grid[i][j] == 'U') {
+                    Vertical[i].push_back(j);
+                }
             }
         }
-    }
-    return r;
-}
 
-vector<vll> modpow(vector<vll> x, ll n) 
-{
-    if (n == 0)
-    {
-        vector<vll> r(6, vll(6));
-        for (int i = 0; i < 6; i++) r[i][i] = 1;
-        return r;
-    }
-    vector<vll> u = modpow(x, n/2);
-    u = mul(u, u);
-    if (n%2==1) u = mul(u, x);
-    return u;
-}
+        bool ok = true;
 
-int main()
-{
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-    ll n;
-    cin>>n;
-    vector<vll> a(6,vll(6));
-    for(int i=0;i<5;i++)
-    {
-        a[i][i+1]=1;
+        for (auto &row : Horizontal) {
+            if (row.size() % 2 != 0) {
+                ok = false;
+                break;
+            }
+        }
+
+        for (auto &col : Vertical) {
+            if (col.size() % 2 != 0) {
+                ok = false;
+                break;
+            }
+        }
+
+        if (!ok) {
+            cout << -1 << "\n";
+            continue;
+        }
+
+        F(0,m,j){
+            for (int k = 0; k < Horizontal[j].size(); k += 2) {
+                int i1 = Horizontal[j][k];
+                int i2 = Horizontal[j][k + 1];
+                grid[i1][j] = 'W';
+                grid[i2][j] = 'B';
+                grid[i1][j + 1] = 'B';
+                grid[i2][j + 1] = 'W';
+            }
+        }
+
+        F(0,n,i){
+            for (int k = 0; k < Vertical[i].size(); k += 2) {
+                int j1 = Vertical[i][k];
+                int j2 = Vertical[i][k + 1];
+                grid[i][j1] = 'W';
+                grid[i][j2] = 'B';
+                grid[i + 1][j1] = 'B';
+                grid[i + 1][j2] = 'W';
+            }
+        }
+
+        for (auto &row : grid) {
+            for (char x : row) {
+                cout << x;
+            }
+            cout << "\n";
+        }
+
+        
     }
-    for(int i=0;i<6;i++)
-    {
-        a[5][i]=1;
-    }
-    vector<vll> ans=modpow(a,n);
-    cout<<ans[5][5];
+
 }

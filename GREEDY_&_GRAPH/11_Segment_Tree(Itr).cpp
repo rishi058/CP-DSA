@@ -35,13 +35,13 @@ TO BUILD **MIN_SEG_TREE** REPLACE MAX BY MIN..
 
 */
 
-class segement{
+class segment{
 public:
 	vector<int> tree;
 	int n ;
 
-	segement(){}
-	segement(vector<int>&arr){build(arr);}
+	segment(){}
+	segment(vector<int>&arr){build(arr);}
 
 	void build(vector<int>&arr){
 		n = arr.size();

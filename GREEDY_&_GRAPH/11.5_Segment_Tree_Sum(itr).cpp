@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class segement{
+class segment{
 public:
 	vector<int> tree;
 	int n ;
 
-	segement(){}
-	segement(vector<int>&arr){build(arr);}
+	segment(){}
+	segment(vector<int>&arr){build(arr);}
 
 	void build(vector<int>&arr){
 		n = arr.size();
@@ -46,7 +46,7 @@ public:
 int main()
 {
 	vector<int> v = {1,2,3,4};
-	segement tree1(v);
+	segment tree1(v);
 
 	cout<<tree1.query(0,3)<<"\n";
 	tree1.updateTreeNode(2, 5);

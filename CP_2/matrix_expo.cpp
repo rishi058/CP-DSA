@@ -91,6 +91,10 @@ From Following We obtained this ->
 Obtained via Observing similarity
 */
 
+
+// We can also automate this ...
+
+
 int32_t main()
 {
     RISHI

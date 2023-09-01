@@ -21,6 +21,13 @@ typedef vector<int> vi;
 
 /*---------------------------------------->   MAGIC STARTS   <--------------------------------------------*/
 
+/*
+MOST OPTIMIZED
+cses
+CP CHEAT SHEET QUESTIONS 
+ALL POSSIBLE PATHS FROM 1,1 TO N,N IF EVERY CELL IS USED.
+*/
+
 const int n = 7;
 int mx = 48;
 bool vis[n][n];
