@@ -64,6 +64,7 @@ Modular Sub :-
 int32_t main()
 {
     RISHI
+    preCompute();
     int t=1;
     while(t--)
     {

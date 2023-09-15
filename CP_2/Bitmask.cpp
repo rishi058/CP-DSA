@@ -58,17 +58,33 @@ void unsetRightmostBit(int &num) {
 }
 
 // __builtin_popcountll(x)  --> to find no. of set bits.
+// __builtin_ctz(x)         --> Find the pos of LSB in x
+
+bool isPower2(int x){
+   return !(x&(x-1));
+}
+
+bool isEveryBitSet(int x){   // i.e x = pow(2,n) - 1;
+   return !(x&(x+1));
+}
 
 
+int nextPow2(int x){         
+   int z = ceil(log2(x));
+   if(isPower2(x)){z++;}
+   return 1<<z;
+}
+
+int prevPow2(int x){     
+   int z = floor(log2(x));
+   if(isPower2(x)){z--;}
+   return 1<<z;
+}
 
 int32_t main()
 {
-    RISHI
-    int num = 5;
-    unsetRightmostBit(num);
-    cout<<num;
-   //  cout<<isNthBitSet(num, 7);
-   //  int x = __builtin_popcountll(3);
+   RISHI
+   cout<<prevPow2(7);
 }
 
 

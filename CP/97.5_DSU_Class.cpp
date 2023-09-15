@@ -12,16 +12,11 @@ typedef vector<int> vi;
 //------------------------------------------------------
 
 class DSU{
-    public :
-
+public :
     vector<int> parent, Size, Rank;
     
-    // this func create n independent nodes automatically
-    void makeNodes(int sz){
-        for(int i=0; i<sz; i++){
-            Size[i] = 1;
-            parent[i] = i;
-        }
+    void makeNodes(int sz){ // this func create n independent nodes automatically
+        for(int i=0; i<sz; i++){ make(i); }
     }
 
     DSU(int sz){
@@ -30,12 +25,7 @@ class DSU{
         Rank.resize(sz, 0);
     }
 
-    // If we are using make function , don't use initilizer
-    void make(int v){                   
-        parent[v] = v;
-        Size[v] = 1;
-    }
-
+    void make(int v){ parent[v] = v; Size[v] = 1; } 
 
     int find(int v){                                      // Recursion 
         if(v==parent[v]) { return v; }
@@ -43,18 +33,15 @@ class DSU{
     }
 
     void UnionBySize(int a, int b){   
-        a = find(a);
-        b = find(b);
+        a = find(a); b = find(b);
         if( a!=b ){   
             if(Size[a] < Size[b]) { swap(a,b); }      
-            parent[b] = a;                          
-            Size[a] += Size[b];
+            parent[b] = a; Size[a] += Size[b];
         }
     }
 
     void UnionByRank(int a, int b){
-        a = find(a);
-        b = find(b);
+        a = find(a); b = find(b);
         if(a!=b){
             if(Rank[a]<Rank[b]){
                 parent[a] = b;
@@ -63,8 +50,7 @@ class DSU{
                 parent[b] = a;
             }
             else{
-                parent[b] = a;
-                Rank[a]++;
+                parent[b] = a; Rank[a]++;
             }
         }
     }

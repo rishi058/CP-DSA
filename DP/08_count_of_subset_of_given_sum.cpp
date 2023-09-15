@@ -52,35 +52,31 @@ int32_t main()
             cin>>v[i+1];    // 1 indexed
         }                               
         
-
         int sum; cin>>sum;
 
         int dp[n+1][sum+1];
 
-        F(0,n+1,i){
+        memset(dp, 0, sizeof(dp));
+        dp[0][0] = 1;
+
+        F(1,n+1,i){
             F(0,sum+1, j){
-                if(j>0 && i==0 ){dp[i][j]=0;}
-                else if(j==0){dp[i][j]=1;}
-                
-                else{
-                    if(v[i]<=j){
-                        dp[i][j] = dp[i-1][j-v[i]] + dp[i-1][j] ;
-                    }
-                    else{
-                        dp[i][j] = dp[i-1][j];
-                    }
+                if(v[i]<=j){
+                    dp[i][j] = dp[i-1][j-v[i]] + dp[i-1][j] ;
                 }
-                
+                else{
+                    dp[i][j] = dp[i-1][j];
+                }  
             }
         }
 
         cout<<dp[n][sum]<<"\n";
-        F(0,n+1,i){
-            F(0,sum+1, j){
-                cout<<dp[i][j]<<" ";
-            }
-            cout<<"\n";
-        }
+        // F(0,n+1,i){
+        //     F(0,sum+1, j){
+        //         cout<<dp[i][j]<<" ";
+        //     }
+        //     cout<<"\n";
+        // }
     
     }
 

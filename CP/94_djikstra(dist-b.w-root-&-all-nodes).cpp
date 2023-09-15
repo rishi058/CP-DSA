@@ -42,6 +42,7 @@ void dijkstra(int source){
 
         for(auto child : g[v]){
             int child_v = child.first;
+            st.erase({dist[child_v], child_v});   // optimization (optional)
             int wt = child.second;
 
             if(dist[v] + wt < dist[child_v]){
@@ -52,9 +53,6 @@ void dijkstra(int source){
 
     }
 
-    for(int i=1; i<=6; i++){
-        cout<<i<<"  --distance-->  "<<dist[i]<<"\n";
-    }
 }
 
 int main()
@@ -70,6 +68,9 @@ int main()
     }
 
     dijkstra(1);
+    for(int i=1; i<=n; i++){
+        cout<<i<<"  --distance-->  "<<dist[i]<<"\n";
+    }
 }
 
 /*

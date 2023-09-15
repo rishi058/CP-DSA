@@ -44,6 +44,7 @@ int main()
         int x,y,wt;
         cin>>x>>y>>wt;
         dist[x][y] = wt;
+        dist[y][x] = wt;
     }
 
     for(int k=1; k<=n; k++){

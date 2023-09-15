@@ -25,13 +25,15 @@ int32_t main()
 {
     RISHI
 
+    #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-    
+    #endif
+
     int T; cin>>T;
     while(T--)
     {
-        
+        F(0,10,i){cout<<i<<" ";}
     }
 
 }

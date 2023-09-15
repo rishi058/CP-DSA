@@ -1,99 +1,87 @@
 #include <bits/stdc++.h>
-using namespace std;
 
-#define int long long
-#define all(v) v.begin(), v.end()
-#define F(a,b,i) for (int i = a; i < b; i++)
-#define Rev(a,b,i) for (int i = a; i >= b; i--)
-#define RISHI ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+using namespace std;
+typedef long long ll;
+const int maxN = 1e5+1;
 
 template <typename dStruct>
 void print(dStruct& vName){for(auto &it : vName){cout<<it<<" ";} cout<<"\n";}
-template <typename dStruct>
-void print2(dStruct& vName){for(auto &it : vName){cout<<"{"<<it.first<<", "<<it.second<<"} ";} cout<<"\n";}
 
-const int mod = 1e9 + 7;
-#define inf HorizontalONG_HorizontalONG_MAX
-#define Min HorizontalONG_HorizontalONG_MIN
 
-typedef long double ld;
-typedef vector<int> vi;
+bool vis[maxN];
+int N, M, K, rt[maxN];
+ll k[maxN], ck[maxN], dp[maxN];
+vector<int> ord, comp, G[maxN], GR[maxN], SCC[maxN];
 
-int main() {
-    int t;
-    cin >> t;
+void dfs1(int u){
+    vis[u] = true;
+    for(int v : G[u])
+        if(!vis[v])
+            dfs1(v);
+    ord.push_back(u);
+}
 
-    while (t--) {
-        int n, m;
-        cin >> n >> m;
+void dfs2(int u){
+    vis[u] = true;
+    comp.push_back(u);
+    for(int v : GR[u])
+        if(!vis[v])
+            dfs2(v);
+}
 
-        vector<string> grid(n);
-        F(0,n,i){cin>>grid[i];}
-        
+void dfs3(int u){
+    vis[u] = true;
+    dp[u] = ck[u];
+    for(int v : SCC[u]){
+        if(!vis[v])
+            dfs3(v);
+        dp[u] = max(dp[u], dp[v]+ck[u]);
+    }
+}
 
-        vector<vi> Horizontal(m), Vertical(n);
+int main(){
+    scanf("%d %d", &N, &M);
+    for(int i = 1; i <= N; i++)
+        scanf("%d", &k[i]);
 
-        F(0,n,i){
-            F(0,m,j){
-                if (grid[i][j] == 'L') {
-                    Horizontal[j].push_back(i);
-                } else if (grid[i][j] == 'U') {
-                    Vertical[i].push_back(j);
-                }
-            }
-        }
-
-        bool ok = true;
-
-        for (auto &row : Horizontal) {
-            if (row.size() % 2 != 0) {
-                ok = false;
-                break;
-            }
-        }
-
-        for (auto &col : Vertical) {
-            if (col.size() % 2 != 0) {
-                ok = false;
-                break;
-            }
-        }
-
-        if (!ok) {
-            cout << -1 << "\n";
-            continue;
-        }
-
-        F(0,m,j){
-            for (int k = 0; k < Horizontal[j].size(); k += 2) {
-                int i1 = Horizontal[j][k];
-                int i2 = Horizontal[j][k + 1];
-                grid[i1][j] = 'W';
-                grid[i2][j] = 'B';
-                grid[i1][j + 1] = 'B';
-                grid[i2][j + 1] = 'W';
-            }
-        }
-
-        F(0,n,i){
-            for (int k = 0; k < Vertical[i].size(); k += 2) {
-                int j1 = Vertical[i][k];
-                int j2 = Vertical[i][k + 1];
-                grid[i][j1] = 'W';
-                grid[i][j2] = 'B';
-                grid[i + 1][j1] = 'B';
-                grid[i + 1][j2] = 'W';
-            }
-        }
-
-        for (auto &row : grid) {
-            for (char x : row) {
-                cout << x;
-            }
-            cout << "\n";
-        }
-
-        
+    for(int i = 0, a, b; i < M; i++){
+        scanf("%d %d", &a, &b);
+        G[a].push_back(b);
+        GR[b].push_back(a);
     }
 
+    for(int i = 1; i <= N; i++)
+        if(!vis[i])
+            dfs1(i);
+
+    fill(vis+1, vis+N+1, false);
+    reverse(ord.begin(), ord.end());
+    print(ord);
+
+    for(int u : ord){
+        if(!vis[u]){
+            dfs2(u);
+            K++;
+            for(int v : comp){
+                ck[K] += k[v];
+                rt[v] = K;
+            }
+            comp.clear();
+        }
+    }
+
+    for(int u = 1; u <= N; u++)
+        for(int v : G[u])
+            if(rt[v] != rt[u])
+                SCC[rt[u]].push_back(rt[v]);
+
+    fill(vis+1, vis+K+1, false);
+    for(int i = 1; i <= K; i++)
+        if(!vis[i])
+            dfs3(i);
+
+    ll best = 0;
+    for(int i = 1; i <= K; i++)
+        best = max(best, dp[i]);
+    printf("%lld\n", best);
 }
