@@ -57,6 +57,25 @@ void unsetRightmostBit(int &num) {
    num &= (num - 1);
 }
 
+int findLSB(int n){  
+   if(n==0){ return 0;}
+   int pos = 1;
+   while(n){
+      if(n&1){return pos;}
+      n>>=1; pos++;
+   }
+   return pos;    
+}
+
+int findMSB(int n){
+   int pos = 0;
+   if(n==0){return -1; }
+   while(n != 0){
+      n >>= 1; pos++;
+   }
+   return pos - 1;
+}
+
 // __builtin_popcountll(x)  --> to find no. of set bits.
 // __builtin_ctz(x)         --> Find the pos of LSB in x
 
