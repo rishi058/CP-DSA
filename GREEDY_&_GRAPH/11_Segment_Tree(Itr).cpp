@@ -66,7 +66,7 @@ public:
 	int query(int l, int r){  // both inclusive
 		r++;
 		if(l==r){return tree[r+n-1];}
-		int res = 0;
+		int res = 0;                       // update this if you want to modify it to min.
 		for(l += n, r += n; l < r; l >>= 1, r >>= 1){
 			if(l&1){res = max(tree[l++],res);}
 			if(r&1){res = max(tree[--r],res);}

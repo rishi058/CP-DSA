@@ -21,8 +21,6 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
-
-
 int32_t main()
 {
     RISHI
@@ -30,28 +28,11 @@ int32_t main()
     cin>>T;
     while(T--)
     {
-        int n, x;
-        cin>>n>>x;
-
-        vi v(n);
-        F(0,n,i){cin>>v[i];}
-
-        if(x==0){cout<<"0\n"; continue;}
-
-        int lo = 1, hi = 1e18+10, ans=0;
-
-        while(lo<=hi){
-            int mid = lo + (hi-lo)/2;
-            int y = check(v, mid);
-            if(y<=x){ans=mid; lo = mid+1;}
-            if(y>=x){hi = mid-1;}
-            cout<<y<<"\n";
-        }
-
-        cout<<ans<<"\n";
+        
     }
 
 }
+
 
 
 //      ██╗  █████╗  ██╗    ██████╗ ██╗  ██╗ ██████╗  ███████╗ ███████╗   ██████╗   █████╗  ███╗   ███╗
