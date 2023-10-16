@@ -23,53 +23,47 @@ typedef vector<int> vi;
 
 int32_t main()
 {
-	RISHI
-	int T = 1;
-	cin>>T;
-	while(T--)
-	{
-		int n, sum;
-		cin>>n>>sum;
+    RISHI
+    int T = 1;
+    cin>>T;
+    while(T--)
+    {
+        int n, m, k;
+        cin>>n>>m>>k;
 
-		int x = (n/2);
-		if(sum<3*x){cout<<"-1\n"; continue;}
+        multiset<int> a, b;
+        F(0,n,i){int x; cin>>x; a.insert(x);}
+        F(0,m,i){int x; cin>>x; b.insert(x);}
 
-		int a = sum/n;
-		int rem = sum%n;
+        k = 2 - (k%2);
 
-		vi ans(n);
-		F(0,n,i){
-			ans[i] = a;
-		}
+        for(int i=0; i<k; i++){
+            if(i==0){
+                auto mn = a.begin();
+                auto mx = --b.end();
+                if(*mx > *mn){
+                    a.insert(*mx);
+                    a.erase(mn);
 
-		if(rem%2==0){
-			int i=0;
-			while(rem>0){
-				ans[i]+=2;
-				rem-=2;
-				i++;
-			}
+                    b.erase(mx);
+                    b.insert(*mn);
+                }
+            }
+            else{
+                auto mx = --a.end();
+                auto mn = b.begin();
+                if(*mx > *mn){
+                    b.insert(*mx);
+                    b.erase(mn);
+                    a.insert(*mn);
+                    a.erase(mx);
+                }
+            }
+        }
 
-			bool ok = 0;
-			for(int i=0; i<n; i+=2){
-				if(ok){ans[i]--; ok=!ok;}
-				if(!ok){ans[i]++; ok=!ok;}			
-			}
-
-			print(ans);
-
-
-		}
-
-		else{
-
-			
-
-		}
-		
-
-		
-	}
+        int ans = accumulate(all(a), 0LL);
+        cout<<ans<<"\n";
+    }
 
 }
 

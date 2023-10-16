@@ -21,13 +21,61 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
+int search(vector<vector<int>>&v, int k, bool first){
+    int lo = 0, hi = v.size()-1, idx = -1;
+    while(lo<=hi){
+        int mid = (lo+hi)/2;
+        // cout<<lo<<" "<<hi<<" "<<mid<<"\n";
+        // cout<<v[mid][0]<<" "<<v[mid][1]<<"\n";
+        if(v[mid][0]<=k && v[mid][1]>=k){
+            idx = mid;
+            if(first){hi=mid-1;}
+            else{lo=mid+1;}
+        }
+
+        else if(v[mid][0]>k){
+            hi = mid-1;
+        }
+        else if(v[mid][1]<k){
+            lo = mid+1;
+        }
+        // cout<<lo<<" "<<hi<<" "<<mid<<"\n";
+
+    }
+
+    return idx;
+}
+
+vector<int> fullBloomFlowers(vector<vector<int>>& flowers, vector<int>& people) {
+    int m = flowers.size(), n = people.size();
+    sort(flowers.begin(), flowers.end());
+    
+    for(int i=0; i<m; i++){
+        cout<<flowers[i][0]<<" "<<flowers[i][1]<<"\n";
+    }
+
+    vector<int> ans;
+    for(int i=0; i<n; i++){
+        int t = people[i];
+        int left = search(flowers, t, 1);
+        int right = search(flowers, t, 0);
+        if(left==-1){ans.push_back(0);}
+        else{ans.push_back(right-left+1);}
+    }
+
+    return ans;
+}
+
 int32_t main()
 {
     RISHI
     int T = 1;
-    cin>>T;
     while(T--)
     {
+        vector<vi> tmp =  {{21,34},{17,37},{23,43},{17,46},{37,41},{44,45},{32,45}};
+        vi v = {31,41,10,12};
+        vi ans=fullBloomFlowers(tmp, v);
+        print(ans);
         
     }
 

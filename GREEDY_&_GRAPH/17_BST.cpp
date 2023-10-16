@@ -9,31 +9,33 @@ struct Node {
     Node *right;  
 };  
 
-Node* create(int item)  
-{  
+Node* create(int item)  {  
     Node* node = new Node;  
     node->data = item;  
     node->left = node->right = NULL;  
     return node;  
 }  
+
+
 /*Inorder traversal of the tree formed*/  
-void inorder(Node *root)  
-{  
+void inorder(Node *root){  
     if (root == NULL)  
         return;  
     inorder(root->left); //traverse left subtree  
     cout<< root->data << "   "; //traverse root node  
     inorder(root->right); //traverse right subtree  
 }  
-Node* findMinimum(Node* cur) /*To find the inorder successor*/  
-{  
+
+/*To find the inorder successor*/  
+Node* findMinimum(Node* cur) {  
     while(cur->left != NULL) {  
         cur = cur->left;  
     }  
     return cur;  
 }  
-Node* insertion(Node* root, int item) /*Insert a node*/  
-{  
+
+/*Insert a node*/  
+Node* insertion(Node* root, int item) {  
     if (root == NULL)  
         return create(item); /*return new node if tree is empty*/  
     if (item < root->data)  
@@ -42,8 +44,8 @@ Node* insertion(Node* root, int item) /*Insert a node*/
         root->right = insertion(root->right, item);  
     return root;  
 }  
-void search(Node* &cur, int item, Node* &parent)  
-{  
+
+void search(Node* &cur, int item, Node* &parent){  
     while (cur != NULL && cur->data != item)  
     {  
         parent = cur;  
@@ -53,6 +55,8 @@ void search(Node* &cur, int item, Node* &parent)
             cur = cur->right;  
     }  
 }  
+
+
 void deletion(Node*& root, int item) /*function to delete a node*/  
 {  
     Node* parent = NULL;  
