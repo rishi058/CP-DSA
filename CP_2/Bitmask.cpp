@@ -103,7 +103,7 @@ int prevPow2(int x){
 int32_t main()
 {
    RISHI
-   cout<<prevPow2(7);
+   cout<<nextPow2(8);
 }
 
 

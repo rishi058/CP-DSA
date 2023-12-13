@@ -58,7 +58,7 @@ map<int,int> primeFact2(int n) { // old version
 int main()
 {
     int n; cin>>n;
-    map<int,int> mapp = primeFact(343);
+    map<int,int> mapp = primeFact(98);
 
     for(auto x : mapp){
         cout<<x.first<<":"<<x.second<<"\n";
