@@ -1,76 +1,60 @@
-// #pragma GCC optimize("O3")
-// #pragma GCC target("avx2")
-// #pragma GCC optimize("unroll-loops")
-#include "bits/stdc++.h"
-
-// using namespace __gnu_pbds;
+#include <bits/stdc++.h>
 using namespace std;
 
 #define int long long
-typedef long long ll;
-typedef unsigned long long ull;
+#define all(v) v.begin(), v.end()
+#define F(a,b,i) for (int i = a; i < b; i++)
+#define Rev(a,b,i) for (int i = a; i >= b; i--)
+#define RISHI ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+
+template <typename dStruct>
+void print(dStruct& vName){for(auto &it : vName){cout<<it<<" ";} cout<<"\n";}
+template <typename dStruct>
+void print2(dStruct& vName){for(auto &it : vName){cout<<"{"<<it.first<<", "<<it.second<<"} ";} cout<<"\n";}
+
+const int mod = 1e9 + 7;
+#define inf LONG_LONG_MAX
+#define Min LONG_LONG_MIN
+
 typedef long double ld;
+typedef vector<int> vi;
 
-const ll INF = 1e18 - 1, MOD = 1e9 + 7, MOD2 = 1e9 + 9, N = 1e5 + 1, MAXN = 1e6 + 1;
-const int INFi = 1e9 + 100;
-const ld EPS = 1e-12, PI = acos(-1);
+//!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
-random_device rd;
-mt19937_64 rnd(rd());
-
-void solve() {
-    int n;
-    string s;
-    cin >> n >> s;
-    int cnt1 = 0, cnt0 = 0;
-    for (int i = 0; i < n; i++) {
-        cnt1 += (s[i] == '1');
-        cnt0 += (s[i] == '0');
-    }
-    if (cnt1 != cnt0) {
-        cout << "-1\n";
-        return;
-    }
-    vector<int> ans;
-    deque<int> dq;
-    for (char &e : s) {
-        dq.push_back(e - '0');
-    }
-    int d = 0;
-    while (!dq.empty()) {
-        if (dq.front() == dq.back()) {
-            if (dq.front() == 1) {
-                dq.push_front(1);
-                dq.push_front(0);
-                ans.push_back(d);
-            } else {
-                dq.push_back(0);
-                dq.push_back(1);
-                ans.push_back(n - d);
-            }
-            n += 2;
-        }
-        while (!dq.empty() && dq.front() != dq.back()) {
-            dq.pop_back();
-            dq.pop_front();
-            d++;
-        }
-    }
-    cout << (int)ans.size() << '\n';
-    for (int &e : ans) {
-        cout << e << ' ';
-    } cout << '\n';
-}
-
-signed main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-//    freopen("input.txt", "r", stdin);
-//    freopen("output.txt", "w", stdout);
+int32_t main()
+{
+    RISHI
     int T = 1;
-    cin >> T;
-    while (T--) {
-        solve();
+    cin>>T;
+    while(T--)
+    {
+        int n, x, y;
+        cin>>n>>x>>y;
+
+        vi v(n);
+        F(0,n,i){cin>>v[i];}
+
+        F(0,n,i){
+            F(i+1,n,j){
+                int sum = v[j]+v[i];
+                int dif = v[j]-v[i];
+                if(sum%x==0 && dif%y==0){
+                    cout<<v[j]<<", "<<v[i]<<"\n";
+                }
+            }
+        }
+
+        cout<<"\n";
+        
     }
-    return 0;
+
 }
+
+
+
+//      ██╗  █████╗  ██╗    ██████╗ ██╗  ██╗ ██████╗  ███████╗ ███████╗   ██████╗   █████╗  ███╗   ███╗
+//      ██║ ██╔══██╗ ██║   ██╔════╝ ██║  ██║ ██╔══██╗ ██╔════╝ ██╔════╝   ██╔══██╗ ██╔══██╗ ████╗ ████║
+//      ██║ ███████║ ██║   ╚█████╗  ███████║ ██████╔╝ █████╗   █████╗     ██████╔╝ ███████║ ██╔████╔██║
+// ██╗  ██║ ██╔══██║ ██║    ╚═══██╗ ██╔══██║ ██╔══██╗ ██╔══╝   ██╔══╝     ██╔══██╗ ██╔══██║ ██║╚██╔╝██║
+// ╚█████╔╝ ██║  ██║ ██║   ██████╔╝ ██║  ██║ ██║  ██║ ███████╗ ███████╗   ██║  ██║ ██║  ██║ ██║ ╚═╝ ██║
+//  ╚════╝  ╚═╝  ╚═╝ ╚═╝   ╚═════╝  ╚═╝  ╚═╝ ╚═╝  ╚═╝ ╚══════╝ ╚══════╝   ╚═╝  ╚═╝ ╚═╝  ╚═╝ ╚═╝     ╚═╝

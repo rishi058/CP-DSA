@@ -11,6 +11,8 @@ typedef vector<int> vi;
 
 //------------------------------------------------------
 
+int mod = 998244353;
+
 long long power(long long a, long long b, long long m) {
     a %= m;
     long long res = 1;
@@ -29,7 +31,8 @@ int32_t main()
     int t; cin>>t;
     while(t--)
     {
-        
+        int ans = power(343,343,mod);
+        cout<<ans<<"\n";
     }
 
 }

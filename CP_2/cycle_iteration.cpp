@@ -21,32 +21,55 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
+/*
+
+https://codeforces.com/contest/1894/problem/C
+
+NOTE :- After each opr the fixed point becomes the last element.
+Reverse Engg :- Pick last element(let 'x') nd do right shift 'x' times
+if( 'x'>n ){ It can't be possible bcz 1<=idx<=n }
+Observe : - after n similar opr array will become same therefore k = min(n,k)
+
+Doing it Brute Force will give TLE.
+Therfore Play with start idx.
+
+*/
+
 int32_t main()
 {
-	RISHI
-	int T = 1;
-	cin>>T;
-	while(T--)
-	{
-		int n; cin>>n;
+    RISHI
+    int T = 1;
+    cin>>T;
+    while(T--)
+    {
+        int n, k; 
+        cin>>n>>k;
 
-		vector<int> adj[n+1];
-		F(0,n-1,i){
-			int u, v;
-			cin>>u>>v;
-			adj[u].push_back(v);
-			adj[v].push_back(u);
-		}
+        vi v(n);
+        F(0,n,i){cin>>v[i];}
 
-		int ct_left = 0;
-		F(1,n+1,i){
-			if(adj[i].size()==1){
-				ct_left++;
-			}
-		}
+        k = min(n,k);
+        bool ok = 1;
+        int start = 0;
 
-		cout<<(ct_left+1)/2<<"\n";
-	}
+        F(0,k,i){
+            int end = (start+n-1)%n;
+            int val = v[end];
+
+            if(val>n){ok=0; break;}
+
+            start = (start - val + n)%n;
+        }
+
+        if(ok){
+            cout<<"Yes\n";
+        }
+        else{
+            cout<<"No\n";
+        }
+
+
+    }
 
 }
 

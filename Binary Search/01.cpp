@@ -22,7 +22,7 @@ typedef vector<int> vi;
 7. Find No. of times a sorted arry is rotated. + searching in it
 8. Searching in nearly sorted array.
 9. Floor/Ceil of an element.
-10. Next Letter Provlem.
+10. Next Letter Problem.
 11. Find the position of in a infinite sorted arrray.
 12. Index of first 1 in a binary sorted infinite array.
 13. min diff element in a sorted array.

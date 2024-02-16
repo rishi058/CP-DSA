@@ -69,6 +69,11 @@ void insertionSort(vi &arr)
             j--;
         }
         arr[j + 1] = key;
+        cout<<i<<" : ";
+        for(int x : arr){
+            cout<<x<<" ";
+        }
+        cout<<"\n";
     }
 
 }
