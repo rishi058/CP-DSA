@@ -2,6 +2,7 @@
 using namespace std;
 
 #define int long long
+#define tuple array<int, 3>
 #define all(v) v.begin(), v.end()
 #define F(a,b,i) for (int i = a; i < b; i++)
 #define Rev(a,b,i) for (int i = a; i >= b; i--)
@@ -28,24 +29,21 @@ int32_t main()
     cin>>T;
     while(T--)
     {
-        int n, x, y;
-        cin>>n>>x>>y;
+        int a,b,c,d;
+        cin>>a>>b>>c>>d;
 
-        vi v(n);
-        F(0,n,i){cin>>v[i];}
+        int dist_x = (c-a);
+        int dist_y = (d-b);
 
-        F(0,n,i){
-            F(i+1,n,j){
-                int sum = v[j]+v[i];
-                int dif = v[j]-v[i];
-                if(sum%x==0 && dif%y==0){
-                    cout<<v[j]<<", "<<v[i]<<"\n";
-                }
-            }
+        if(dist_x>dist_y || dist_y<0){
+            cout<<"-1\n";
+            continue;
         }
 
-        cout<<"\n";
-        
+        int ans = dist_y + abs(a+dist_y-c);
+        cout<<ans<<"\n";
+
+
     }
 
 }

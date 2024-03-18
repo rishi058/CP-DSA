@@ -25,7 +25,6 @@ int binomialCoeff(int n,int k)
 
 int catalan(int n) 
 { 
-    
     int res = binomialCoeff(2*n, n); 
     return res/(n+1); 
 }

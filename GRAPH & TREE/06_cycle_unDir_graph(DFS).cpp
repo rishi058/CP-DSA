@@ -22,19 +22,68 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
+/*
+https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1
+
+EXAMPLE :-
+
+4 2
+2 1
+2 3
+------------->
+
+   | 0 :        |
+   | 1 : 2      |
+   | 2 : 1 3    |
+   | 3 : 2      |
+
+
+*/
+
+bool isCyclic(int vtx, int par, vector<bool>&vis, vector<int> adj[]){
+    vis[vtx] = 1;
+    
+    for(int child : adj[vtx]){
+        if(!vis[child]){
+            if(isCyclic(child, vtx, vis, adj)){
+                return 1;
+            }
+        }
+        else if(child != par){return 1;}    //!  IMP
+    }
+    
+    return 0;
+}
+
 int32_t main()
 {
     RISHI
     int T = 1;
-    cin>>T;
+    // cin>>T;
     while(T--)
     {
-        int n, a, b;
-        cin>>n>>a>>b;
+        int n, m;
+        cin>>n>>m;
 
-        int rest = n - a - b;
-        if((n==a && n==b) || rest>1){cout<<"Yes\n";}
-        else{cout<<"No\n";}
+        vector<int> adj[n];        // O indexed
+        F(0,m,i){
+            int u, v;
+            cin>>u>>v;
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+
+        vector<bool> vis(n,0);
+
+        for(int i=0; i<n; i++){
+            if(!vis[i]){
+                if(isCyclic(i, -1, vis, adj)){
+                    cout<<i<<"\n";
+                    break;
+                }
+            }
+        }
+        
     }
 
 }

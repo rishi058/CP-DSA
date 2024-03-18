@@ -9,7 +9,7 @@ typedef long double ld;
 typedef vector<int> vi;
 
 //------------------------------------------------------
-//  lower bound --> if a element is present return that element(or its index)
+//  lower bound --> if a element is present return that element(or its leftmost (i.e first) index)
 //                  if its not present return the element(or its idx) just greater than it.
 //  NOTE -> if we search for a element greater than max_element its return -1;
 

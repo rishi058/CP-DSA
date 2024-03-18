@@ -22,19 +22,49 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
+// https://leetcode.com/problems/is-graph-bipartite/
+
+bool dfs(int node, int color, vector<vector<int>>& graph, vector<int> &vis){
+    vis[node] = color;
+    for(int child : graph[node]){
+        if(vis[child]==-1){
+            if(dfs(child, !color, graph, vis)==false){return false;}
+        }
+        else{
+            if(vis[child]==vis[node]){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool isBipartite(vector<vector<int>>& graph) {
+    int n = graph.size();
+    vector<int> vis(n, -1);
+
+    bool ans = true;
+    for(int i=0; i<n; i++){
+        if(vis[i]==-1){
+            ans =  dfs(i, 1, graph, vis);
+            if(ans==false){break;}
+        }
+    }
+
+    return ans;
+}
+
 int32_t main()
 {
     RISHI
     int T = 1;
-    cin>>T;
+    // cin>>T;
     while(T--)
     {
-        int n, a, b;
-        cin>>n>>a>>b;
 
-        int rest = n - a - b;
-        if((n==a && n==b) || rest>1){cout<<"Yes\n";}
-        else{cout<<"No\n";}
+        vector<vi> adj = {{1,2,3},{0,2},{0,1,3},{0,2}};  // NO
+        cout<<isBipartite(adj);
+
     }
 
 }

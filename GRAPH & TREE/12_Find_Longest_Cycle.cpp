@@ -10,61 +10,65 @@ typedef long double ld;
 typedef vector<int> vi;
 
 //------------------------------------------------------
+// https://leetcode.com/problems/longest-cycle-in-a-graph
 
-class DSU{
-public :
-    vector<int> parent, Size, Rank;
-    
-    void makeNodes(int sz){ // this func create n independent nodes automatically
-        for(int i=0; i<sz; i++){ make(i); }
+map<int,vector<int>> graph;
+int vis[100005];
+set<int> cycle;
+
+void dfs(int vertex, int ct){
+    vis[vertex]=ct;
+    for(int child : graph[vertex]){
+      if(vis[child]>0){
+        if(vis[child]==ct){cycle.insert(child);}
+        return;
+      }
+      dfs(child, ct);
     }
+}
 
-    DSU(int sz){
-        parent.resize(sz, 0);   // use 0, for avoiding bugs.
-        Size.resize(sz, 0);
-        Rank.resize(sz, 0);
+void dfs2(int vertex, int &ct){
+    vis[vertex]=true;
+    ct++;
+    for(int child : graph[vertex]){
+      if(vis[child]) {return;}
+      dfs2(child, ct);
     }
+}
 
-    void make(int v){ parent[v] = v; Size[v] = 1; } 
+int longestCycle(vector<int>& edges) {
+  int n = edges.size();
+  for(int i=0; i<n; i++){
+    int x = edges[i];
+    if(x<0){continue;}
+    graph[i].push_back(x);
+  }
 
-    int find(int v){                                      // Recursion 
-        if(v==parent[v]) { return v; }
-        else { return parent[v] = find(parent[v]); }     // path compression 
-    }
+  int ct=1;
+  for(int i=0; i<n; i++){
+    if(vis[i]>0) {continue;}
+    dfs(i, ct);
+    ct++;
+  }
 
-    void UnionBySize(int a, int b){   
-        a = find(a); b = find(b);
-        if( a!=b ){   
-            if(Size[a] < Size[b]) { swap(a,b); }      
-            parent[b] = a; Size[a] += Size[b];
-        }
-    }
+  memset(vis, false, sizeof(vis));
+  int ans=-1;
+  for(int x : cycle){
+    int temp=0;
+    dfs2(x, temp);
+    ans = max(ans,temp);
+  }
 
-    void UnionByRank(int a, int b){
-        a = find(a); b = find(b);
-        if(a!=b){
-            if(Rank[a]<Rank[b]){
-                parent[a] = b;
-            }
-            else if(Rank[a]>Rank[b]){
-                parent[b] = a;
-            }
-            else{
-                parent[b] = a; Rank[a]++;
-            }
-        }
-    }
+  return ans;
+}
 
-};
 
 int32_t main()
 {
-    RISHI
-    int t; cin>>t;
-    while(t--)
-    {
-        
-    }
+  RISHI
+  vi v = {3,3,4,2,3} ;
+  // i is connected to v[i] {Directed} 
+  cout<<longestCycle(v);
 
 }
 

@@ -22,19 +22,81 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
+/*
+https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1
+
+EXAMPLE :-
+
+4 2
+2 1
+2 3
+------------->
+
+   | 0 :        |
+   | 1 : 2      |
+   | 2 : 1 3    |
+   | 3 : 2      |
+
+
+*/
+
+bool isCyclic(int src, vector<bool>&vis, vector<int>adj[]){
+
+    queue<pair<int,int>> q;
+    q.push({src, -1});
+    vis[src] = 1;
+
+    while(!q.empty()){
+        int node = q.front().first;
+        int par = q.front().second;      //!  IMP
+        q.pop();
+
+        for(int child : adj[node]){
+            if(!vis[child]){
+                vis[child] = 1;
+                q.push({child, node});
+            }
+            else if(child!=par){return 1;}   //!  IMP
+        }   
+    }
+
+    return 0;
+}
+    
+bool isCycle(int V, vector<int> adj[]){
+    vector<bool> vis(V, 0);
+    
+    for(int i=0; i<V; i++){
+        if(!vis[i]){
+            if(isCyclic(i, vis, adj)){
+                return 1;
+            }
+        }
+    }
+    
+    return 0;
+} 
+
 int32_t main()
 {
     RISHI
     int T = 1;
-    cin>>T;
+    // cin>>T;
     while(T--)
     {
-        int n, a, b;
-        cin>>n>>a>>b;
+        int n, m;
+        cin>>n>>m;
 
-        int rest = n - a - b;
-        if((n==a && n==b) || rest>1){cout<<"Yes\n";}
-        else{cout<<"No\n";}
+        vector<int> adj[n];        // O indexed
+        F(0,m,i){
+            int u, v;
+            cin>>u>>v;
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+
+        cout<<isCycle(n, adj)<<"\n";
+        
     }
 
 }

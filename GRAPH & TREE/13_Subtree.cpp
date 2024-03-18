@@ -16,30 +16,21 @@ int even[N];
 // int val[N];
 
 void dfs(int vertex, int par=0){
-    /*
-    take action on vertex after entering vertex
-    */
 
    if(vertex%2==0){even[vertex]++;}
    subtree_sum[vertex] += vertex;  //  += val[vertex]
 
     for(int child : g[vertex]){
-        /*
-        take action on child before entering child node
-        */
+        
         if(child==par) {continue;}
         
         dfs(child, vertex);
-        /*
-        take acton on child after entering child node
-        */
+        
        subtree_sum[vertex] += subtree_sum[child];
        even[vertex] += even[child];
 
     }
-    /*
-    take action on vertex before exiting the vertex
-    */
+    
 }
 
 int main()

@@ -28,8 +28,12 @@ typedef vector<int> vi;
 
 7. TRY BINARY SEARCH ON ANSWER WHEN WE HAVE TO MINIMIZE MAXIMUM OR MAXIMIZE MINIMUM.
 
+8. Priciple of Exclusion-Inclusion, i.e To find the total no. of Good, Bad, Beautiful, Happy, things -> 
+   Find all Possible answer subtract that bad things to get good.
+
 */
 
+//! In LeetCode, after coding the answer in IDE, replace all 'int' with 'll' always. TO AVOID SHIT
 
 int log3(int x){
    return log2(x)/log2(3);

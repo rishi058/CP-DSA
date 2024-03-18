@@ -22,19 +22,59 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
+/*
+https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/
+
+EXAMPLE INPUT : 
+4 4
+0 1
+1 2
+2 3
+3 3
+*/
+
+bool dfs_isCyclic(int node, vector<int> graph[], vector<bool> &vis, vector<bool> &pathVis){
+    vis[node] = 1;
+    pathVis[node] = 1;
+    for(int child : graph[node]){
+        if(!vis[child]){
+            if(dfs_isCyclic(child, graph, vis, pathVis)){return true;}
+        }
+        else if(pathVis[child]){return true;}
+    }
+
+    pathVis[node] = 0;
+    return false;
+}
+
 int32_t main()
 {
     RISHI
     int T = 1;
-    cin>>T;
+    // cin>>T;
     while(T--)
     {
-        int n, a, b;
-        cin>>n>>a>>b;
+        int n, m;
+        cin>>n>>m;
 
-        int rest = n - a - b;
-        if((n==a && n==b) || rest>1){cout<<"Yes\n";}
-        else{cout<<"No\n";}
+        vector<int> adj[n];        // O indexed
+        F(0,m,i){
+            int u, v;
+            cin>>u>>v;
+            adj[u].push_back(v);
+        }
+
+        vector<bool> vis(n,0), pathVis(n,0);
+
+        for(int i=0; i<n; i++){
+            if(!vis[i]){
+                if(dfs_isCyclic(i, adj, vis, pathVis)){
+                    cout<<i<<"\n";
+                    break;
+                }
+            }
+        }
+        
     }
 
 }

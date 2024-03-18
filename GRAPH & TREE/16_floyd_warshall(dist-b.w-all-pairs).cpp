@@ -22,24 +22,54 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
+const int N = 501;
+int dist[N][N];
+ 
+void pre(){     
+    for(int i=0; i<N; i++){
+        for(int j=0; j<N; j++){
+            if(i==j){dist[i][j]=0;}
+            else {dist[i][j]=inf;}
+        }
+    }
+}
+ 
 int32_t main()
 {
     RISHI
+    pre();
     int T = 1;
-    cin>>T;
     while(T--)
     {
-        int n, a, b;
-        cin>>n>>a>>b;
-
-        int rest = n - a - b;
-        if((n==a && n==b) || rest>1){cout<<"Yes\n";}
-        else{cout<<"No\n";}
+        int n, m, q;
+        cin>>n>>m>>q;
+ 
+        F(0,m,i){
+            int u,v,wt;
+            cin>>u>>v>>wt;
+            dist[u][v] = min(dist[u][v], wt);
+            dist[v][u] = min(dist[v][u], wt);
+        } 
+ 
+        for(int k=1; k<=n; k++){
+            for(int i=1; i<=n; i++){
+                for(int j=1; j<=n; j++){
+                    dist[i][j] = min(dist[i][j], dist[i][k]+dist[k][j]);
+                }
+            }
+        }
+ 
+        while(q--){
+            int u, v;
+            cin>>u>>v;
+ 
+            if(dist[u][v]==inf){cout<<"-1\n";}
+            else{cout<<dist[u][v]<<"\n";}
+        }       
     }
-
+ 
 }
-
-
+ 
 
 //      ██╗  █████╗  ██╗    ██████╗ ██╗  ██╗ ██████╗  ███████╗ ███████╗   ██████╗   █████╗  ███╗   ███╗
 //      ██║ ██╔══██╗ ██║   ██╔════╝ ██║  ██║ ██╔══██╗ ██╔════╝ ██╔════╝   ██╔══██╗ ██╔══██╗ ████╗ ████║

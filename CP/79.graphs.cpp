@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/*********GRAPH REPRESENTATION*************
+/*
+********GRAPH REPRESENTATION*************
 1. Adjency method
 2. list - array of vectors   (most common)
 

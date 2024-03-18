@@ -22,19 +22,68 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
+/*   ********** SAMPLE GRAPH INPUT EXAMPLE **********
+6 9
+1 3
+1 5
+3 5
+3 4
+3 6
+3 2
+2 6
+4 6
+5 6
+*/
+
+void bfs(int src, int n, vector<int>adj[]){
+    vector<int> vis(n, 0);
+
+    queue<int> q;
+    q.push(src);
+
+    while(!q.empty()){
+
+        int k = q.size();       //  Additional technique to seperate levels.
+        while(k--){             //
+
+            int node = q.front();
+            cout<<node<<" ";
+
+            q.pop();
+
+            for(int child : adj[node]){
+                if(!vis[child]){
+                    vis[child] = 1;
+                    q.push(child);
+                }
+            }
+        }  
+        cout<<"\n";                    
+    }
+}
+
+
+
 int32_t main()
 {
     RISHI
     int T = 1;
-    cin>>T;
+    // cin>>T;
     while(T--)
     {
-        int n, a, b;
-        cin>>n>>a>>b;
+        int n, m;    // ct of vertices, edges   [ In Tree : ct_edge = ct_vertex-1 ]
+        cin>>n>>m;
 
-        int rest = n - a - b;
-        if((n==a && n==b) || rest>1){cout<<"Yes\n";}
-        else{cout<<"No\n";}
+        vector<int> adj[n+1];
+        for(int i=0; i<m; i++){
+            int u, v;
+            cin>>u>>v;
+            adj[u].push_back(v);
+            adj[v].push_back(u);        // if graph isn't bidirectional or it is a tree comment this line.
+        }
+        
+        vector<bool> vis(n+1, 0);
+        bfs(1, n+1, adj);
     }
 
 }
