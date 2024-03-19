@@ -99,6 +99,8 @@ void deletion(Node*& root, int item) /*function to delete a node*/
         free(cur);  
     }  
 }  
+
+
 int main()  
 {  
   Node* root = NULL;  

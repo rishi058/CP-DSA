@@ -1,0 +1,31 @@
+Cycles
+
+
+1. shortest path in directed acyclic graph with weight from root to all other nodes -> 
+      a.) Kahn's Algorithm(Topo Sort) -> find topo order using dfs/bfs(dfs prefferred) and do the distance thing using that order [Strivers]
+      b.) Dijkstra Algorithm
+      c.) Using Normal BFS
+
+1. shortest path in undirected/directed acyclic graph with unit weight from root to all other nodes -> 
+      a.) Simple BFS or DFS (used to find height or depth)
+      NOTE :- undirected acyclic graph is tree.
+
+
+2. shortest path in undirected/directed cyclic graph with positive weight to find dist b/w root and all other nodes-->
+    a.) Dijsktra Algo.
+    b.) Normal BFS will not work.
+    NOTE :- Topo sort doesn't exist in cyclic graph
+
+3. shortest path in undirected/directed cyclic graph with negative weight to find dist b/w root and all other nodes-->
+   a.) Bellman's Ford Algorithm [Does Relaxation n-1 times] [relaxation = preform dijskstra]
+   NOTE :- It can't handle negative cycles but can detect negative cycles
+
+4. Floyd Warshall Algo --> Used to find shortest distance b/w all pairs of node.
+     NOTE :- can handle negative edge, also works in cyclic graph
+     NOTE :- can't handle negative cycles
+
+5. Prim's Algo / Krushkal's --> Used to Generate MST 
+ --> Both the Algo always work and give correct MST.
+ --> Only Difference is that prim's doesn't work for -ve edge and disconnected graph but Krushkal's  does.
+
+Negative Cycles --> when sum of edges of a cycle is negative.
