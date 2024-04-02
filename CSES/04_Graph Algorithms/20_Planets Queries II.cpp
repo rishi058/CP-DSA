@@ -13,8 +13,6 @@ template <typename dStruct>
 void print2(dStruct& vName){for(auto &it : vName){cout<<"{"<<it.first<<", "<<it.second<<"} ";} cout<<"\n";}
  
 const int mod = 1e9 + 7;
-#define inf LONadjT_LONadjT_MAX
-#define Min LONadjT_LONadjT_MIN
  
 typedef long double ld;
 typedef vector<int> vi;

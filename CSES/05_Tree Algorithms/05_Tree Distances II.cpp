@@ -88,6 +88,15 @@ int32_t main()
  
         pre_dfs(1, 0);
         solve_dfs(1, 0, 0, n);
+
+        // for(int i=1; i<=n; i++){
+        //     cout<<nodes_ct[i]<<" ";
+        // }
+        // cout<<"\n";
+        // for(int i=1; i<=n; i++){
+        //     cout<<subtreeAns[i]<<" ";
+        // }
+        // cout<<"\n";
  
         F(1,n+1,i){
             cout<<ans[i]<<" ";

@@ -22,6 +22,8 @@ typedef vector<int> vi;
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
 /*
+CSES : Subtree Queries.
+
 You are given a rooted tree consisting of n nodes. The nodes are numbered 1, 2, , n, and
 node 1 is the root. Each node has a value.
 Your task is to process following types of queries:
@@ -37,7 +39,7 @@ A tree is given where each node is assigned with a value.
                      2 : [s    -> find the sum of value of subtree 's']
  
 Approach :-
-1. Flatten the tree (using dfs)  [known as Eular Tour]
+1. Flatten the tree (using dfs) [known as Eular Tour]
 2. Entire subtree of a particular node forms a contiguous subarray in the resultant flattened array.
 3. Subarray can be found in range {idx[node], idx[node] + node_ct[node]}  {node_ct = no. of nodes in subtree 's'}
 4. rearrange the value-arr a/c to flatten_arr,

@@ -22,22 +22,12 @@ typedef vector<int> vi;
 /*---------------------------------------->   MAGIC STARTS   <--------------------------------------------*/
 
 /*
-CSES 1672 - HIGH SCORE
+CSES : Cycle Finding.
 
-You play a game consisting of n rooms and m tunnels. Your initial score is O, and each tunnel
-increases your score by c where c may be both positive or negative. You may go through a
-tunnel several times.
-Your task is to walk from room 1 to room n. What is the maximum score you can get?
+You are given a directed graph, and your task is to find out if it contains a negative cycle,
+and also give an example of such a cycle.
 */
 
-/*
-Run the Bellman-Ford Algorithm for the nth iteration and mark 
-the nodes whose distance is changed.
-Now reverse the adjacency list and run a DFS from node 'n'. 
-If at least one of the nodes marked is visible from n, then the answer is -1,
-else the answer is the maximum distance from 1 to n.
-*/
- 
 struct Edge{
     int u, v, wt;
     Edge(int a, int b, int c){
@@ -45,18 +35,25 @@ struct Edge{
     }
 };
  
-vector<bool> vis;
-int res;
+vector<int> generate(int node, vector<int>&par){
+    vector<int> path = {node+1};
+    int start = par[node];
+    while(start!=node){
+        path.push_back(start+1);
+        start = par[start];
+    }
+    path.push_back(node+1);
+    reverse(all(path));
+    return path;
+}
  
-bool dfs(int node, map<int,bool>&mp, vector<bool>&vis, vector<int> adj[]){
+void dfs(int node, vector<bool>&vis, vector<int>adj[]){
     vis[node] = 1;
-    if(mp.count(node)){return 1;}
     for(int child : adj[node]){
         if(!vis[child]){
-            if(dfs(child, mp, vis, adj)){return 1;}
+            dfs(child, vis, adj);
         }
     }
-    return 0;
 }
  
 int32_t main()
@@ -67,62 +64,65 @@ int32_t main()
     {
         int n, m;
         cin>>n>>m;
- 
-        vector<int> rev_adj[n];
+        
         vector<Edge> Edges;
+        vector<bool> vis(n,0);
+        vector<int> adj[n];
  
         F(0,m,i){
             int u,v,wt;
             cin>>u>>v>>wt;
             u--; v--;
  
-            rev_adj[v].push_back(u);
- 
-            Edge temp(u,v,-wt);
+            adj[u].push_back(v);
+            Edge temp(u,v,wt);
             Edges.push_back(temp);
         }        
  
  
         vector<int> dist(n, inf);
-        dist[0] = 0;
+        vector<int> par(n, -1);
+        
+        for(int i=0; i<n; i++){
+            if(!vis[i]){dist[i]=0; dfs(i, vis, adj);}
+        }
  
         for(int i=0; i<n-1; i++){
             for(int j=0; j<m; j++){
                 int u = Edges[j].u;
                 int v = Edges[j].v;
                 int wt = Edges[j].wt;
-                if (dist[u] != inf && dist[u] + wt < dist[v]){
+                if (dist[u]!=inf && dist[u] + wt < dist[v]){
                     dist[v] = dist[u] + wt;
+                    par[v] = u;
                 }
             }
         }   
  
         vector<int> dist2 = dist;
-        map<int,bool> effected_nodes;
+        int node = -1;
  
         for(int j=0; j<m; j++){  // running relaxation nth time.
             int u = Edges[j].u;
             int v = Edges[j].v;
             int wt = Edges[j].wt;
-            if (dist2[u] != inf && dist2[u] + wt < dist2[v]){
+            if (dist2[u]!=inf && dist2[u] + wt < dist2[v]){
                 dist2[v] = dist2[u] + wt;
+                par[v] = u;
+                node = v;
             }
         } 
  
-        for(int i=0; i<n; i++){
-            if(dist[i]!=dist2[i]){
-                effected_nodes[i]=1;
-            }
+        if(node!=-1){
+            F(0,n,i){node=par[node];}
+            cout<<"YES\n";
+            vi ans = generate(node, par);
+            print(ans);
         }
- 
-        vector<bool> vis(n,0);
-        bool ok = dfs(n-1, effected_nodes, vis, rev_adj);
-        
-        if(ok){cout<<"-1\n";}
         else{
-            cout<<-dist[n-1]<<"\n";
-        }   
+            cout<<"NO\n";
+        }
+       
     }
  
 }
- 

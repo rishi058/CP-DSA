@@ -31,10 +31,15 @@ rounded down to an integer).
 
 /*
 Every route can be represented as :-
-[1]---[A]---[B]---[n], where A,B are direct connected vertices.
-let we will always apply copoun on the route [A]--[B].
-then ans = min(all_poosible_{A,B});
+
+[1]--...--[A]---[B]--...--[n], where A,B are direct connected vertices.
+
+let we will always apply copoun on the route [A]--[B].  {A,B is connected directly}
+
+then ans = min(ans, dist(1,a) + wt(a,b)/2 + dist(b,n));
+
 {A,B} -> can be used from adj list;
+
 dist[1->A] & dist[B->N] is precalculated via djiskstra
 */
  

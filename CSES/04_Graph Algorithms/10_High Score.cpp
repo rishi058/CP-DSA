@@ -43,9 +43,6 @@ struct Edge{
     }
 };
  
-vector<bool> vis;
-int res;
- 
 bool dfs(int node, map<int,bool>&mp, vector<bool>&vis, vector<int> adj[]){
     vis[node] = 1;
     if(mp.count(node)){return 1;}
@@ -97,6 +94,8 @@ int32_t main()
  
         vector<int> dist2 = dist;
         map<int,bool> effected_nodes;
+
+        cout<<effected_nodes.size()<<" ";
  
         for(int j=0; j<m; j++){  // running relaxation nth time.
             int u = Edges[j].u;

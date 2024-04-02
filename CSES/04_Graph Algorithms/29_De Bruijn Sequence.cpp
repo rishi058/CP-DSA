@@ -64,8 +64,6 @@ void pre(string s, int &n){   // mapping (node_no. -> string) & vice-versa
 	pre(s+'1', n);
 }
  
- 
- 
 int32_t main()
 {
 	RISHI

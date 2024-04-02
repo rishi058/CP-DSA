@@ -22,22 +22,16 @@ typedef vector<int> vi;
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
  
 /*
-You are given a tree consisting of n nodes.
-Your task is to process q queries of the form: what is the distance between nodes a and b?
+CSES : Comapany Queries II
 
-Input :-
-The first input line contains two integers n and q: the number of nodes and queries. The
-nodes are numbered 1, 2, ..., n.
-
-Then there are n — 1 lines describing the edges. Each line contains two integers a and b:
-there is an edge between nodes a and b.
-
-Finally, there are q lines describing the queries. Each line contains two integer a and b: what
-is the distance between nodes a and b?
+A company has n employees, who form a tree hierarchy where each employee has a boss,
+except for the general director.
+Your task is to process q queries of the form: who is the lowest common boss of employees
+a and b in the hierarchy?
 
 
-if LCA(a,b) = a, ans = dist[a] - dist[b];
-if LCA(a,b) = c, ans = (dist[c] - dist[b]) + (dist[c] - dist[a]) i.s (dist[a]+dist[b] - 2*dist[c])
+Finding LCA can be done in Log(n), with the help of binary lifting which is used
+to find the k'th ancestor. 
 */
  
 const int N = 2e5+2;
@@ -45,12 +39,11 @@ vector<int> adj[N];
 int depth[N];
 vector<vector<int>> dp;
  
-void dfs(int node, int p_node, vi &par){
-    depth[node] = depth[p_node] + 1;
+void dfs(int node, int par){
+    depth[node] = depth[par] + 1;
     for(int child : adj[node]){
-        if(child!=p_node){
-            par[child] = node;
-            dfs(child, node, par);
+        if(child!=par){
+            dfs(child, node);
         }
     }
 }
@@ -118,38 +111,25 @@ int32_t main()
         int n, q;
         cin>>n>>q;
  
-        F(1,n,i){
-            int u, v;
-            cin>>u>>v;
-            adj[u].push_back(v);
-            adj[v].push_back(u);
-        }  
- 
         vi par(n+1,0);
         par[0] = -1;
         par[1] = -1;
-        dfs(1, 0, par);
-        
-        pre(n+1, par);
  
-        // F(1,n+1,i){cout<<depth[i]<<" ";} cout<<"\n";
+        F(2,n+1,i){
+            int x; cin>>x;
+            adj[x].push_back(i);
+            par[i] = x;
+        }  
+ 
+        dfs(1, 0);
+        pre(n+1, par);
  
         while(q--){
             int node1, node2;
             cin>>node1>>node2;
- 
-            int lca = findLCA(node1, node2);
- 
-            if(lca==node1){
-                cout<<(depth[node2] - depth[node1])<<"\n";
-            }
-            else if(lca==node2){
-                cout<<(depth[node1] - depth[node2])<<"\n";
-            }
-            else{
-                int dist = (depth[node1] - depth[lca]) + (depth[node2] - depth[lca]);
-                cout<<dist<<"\n";
-            }
+            
+            int ans = findLCA(node1, node2);
+            cout<<ans<<"\n";
         }
  
     }

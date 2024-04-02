@@ -104,7 +104,7 @@ int32_t main()
             int u = Edges[j].u;
             int v = Edges[j].v;
             int wt = Edges[j].wt;
-            if (dist[u]!=inf && dist2[u] + wt < dist2[v]){
+            if (dist2[u]!=inf && dist2[u] + wt < dist2[v]){
                 dist2[v] = dist2[u] + wt;
                 par[v] = u;
                 node = v;

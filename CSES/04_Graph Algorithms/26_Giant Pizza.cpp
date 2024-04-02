@@ -36,7 +36,7 @@ Conjunctive Normal Form (CNF) :- it is a conjunction (AND) of clauses, where eve
         E.g -> [(A U B) ^ (B U C U ~A) ^ (~C U B)] .. etc.
  
 Problem :- Find any value of A,B,C such that the given statement is True.
-Note    :- It is a NP(nondeterministic polynomial) complete problem, i.e hard to solve efficiently for large instances.
+Note    :- It is a NP(non-deterministic polynomial) complete problem, i.e hard to solve efficiently for large instances.
  
 2-SAT(satisfiability) or 2-CNF = problem of SAT where every clause having only 2 terms.
         E.g -> [ (A1 U B1) ^ (A2 U B2) ^ (A3 U B3) ] .. etc.
