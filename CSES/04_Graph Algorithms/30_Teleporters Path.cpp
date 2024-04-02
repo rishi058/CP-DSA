@@ -25,10 +25,14 @@ typedef vector<int> vi;
 A game has n levels and m teleportes between them. You win the game if you move from
 level 1 to level n using every teleporter exactly once.
 Can you win the game, and what is a possible way to do it?
+
+This problem wants us to print a Eulerian Path(which starts @ '1' & ends @ 'n') of a directed graph.
+T.C = O(V+E)
 */
 
+
 /*
-for a Eulerian path to exists from 1 to n,
+for a Eulerian path(for a directed graph) to exists from 1 to n,
 ( in[1] = out[1] - 1 ) & ( in[n] = out[n] + 1 ) or (in[1] == out[1]) && (in[n]==out[n])
 */
  
@@ -44,9 +48,6 @@ void dfs(int node, int par, vi &vis){
 		dfs(child, node, vis);
 	}
 }
- 
- 
- 
  
 int32_t main()
 {
