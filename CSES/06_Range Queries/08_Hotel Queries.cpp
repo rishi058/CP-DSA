@@ -31,7 +31,7 @@ this, the number of free rooms in the hotel decreases.
 
 
 Hotel Queries :-
-Note :- We can do normal lower_bound because we have to utilize hotels from L to R.
+Note :- We can't do normal lower_bound because we have to utilize hotels from L to R.
 1. Construct a Range Max Queries Segment Tree.
 2. with this we can find 1st hotel where we can put the guests using binary search.
 3. check (1, mid) -> (1, mid/2) or (mid/2, N)

@@ -26,8 +26,11 @@ You are given a list consisting of n integers. Your task is to remove elements f
 given positions, and report the removed elements.
 
 List Removal :-
-1. Simulating what it says is simple but will give tle.
-2. 
+1. Simply Simulating what it says will give tle.
+2. Create a seg_tree whose prefix-sum i.e tree[0, idx] = x {x is the idx of last elemenent which is not yet deleted in that range.} [1 based idx]
+   Use binary-search to search the initial position of the given newly_located_idx.
+
+   
 */
  
 class segment{
@@ -97,7 +100,7 @@ int32_t main()
                 if(ele_pres==idx){
                     tree.updateTreeNode(mid, 0);
                     res = v[mid];
-                    hi = mid-1;
+                    hi = mid-1;         // note : we need to find the left-most 'mid' whose sum = idx, to avoid the case of considering 0's after 1.
                 }
                 if(ele_pres<idx){
                     lo = mid+1;
@@ -108,7 +111,11 @@ int32_t main()
  
             }
             
-            cout<<res<<" ";           
+            // cout<<res<<" ";   
+            for(int i=0; i<n; i++){
+                cout<<tree.tree[n+i]<<" ";
+            }        
+            cout<<"\n";
         }
         
     }

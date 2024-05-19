@@ -29,23 +29,36 @@ int32_t main()
 	while(T--)
 	{
 		int n; cin>>n;
+		vi v(n);
+		F(0,n,i){cin>>v[i];}
 
-		vector<int> adj[n+1];
-		F(0,n-1,i){
-			int u, v;
-			cin>>u>>v;
-			adj[u].push_back(v);
-			adj[v].push_back(u);
-		}
+		bool ok = 1;
+		int dif = -1;
 
-		int ct_left = 0;
-		F(1,n+1,i){
-			if(adj[i].size()==1){
-				ct_left++;
+		for(int i=0; i<n-1; i++){
+			if(v[i]>v[i+1]){
+				if(i+2<n && v[i+2]<v[i]){
+					ok = 0; break;
+				}
+				else{
+					if(dif==-1){
+						dif = v[i] - v[i+1];
+						v[i+1] = v[i];
+					}
+					else{
+						if(v[i+1]+dif<v[i]){
+							ok = 0; break;
+						}
+						else{
+							v[i+1] += dif;
+						}
+					}
+				}
 			}
 		}
 
-		cout<<(ct_left+1)/2<<"\n";
+		if(ok){cout<<"Yes\n";}
+		else{cout<<"No\n";}
 	}
 
 }

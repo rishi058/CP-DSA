@@ -37,7 +37,7 @@ void getPerm(string str, int index){     // recursion with swap approach more ea
 
         getPerm(str,index+1);
 
-        swap(str[index],str[i]);
+        swap(str[index],str[i]);        //BACK-TRACKING
     }
 }
 
@@ -52,7 +52,7 @@ void getPerm(string str, int index){     // recursion with swap approach more ea
 int main()
 {
     int n; cin>>n;
-    vector<int> permutation,empty;
+    vector<int> permutation, empty;
 
     for (int i = 0; i < n; i++){
         int l; cin>>l;
@@ -69,17 +69,17 @@ int main()
 
 //**************************************************************
 
-    search(empty,permutation);  // recursive method
+    search(empty, permutation);  // recursive method
 
-    for(auto s : v){
-        cout<<"[ ";
-        for(int c : s){
-            cout<<c<<" ";
-        }
-        cout<<"]\n";
-    }
+    // for(auto s : v){
+    //     cout<<"[ ";
+    //     for(int c : s){
+    //         cout<<c<<" ";
+    //     }
+    //     cout<<"]\n";
+    // }
 
-    cout<<"\n";
+    // cout<<"\n";
 
     for(auto s : vv){
         cout<<"[ ";
@@ -89,7 +89,7 @@ int main()
         cout<<"]\n";
     }
 
-    cout<<"\nEnter a string : ";
-    string j; cin>>j;
-    getPerm(j,0);
+    // cout<<"\nEnter a string : ";
+    // string j; cin>>j;
+    // getPerm(j,0);
 }

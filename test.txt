@@ -1,0 +1,2 @@
+small to large merging -> tree
+coordinate compresiion -> range.
