@@ -33,9 +33,9 @@ int lowerBound(vector<int> &v, int target){
 
 int32_t main()
 {
-    vi arr = {1,2,2,2,2,2,2,3};
-    int n = arr.size()-1;
-    int target = 2;
+    vi arr = {2};
+    // int n = arr.size()-1;
+    int target = 3;
     int ind = lowerBound(arr,target);
     cout<<"Index : "<<ind;
 }
