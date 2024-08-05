@@ -49,7 +49,6 @@ int32_t main()
             F(0,sum1+1, j){
                 if(j>0 && i==0 ){dp[i][j]=false;}
                 else if(j==0){dp[i][j]=true;}
-                
                 else{
                     if(v[i]<=j){
                         dp[i][j] = dp[i-1][j-v[i]] || dp[i-1][j] ;

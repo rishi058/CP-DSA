@@ -25,18 +25,23 @@ void search(vector<int> permutation,vector<int> values) {  // repeated permutati
 }
 
 
-
-void getPerm(string str, int index){     // recursion with swap approach more easy...
+void getPerm(string &str, int index){     // recursion with swap approach more easy...
     if(index>=str.length()){
         cout<<str<<endl;
         return;
     }                                   // repeated permutation is stored in case of identical elements...
 
+    // unordered_set<char> seen;  // To keep track of characters already used at the current index   
+    //! Uncomment this if you dont want to print copies in case repetition of chars
+
     for(int i=index; i<str.size(); i++){
+        // if (seen.find(str[i]) != seen.end()) {
+        //     continue;  // Skip duplicate characters
+        // }
+        // seen.insert(str[i]);  // Mark character as used
+
         swap(str[index],str[i]);
-
         getPerm(str,index+1);
-
         swap(str[index],str[i]);        //BACK-TRACKING
     }
 }
@@ -51,13 +56,13 @@ void getPerm(string str, int index){     // recursion with swap approach more ea
 
 int main()
 {
-    int n; cin>>n;
-    vector<int> permutation, empty;
+    // int n; cin>>n;
+    // vector<int> permutation, empty;
 
-    for (int i = 0; i < n; i++){
-        int l; cin>>l;
-        permutation.push_back(l);
-    }
+    // for (int i = 0; i < n; i++){
+    //     int l; cin>>l;
+    //     permutation.push_back(l);
+    // }
 
 //*****************  ITERATIVE  METHOD  **********************  // best approach  -->
 
@@ -69,7 +74,7 @@ int main()
 
 //**************************************************************
 
-    search(empty, permutation);  // recursive method
+    // search(empty, permutation);  // recursive method
 
     // for(auto s : v){
     //     cout<<"[ ";
@@ -81,15 +86,15 @@ int main()
 
     // cout<<"\n";
 
-    for(auto s : vv){
-        cout<<"[ ";
-        for(int c : s){
-            cout<<c<<" ";
-        }
-        cout<<"]\n";
-    }
+    // for(auto s : vv){
+    //     cout<<"[ ";
+    //     for(int c : s){
+    //         cout<<c<<" ";
+    //     }
+    //     cout<<"]\n";
+    // }
 
     // cout<<"\nEnter a string : ";
-    // string j; cin>>j;
-    // getPerm(j,0);
+    string j; cin>>j;
+    getPerm(j,0);
 }

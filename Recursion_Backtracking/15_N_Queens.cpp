@@ -40,7 +40,7 @@ bool is_safe(int row, int col){
 
 
 void solve(int col, int n){
-
+    
     // base case (if every col is filled)
     if(col == n){
         v.push_back(board);

@@ -22,43 +22,54 @@ typedef vector<int> vi;
 
 //*************************************************************************************************************
 
+// https://cses.fi/problemset/task/1753/
 
-vector<int> computeLPSArray(string &pat){
-	vector<int> lps(pat.size());
-    int len = 0, i = 1;
-    lps[0] = 0;
+/*
+LPS = Longest Prefix Suffix
+E.g = a b c d a b e a b c
+lps = 0 0 0 0 1 2 0 1 2 3
 
-    while(i < pat.size()){
-        if (pat[i] == pat[len]) {
-            len++;
-            lps[i++] = len;
-        }
-        else{
-            if(len != 0){len = lps[len - 1];}
-            else {lps[i++] = 0;}
+E.g = a c c c b a a a c c c b a a c
+lps = 0 0 0 0 0 1 1 1 2 3 4 5 6 7 2 
+
+lps[i] denotes the length of longest prefix which is equal to suffix of sub_str(0, i);
+For any idx i -> sub_str[i-lps[i]+1, i] is also a prefix {if lps[i]!=0}
+*/
+
+vector<int> getLPS(string &pat){
+    int n = pat.size(), j = 0;   // ptr-j will iterate prefix only.
+    vector<int> lps(n,0);
+
+    for(int i=1; i<n; i++){
+        if(pat[i] == pat[j]){lps[i] = ++j;}
+        else if(j!=0){
+            j = lps[j-1];
+            i--;
         }
     }
-    
-	return lps;
+    // print(lps);
+    return lps;
 }
- 
+
+
 int countPatternOccurrences(string &text, string &pat) {
     int n = text.size(), m = pat.size();
-    vector<int> lps = computeLPSArray(pat);
- 
-    int count = 0, i = 0, j = 0;
-    while(i < n){
-        if(pat[j] == text[i]){i++; j++;}
-        if(j == m){
-            count++;
-            j = lps[j - 1];
-        } 
-        else if(i < n && pat[j] != text[i]){
-            if(j != 0){j = lps[j - 1];}
-            else{i++;}
+    vector<int> lps = getLPS(pat);
+
+    int count = 0, j = 0;
+    for(int i=0; i<n; i++){
+        while(j>0 && text[i]!=pat[j]) {
+            j = lps[j-1];
         }
+        if(text[i]==pat[j]){
+            j++;
+            if(j==m){
+                count++;
+                j = lps[j-1];
+            }
+        }
+
     }
- 
     return count;
 }
  
@@ -70,7 +81,6 @@ int32_t main()
     {
         string str, pat;
         cin>>str>>pat;
-        cout<<countPatternOccurrences(str,pat);
     }
  
 }

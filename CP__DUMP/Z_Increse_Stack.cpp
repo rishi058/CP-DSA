@@ -1,3 +1,88 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#pragma comment(linker, "/STACK:2000000")
+
+#define int long long
+#define tuple array<int, 3>
+#define all(v) v.begin(), v.end()
+#define F(a,b,i) for (int i = a; i < b; i++)
+#define Rev(a,b,i) for (int i = a; i >= b; i--)
+#define RISHI ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+
+template <typename dStruct>
+void print(dStruct& vName){for(auto &it : vName){cout<<it<<" ";} cout<<"\n";}
+template <typename dStruct>
+void print2(dStruct& vName){for(auto &it : vName){cout<<"{"<<it.first<<", "<<it.second<<"} ";} cout<<"\n";}
+
+const int mod = 1e9 + 7;
+#define inf LONG_LONG_MAX
+#define Min LONG_LONG_MIN
+
+typedef long double ld;
+typedef vector<int> vi;
+
+//!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
+
+/*
+Some recursion program doesn't run because of stack memory limitation (1MB).
+
+E.g - https://www.geeksforgeeks.org/problems/geeks-training/
+
+Use the following command to compile ->
+
+powershell -
+g++ -O2 -std=c++11 -Wall "-Wl,--stack=268435456" Untitled1.cpp -o a.exe
+
+command prompt -
+g++ -O2 -std=c++11 -Wall -Wl,--stack=268435456 Untitled1.cpp -o a.exe
+
+MS C++ -
+#pragma comment(linker, "/STACK: 2000000")
+
+*/
+
+
+
+    vector<vector<int>> dp;
+    
+    int solve(int idx, int dont, vector<vector<int>>& points){
+        if(idx==points.size()){return 0;}
+        if(dp[idx][dont]!=-1){return dp[idx][dont];}
+        
+        int ans = 0;
+        for(int i=0; i<3; i++){
+            if(i==dont){continue;}
+            int tmp = solve(idx+1, i, points) + points[idx][i];
+            ans = max(ans, tmp);
+        }
+        
+        return dp[idx][dont] = ans;
+    }
+  
+    int maximumPoints(vector<vector<int>>& points, int n) {
+        dp.resize(n, vector<int>(4, -1));
+        return solve(0, 3, points);
+    }
+
+int32_t main()
+{
+    RISHI
+    
+    int n; cin>>n;
+    vector<vector<int>> v(n, vector<int>(3));
+    for(int i=0; i<n; i++){
+        for(int j=0; j<3; j++){
+            cin>>v[i][j];
+        }
+    }
+    cout<<maximumPoints(v, n);
+
+}
+
+// Expected OUTPUT :- 7046581
+// INPUT :-
+/*
 100000
 42 68 35
 1 70 25
@@ -99999,3 +100084,4 @@
 12 77 90
 30 97 9
 42 50 88
+*/

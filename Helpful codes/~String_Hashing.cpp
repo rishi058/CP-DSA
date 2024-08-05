@@ -37,7 +37,10 @@ STRING_HASHING (ROLLING HASH FUNCTION):-
 BASE should be >=28 always ;
 Take mod = 1e9+7 for preventing int overflow ;
  
-Example :- "cde" = [3*(28)^0 + 4*(28)^1 + 5*(28)^2] = ...
+Example :- "cde" = [3*(28)^0 + 4*(28)^1 + 5*(28)^2] = ...   
+
+! NOTE :- TRY to start exponent from 1 to avoid edge cases i.e  "cde" = [3*(28)^1 + 4*(28)^2 + 5*(28)^3] 
+! Use 2 hash with 2 dif base & mod to avoid collision, two string are equal if both hashesare equal
  
 Imp Property :-  hash->str[i..j] = 1/(base^i) * { hash->str[0..j] - hash->str[0..(i-1)] };
  
@@ -152,7 +155,7 @@ int32_t main()
                 cin>>l>>r;
                 l--; r--;
  
-                int hash1 = (prefixHash.query(l,r)*(power(base,n-r-1))) % mod;
+                int hash1 = (prefixHash.query(l,r)*(power(base,n-r-1))) % mod;  // n-r-1 represents how many more elements suffix array cover 
                 int hash2 = (suffixHash.query(l,r)*(power(base,l))) % mod;
                 // cout<<hash1<<" "<<hash2<<"\n";
                 if(hash1==hash2){cout<<"YES\n";}

@@ -53,7 +53,7 @@ int32_t main()
             cin>>v[i+1];    // 1 indexed
             sum += v[i+1];
         }                               
-        
+        cout<<sum/2<<"\n";
         if(sum%2==1){cout<<"NO\n"; continue;}
         else
         {

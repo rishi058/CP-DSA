@@ -14,8 +14,6 @@ typedef vector<int> vi;
 SCSS is a string which has subsequence s1 and s2 in it and it is shortest possible...
 FORMULA -->
 SCSS len  = str1.size + str2.size - LCS.
-SCSS  = str1 + str2 - LCS.
-
 */
 
 
@@ -26,7 +24,8 @@ int32_t main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int t; cin>>t;
+    int t=1;
+    // cin>>t;
     while(t--)
     {
         string s1, s2;
@@ -61,43 +60,6 @@ int32_t main()
             }
             cout<<"\n";
         }
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        int i=n, j=m;
-        stack<char> ans;
-
-        while(i>0 && j>0){          // we can write while to store scs directly.. using lcs tables
-            if(s1[i]==s2[j])
-            {
-                ans.push(s1[i]);
-                i--;
-                j--;
-            }
-            else
-            {
-                if(dp[i-1][j]>dp[i][j-1]){
-                    i--;
-                }
-                else{j--;}
-            }
-        }
-
-        string s3 = s1.substr(1,n) + s2.substr(1,m);
-        // cout<<s3<<"\n";
-        
-
-        for(int i=0; i<s3.size(); i++){
-            if(s3[i]==ans.top()){
-                s3.erase(s3.begin()+i, s3.begin()+i+1);
-                ans.pop();
-                i=0;
-            }
-        }
-
-        cout<<s3<<" ";
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
     }
 
 }

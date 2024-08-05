@@ -1,7 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// T.C --> BELL NUMBERS
+// total count of partition --> BELL NUMBERS
+// Time complexity is b/w O(B(n)*n) & O(n!)
+
+int tot = 0;
 
 void printPartition(const vector<vector<int>>& partition) {
     cout << "{ ";
@@ -17,6 +20,7 @@ void printPartition(const vector<vector<int>>& partition) {
 
 void generatePartitions(const vector<int>& nums, vector<vector<int>>& partition, int index) {
     if (index == nums.size()) {
+        tot++;
         printPartition(partition);
         return;
     }
@@ -34,8 +38,13 @@ void generatePartitions(const vector<int>& nums, vector<vector<int>>& partition,
 
 
 int main() {
-    vector<int> nums = {1,2,3,4};
+    // for n = 10, it generates effeciently in time 300ms.
+    // for n = 11, it takes 2000ms.
+    // for n = 12, dont work.
+
+    vector<int> nums = {1,2,3,4,5};
     vector<vector<int>> partition;
     generatePartitions(nums, partition, 0);
+    cout<<tot<<" ";
     return 0;
 }

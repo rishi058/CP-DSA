@@ -68,7 +68,7 @@ int32_t main()
     while(t--)
     {
         memset(dp, -1, sizeof(dp));
-        int arr[5] = {  10, 40, 30, 25, 9 } ;
+        int arr[5] = {10, 40, 30, 25, 9} ;
         cout<<MCM(arr, 1 , 4) ;
     }
 

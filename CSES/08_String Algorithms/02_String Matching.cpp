@@ -26,53 +26,40 @@ Given a string and a pattern, your task is to count the number of positions wher
 pattern occurs in the string.
 */
 
-void computeLPSArray(const string &pattern, vector<int> &lps) {
-    int len = 0;
-    lps[0] = 0;
-    int i = 1;
- 
-    while (i < pattern.size()) {
-        if (pattern[i] == pattern[len]) {
-            len++;
-            lps[i] = len;
-            i++;
-        } else {
-            if (len != 0) {
-                len = lps[len - 1];
-            } else {
-                lps[i] = 0;
-                i++;
+vector<int> getLPS(string &pat){
+    int n = pat.size(), j = 0;   // ptr-j will iterate prefix only.
+    vector<int> lps(n,0);
+
+    for(int i=1; i<n; i++){
+        if(pat[i] == pat[j]){lps[i] = ++j;}
+        else if(j!=0){
+            j = lps[j-1];
+            i--;
+        }
+    }
+    // print(lps);
+    return lps;
+}
+
+
+int countPatternOccurrences(string &text, string &pat) {
+    int n = text.size(), m = pat.size();
+    vector<int> lps = getLPS(pat);
+
+    int count = 0, j = 0;
+    for(int i=0; i<n; i++){
+        while(j>0 && text[i]!=pat[j]) {
+            j = lps[j-1];
+        }
+        if(text[i]==pat[j]){
+            j++;
+            if(j==m){
+                count++;
+                j = lps[j-1];
             }
         }
+
     }
-}
- 
-int countPatternOccurrences(const string &text, const string &pattern) {
-    int n = text.size();
-    int m = pattern.size();
- 
-    vector<int> lps(m, 0);
-    computeLPSArray(pattern, lps);
- 
-    int count = 0;
-    int i = 0, j = 0;
-    while (i < n) {
-        if (pattern[j] == text[i]) {
-            i++;
-            j++;
-        }
- 
-        if (j == m) {
-            count++;
-            j = lps[j - 1];
-        } else if (i < n && pattern[j] != text[i]) {
-            if (j != 0)
-                j = lps[j - 1];
-            else
-                i++;
-        }
-    }
- 
     return count;
 }
  

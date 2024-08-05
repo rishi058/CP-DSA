@@ -22,12 +22,12 @@ Tested on leetcode.
 
 class Segment {
 private:
-    vector<int> tree;
+    vector<int> tree;  // it is 1 indexed bcz (2*node = node) when node = 0;
     int n;
 
     void buildTree(vector<int>& arr, int node, int start, int end) {
         if (start == end) {
-            tree[node] = arr[start];
+            tree[node] = arr[start];   // rightmost elements of the tree
         }
         else {
             int mid = (start + end) / 2;
