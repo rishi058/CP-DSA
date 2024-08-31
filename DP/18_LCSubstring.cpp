@@ -10,12 +10,37 @@ typedef vector<int> vi;
 
 //------------------------------------------------------
 
-/*
-Longest Common Substring -->
-This can also be done by another method which is easy to think and hard to implement.
-this dp approach is easy to implement.
-*/
+//https://www.geeksforgeeks.org/problems/longest-common-substring1452/1
 
+class Solution{
+    public:
+    
+    vector<vector<int>> dp;
+    int res = 0;
+    
+    int solve(int i, int j, string &s1, string &s2){
+        if(i==s1.size() || j==s2.size()){return 0;}
+        if(dp[i][j]!=-1){return dp[i][j];}
+        
+        // WE NEED TO CALL THIS FUNCTION FIRST
+        solve(i+1, j, s1, s2);
+        solve(i, j+1, s1, s2);
+        
+        if(s1[i]==s2[j]){
+            int include = solve(i+1, j+1, s1, s2) + 1;
+            res = max(res, include);
+            return dp[i][j] = include;
+        }
+        
+        return dp[i][j] = 0;
+    }
+    
+    int longestCommonSubstr (string s1, string s2, int n, int m){
+        dp.resize(n, vector<int>(m,-1));
+        solve(0,0,s1,s2);
+        return res;
+    }
+};
 
 int32_t main()
 {

@@ -88,7 +88,7 @@ int32_t main()
     int t; cin>>t;
     while(t--)
     {
-        vi array = {10, 3, 21, 9, 12, 31} ;
+        vi array = {3, 3, 4, 3, 1, 3, 3, 0, 2, 3, 2, 2, 1, 3, 2, 3} ;
         insertionSort(array);
         for(int x : array){
             cout<<x<<" ";

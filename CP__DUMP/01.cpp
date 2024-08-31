@@ -22,14 +22,27 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
+long solve(long x1, long x2, long y2, long x3, long y3, long k) {
+        long num1 = 2 * k - x1 * (y2 - y3) + x3 * y2 - x2 * y3;
+        long num2 = -2 * k - x1 * (y2 - y3) + x3 * y2 - x2 * y3;
+        long den = x2 + x3;
+
+        // Calculate minimum y1 based on the two cases
+        long y11 = (num1 + den - 1) / den; // Ceiling division
+        long y12 = (num2 + den - 1) / den; // Ceiling division
+
+        return min(y11, y12);
+    }
+
 int32_t main()
 {
     RISHI
     int T = 1;
-    cin>>T;
+    // cin>>T;
     while(T--)
     {
-        
+       cout<<solve(3, 2, 3, 4, 3, 5);
+       
     }
 
 }
