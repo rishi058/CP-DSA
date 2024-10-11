@@ -103,7 +103,7 @@ long double applyOp(long double val1, long double val2, char op) {
 
 long double calculate(string s){
     string infix;
-    for(char x : s){if(x!=' '){infix.push_back(x);}}
+    for(char x : s){if(x!=' '){infix.push_back(x);}}  // removing spaces.
 
     vector<string> exp = infixToPostfix(infix);
     stack<long double> st;

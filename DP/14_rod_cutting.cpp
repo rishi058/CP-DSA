@@ -65,13 +65,7 @@ int32_t main()
         }
 
         cout<<dp[len][limit]<<"\n";
-        F(0,len+1,i){
-            F(0,limit+1, j){
-                cout<<dp[i][j]<<" ";
-            }
-            cout<<"\n";
-        }
-        
+    
     }
 
 }

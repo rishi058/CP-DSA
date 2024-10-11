@@ -1,37 +1,60 @@
-#include <iostream>
-#include <cmath>
-#include <algorithm> // For std::min
+#include <bits/stdc++.h>
+using namespace std;
 
-long long solve(long long x1, long long x2, long long y2, long long x3, long long y3, long long k) {
-    // Calculate values for the two cases
-    long long numerator1 = 2 * k - x1 * (y2 - y3) + x3 * y2 - x2 * y3;
-    long long numerator2 = -2 * k - x1 * (y2 - y3) + x3 * y2 - x2 * y3;
-    long long denominator = x2 + x3;
-
-    // Use long long to ensure large number handling and avoid division by zero.
-    // Also, handle case where denominator could be zero.
-    if (denominator == 0) {
-        // If x2 + x3 == 0, we need to check if both cases are possible or if it's an edge case.
-        // In practice, this may imply special handling or a different approach based on the problem constraints.
-        // For now, returning a large number or an error code might be a reasonable placeholder.
-        throw std::runtime_error("Denominator is zero, special handling required.");
+int solution(vector<int>arr){
+    int ans=INT_MIN;
+    int result=-1;
+    vector<int>weight(arr.size(),0);
+    for(int i=0;i<arr.size();i++){
+        int source=i;
+        int dest=arr[i];
+        if(dest!=-1){
+            weight[dest]+=source;
+            if(ans<=weight[dest]){
+                ans=max(ans,weight[dest]);
+                result=dest;
+            }
+            
+        }
     }
-
-    // Calculate the minimum value of y1 based on the two cases
-    long long y1_min_case1 = (numerator1 + denominator - 1) / denominator; // Ceiling division
-    long long y1_min_case2 = (numerator2 + denominator - 1) / denominator; // Ceiling division
-
-    // Return the minimum value of y1 from the two cases
-    return std::min(y1_min_case1, y1_min_case2);
+    if(ans!=INT_MIN)
+        return result;
+    return -1;
 }
 
-int main() {
-    // Example usage
-    long long x1 = 1, x2 = 2, y2 = 2, x3 = 3, y3 = 3, k = 10;
-    try {
-        std::cout << "Minimum y1: " << solve(x1, x2, y2, x3, y3, k) << std::endl;
-    } catch (const std::exception &e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+int main()
+{
+    int n;
+    cin >> n;
+
+    vector<int> edges(n);
+    for (int i = 0; i < n; i++)
+        cin >> edges[i];
+
+    int c1, c2;
+    cin >> c1 >> c2;
+
+    vector<int> adj[n];
+    for (int i = 0; i < n; i++)
+    {
+        if (edges[i] == -1)
+            continue;
+        adj[i].push_back(edges[i]);
     }
+    vector<int> v1 = shortPath(adj, c1, n);
+    vector<int> v2 = shortPath(adj, c2, n);
+
+    int mn = INT_MAX, node = -1;
+    for (int i = 0; i < n; i++)
+    {
+        if (v1[i] == INT_MAX || v2[i] == INT_MAX)
+            continue;
+        if (v1[i] + v2[i] < mn)
+        {
+            mn = v1[i] + v2[i];
+            node = i;
+        }
+    }
+    cout << node << endl;
     return 0;
 }
