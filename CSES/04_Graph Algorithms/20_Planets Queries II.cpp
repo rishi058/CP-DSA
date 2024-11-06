@@ -17,12 +17,12 @@ const int mod = 1e9 + 7;
 typedef long double ld;
 typedef vector<int> vi;
  
-/*---------------------------------------->   MAadjTIC STARTS   <--------------------------------------------*/
+/*---------------------------------------->   MAGIC STARTS   <--------------------------------------------*/
 /*
  
 Path queris ->
 note :- out-degree of each node is exactly 1, i.e it's a pseudo-forest.
-        1. Each adjTraph in the forest will contain exactly 1 cycle.
+        1. Each adjGraph in the forest will contain exactly 1 cycle.
         2. every-node will lead to a cycle
  
 Approach ->

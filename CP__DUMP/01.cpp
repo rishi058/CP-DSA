@@ -1,50 +1,44 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-bool canPlace(const vector<pair<int, int>>& ivls, int n, int d) {
-    int pos = ivls[0].first, cnt = 1;
+#define int long long
+#define tuple array<int, 3>
+#define all(v) v.begin(), v.end()
+#define F(a,b,i) for (int i = a; i < b; i++)
+#define Rev(a,b,i) for (int i = a; i >= b; i--)
+#define RISHI ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 
-    for (int i = 1; i < n; i++) {
-        int a = ivls[i].first, b = ivls[i].second;
+template <typename dStruct>
+void print(dStruct& vName){for(auto &it : vName){cout<<it<<" ";} cout<<"\n";}
+template <typename dStruct>
+void print2(dStruct& vName){for(auto &it : vName){cout<<"{"<<it.first<<", "<<it.second<<"} ";} cout<<"\n";}
 
-        if (pos + d <= b) {
-            pos = max(a, pos + d);
-            cnt++;
-        }
+const int mod = 1e9 + 7;
+#define inf LONG_LONG_MAX
+#define Min LONG_LONG_MIN
 
-        if (cnt >= n)
-            return true;
+typedef long double ld;
+typedef vector<int> vi;
+
+//!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
+
+int32_t main()
+{
+    RISHI
+    int T = 1;
+    cin>>T;
+    while(T--)
+    {
+       vi v = {1,2,5,2,4,8,32,112};
+       BubbleSort(v); 
     }
 
-    return cnt >= n;
 }
 
-int main() {
-    int n;
-    cin >> n;
-    vector<pair<int, int>> ivls(n);
 
-    for (int i = 0; i < n; i++)
-        cin >> ivls[i].first >> ivls[i].second;
-
-    sort(ivls.begin(), ivls.end());
-
-    int lo = 0, hi = ivls.back().second - ivls[0].first, res = 0;
-
-    while (lo <= hi) {
-        int mid = lo + (hi - lo) / 2;
-
-        if (canPlace(ivls, n, mid)) {
-            res = mid;
-            lo = mid + 1;
-        } else {
-            hi = mid - 1;
-        }
-    }
-
-    cout << res << endl;
-    return 0;
-}
+//      ██╗  █████╗  ██╗    ██████╗ ██╗  ██╗ ██████╗  ███████╗ ███████╗   ██████╗   █████╗  ███╗   ███╗
+//      ██║ ██╔══██╗ ██║   ██╔════╝ ██║  ██║ ██╔══██╗ ██╔════╝ ██╔════╝   ██╔══██╗ ██╔══██╗ ████╗ ████║
+//      ██║ ███████║ ██║   ╚█████╗  ███████║ ██████╔╝ █████╗   █████╗     ██████╔╝ ███████║ ██╔████╔██║
+// ██╗  ██║ ██╔══██║ ██║    ╚═══██╗ ██╔══██║ ██╔══██╗ ██╔══╝   ██╔══╝     ██╔══██╗ ██╔══██║ ██║╚██╔╝██║
+// ╚█████╔╝ ██║  ██║ ██║   ██████╔╝ ██║  ██║ ██║  ██║ ███████╗ ███████╗   ██║  ██║ ██║  ██║ ██║ ╚═╝ ██║
+//  ╚════╝  ╚═╝  ╚═╝ ╚═╝   ╚═════╝  ╚═╝  ╚═╝ ╚═╝  ╚═╝ ╚══════╝ ╚══════╝   ╚═╝  ╚═╝ ╚═╝  ╚═╝ ╚═╝     ╚═╝

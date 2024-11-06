@@ -57,23 +57,18 @@ Step 2 -> Usi loop ko continue karo, agar koi element key se chota ho to uske ke
             SAHI element == jo element founded se bhi chota ho !..
 
 */
-void insertionSort(vi &arr)
-{
-    int key, j, n = arr.size();
-    F(1,n,i){
-        key = arr[i];
-        j = i - 1;
+void insertionSort(vi &arr){
+    int n = arr.size();
+
+    for(int i=1; i<n; i++){
+        int key = arr[i];
+        int j = i - 1;
         /* Move elements of arr[0..i-1], that are greater than key, to one position ahead of their current position */
-        while (j >= 0 && arr[j] > key) {
+        while(j >= 0 && arr[j] > key) {
             arr[j + 1] = arr[j];
             j--;
         }
         arr[j + 1] = key;
-        cout<<i<<" : ";
-        for(int x : arr){
-            cout<<x<<" ";
-        }
-        cout<<"\n";
     }
 
 }

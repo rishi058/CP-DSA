@@ -25,32 +25,28 @@ Step 3 -> When we have done this First time on Whole array. Now do the same thin
 
 */
 
-int partition(vi &arr, int low, int high)
-{
-    int i = low;
-    int j = high;
+int partition(vi &arr, int low, int high){
+    int i = low, j = high;
     int pivot = arr[low];
-    while (i < j)
-    {
-        while (pivot >= arr[i])
-            i++;
-        while (pivot < arr[j])
-            j--;
-        if (i < j)
-            swap(arr[i], arr[j]);
+
+    while (i < j){
+        while(pivot >= arr[i]){i++;}
+
+        while(pivot < arr[j]){j--;}
+
+        if(i < j){swap(arr[i], arr[j]);}
     }
+    
     swap(arr[low], arr[j]);
     return j;
 }
   
-void quickSort(vi &arr, int low, int high)
-{
-    if (low < high)
-    {
-        int pivot = partition(arr, low, high);
-        quickSort(arr, low, pivot - 1);
-        quickSort(arr, pivot + 1, high);
-    }
+void quickSort(vi &arr, int low, int high){
+    if(low>=high){return;}
+    
+    int pivot = partition(arr, low, high);
+    quickSort(arr, low, pivot - 1);
+    quickSort(arr, pivot + 1, high);
 }
 
 int32_t main()

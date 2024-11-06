@@ -14,36 +14,26 @@ typedef vector<int> vi;
 Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order.
 This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.
 
+sorting is visible from right to left
+i.e largest elements is placed at the end of the array & so on...
+
 Step 1 -> arr[0], arr[1] ko compare karo agar ascending hai (i.e arr[0]<arr[1]) to rehne do nhi to swap kardo..
 
 Srep 2 -> next element ko iterate karo, each (N) TC k baad last (n) element sort ho jata hai automatically...
          T.C == (n*N).
 */
 
-void bubbleSort(vi &arr)
-{
+
+void bubbleSort(vi &arr){
     int n = arr.size();
 
-    F(0, n - 1, i)
-    {
-        // Last i elements are already in place
-        F(0, n - i - 1, j)
-        {
-            if (arr[j] > arr[j + 1])
+    for(int i=0; i<n-1; i++){
+        // Last/right-side 'i' elements are already in place
+        for(int j=0; j<n-i-1; j++){
+            if(arr[j] > arr[j + 1]){
                 swap(arr[j], arr[j + 1]);
-
-            for (int x : arr)
-            {
-                cout << x << " ";
             }
-            cout << "\n";
         }
-
-        // for (int x : arr)
-        // {
-        //     cout << x << " ";
-        // }
-        // cout << "\n";
     }
 }
 

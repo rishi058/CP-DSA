@@ -1,37 +1,25 @@
-import heapq
-
-def max_k(n, arr, c, d):
-    max_k = -1
-    for k in range(1, d + 1):
-        total_points = 0
-        available_exercises = [-x for x in arr]  # Max heap for exercises
-        heapq.heapify(available_exercises)
-        last_performed = [-k] * n  # Last day each exercise was performed
-        
-        for day in range(d):
-            # Find the best exercise that can be performed today
-            while available_exercises:
-                best_exercise = -heapq.heappop(available_exercises)
-                exercise_index = arr.index(best_exercise)
-                if day - last_performed[exercise_index] >= k:
-                    total_points += best_exercise
-                    last_performed[exercise_index] = day
-                    heapq.heappush(available_exercises, -best_exercise)
-                    break
-            else:
-                # No exercise can be performed today
-                continue
-        
-        if total_points >= c:
-            max_k = k
-        else:
-            break
+def process_event_queue(arrival_times):
+    queue = []
+    last_process_time = 0
     
-    return max_k
+    for time in sorted(arrival_times):
+        # Process people in the queue
+        while queue and queue[0] + 300 <= time:
+            last_process_time = queue.pop(0) + 300
+        
+        # Remove people who have been in the queue for more than 300 seconds
+        queue = [t for t in queue if t + 300 > time]
+        
+        # If queue length is 10 or less, add the person to the queue
+        if len(queue) <= 10:
+            queue.append(time)
+    
+    # Process remaining people in the queue
+    while queue:
+        last_process_time = queue.pop(0) + 300
+    
+    return last_process_time
 
-# Example usage:
-n = 2
-arr = [100, 10]
-c = 20
-d = 10
-print(max_k(n, arr, c, d))  # Output should be 2
+# Test cases
+print(process_event_queue([1, 6, 9, 502]))  # Should output 1201
+print(process_event_queue([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]))  # Should output 3601

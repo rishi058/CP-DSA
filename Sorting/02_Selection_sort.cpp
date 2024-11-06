@@ -25,12 +25,12 @@ void selectionSort(vi &arr)
  
     // One by one move boundary of
     // unsorted subarray
-    F(0,n,i){
+    for(int i=0; i<n; i++){
        
         // Find the minimum element in
         // unsorted array
         min_idx = i;
-        F(i+1, n, j){
+        for(int j=i+1; j<n; j++){
             if (arr[j] < arr[min_idx]){
                 min_idx = j;
             }
