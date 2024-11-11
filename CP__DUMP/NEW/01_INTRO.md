@@ -28,9 +28,13 @@ I was also appointed as the Tech Lead of the App-Dev Club at my college, where
 During my college time, I've build multiple projects.
 Let me tell you about my 3 good projects are :-
 
-1. Recursion Visualizer: Built with NextJS and C++, this tool visualizes recursive algorithms. It has integrated an online IDE. Currently hosted on vercel.
-2. Radio Player App: A Flutter app with access to over 43,000 radio stations worldwide, optimized for performance and UX.I've also published this project on playstore.
-3. Discussify Chat App: A real-time chat application using ReactJS, MongoDB and SOCKET.IO, featuring JWT-based authorization and a responsive UI. Currently hosted on Render.
+1. Recursion Visualizer: This tool allows us to generate recursion tree for any custom made C++ recursion function.
+It helps programmers to understand Recursion in a better way & increase their problems solving skill. Generally Recursion & DP based problems.It is made using NextJS, TypeScript & C++. Currently hosted on vercel.
+
+
+2. Radio Player App: This radio app made with flutter features an open source Radio Api enabling it to provide upto 45000+ radio channels across worldwide. This app is currently published it on playstore.
+
+3. Discussify Chat App: A real-time chat application using ReactJS, MongoDB and SOCKET.IO. featuring JWT-based authorization and a responsive UI. Currently hosted on Render.
 
 #### 4. ACHIEVEMENTS
 

@@ -3,41 +3,40 @@
 This tool allows us to generate recursion tree for any custom made C++ recursion function.
 It helps programmers to understand Recursion in a better way & increase their problems solving skill. Generally Recursion & DP based problems.
 
-It is made using NextJS, TypeScript & TailWind CSS.
-I've used Axios for API fetching, CodeMirror for Integrated IDE, JUDGE CE API for compiling code and REACT-FLOW for tree-visualisation.
+It is made using NextJS framework & TypeScript programming language.
+I've used TailWind CSS for effecient & responsive UI, Axios for API fetching & HTTP Handling, CodeMirror-plugin for Integrated IDE, JUDGE CE API for compiling the code and REACT-FLOW library for tree-visualisation.
 
-NOW LET ME TELL YOU HOW IT'S WORK :-
+NOW LET ME TELL YOU HOW THIS TOOL WORKS :-
 
-1. The C++ function stores the information about the recursion tree in a adjacency list
-   after the execution of recursion function.
+1. When one has completed writing the C++ recursion function. They have to modify it a little by passing one extra integer variable in that recursion function.And follow the instructions given to construct nodes of recursion tree using Tree Visualiser class. The informations about the recursion tree will now be stored in a Adjacency List when recursion function will execute.
 
 2. Reingold-Tilford Tree Drawing Algorithm is used to assign coordinates to each node of the tree, so the nodes deosn't overlap.
-   This is the most complicated part of the project from my view. As it took me hours of researching & implementations to finally 
-   complete this part.
+This is the most complicated part of the project from my view. As it took me hours of research & implementations to finally 
+complete this part.
 
-3. This tree data is used by react-flow library to plot the tree.
+3. This tree data will look like JSON object which is passed react-flow library as a parameter to plot the recursion tree.
 
-//------------------------------------------------------------------------------------------------------
+---
 
 #### => RADIO PLAYER APP
 
-1. This radio app features an open source Radio Api enabling it to provide upto 45000+ radio channels across worldwide. This app is currently published it on playstore.
+1. This radio app made with flutter features an open source Radio Api enabling it to provide upto 45000+ radio channels across worldwide. This app is currently published it on playstore.
 
-1.5> get top-voted channels, top countries, search based on tags like [channel_names, countries, genre, language], add channels to your fav-list.
+2. Inside this app, one can get top-voted radio channels & top countries based on radio channels on their homepage. Here, I've also implemented search of radio channels based on tags like [channel_names, countries, genre & language]. One can also add radio-channels to thier fav-list, This fav-list data is stored in cloud storage known as Firestore database. 
 
-2. While building it, I focused on creating a smooth and intuitive UI by integrating Hero Animations for transitions and a Carousel Slider for easy horizontal navigation.
+3. While building it, I focused on creating a smooth and intuitive UI by integrating Hero Animations for transitions and a Carousel Slider for easy horizontal navigation.
 
-3. I've also used Pagination to improve performance & allowing users to browse channels seamlessly.
+4. I've also used Pagination to improve performance & allowing users to browse channels seamlessly.
 
-4. I've used Firebase for managing secure Google sign-ins.
+5. I've used Firebase for managing secure Google sign-ins.
 
-5. It focuses on modular directory structure which ensures scalability.
+6. It focuses on modular directory structure which ensures scalability.
 
-6. This app’s responsive design adapts seamlessly across multiple devices.
+7. This app’s responsive design adapts seamlessly across multiple devices.
 
-7. Using OOP and dependency injection, I've created an optimized, maintainable codebase prepared for future updates.
+8. Using OOP and dependency injection, I've created an optimized, maintainable codebase prepared for future updates.
 
-//------------------------------------------------------------------------------------------------------
+---
 
 #### => DISCUSSIFY CHAT APPLICATION 
 
@@ -45,9 +44,9 @@ NOW LET ME TELL YOU HOW IT'S WORK :-
 
 2. It's frontend is made using Vite, React, TypeScript, TailWind CSS & Daisy UI. I've used Axios for API Handling on the frontend side.
 
-3. It's backend is made using NodeJS, ExpressJS, MongoDB. It feature JWT Authentication.
+3. It's backend is made using NodeJS, ExpressJS, MongoDB & WebSocket. It feature JWT Authentication.
 
-*************
+//-----------------------
 
 1. I have also implemented a logger in the backend. Which Logs all api-calls along with is details like STATUS_CODE | TYPE OF API CALL | END_POINT | RESPONSE_TIME 
 | RES_BODY | REQ_BODY.
@@ -56,9 +55,9 @@ NOW LET ME TELL YOU HOW IT'S WORK :-
 
 3 I've implemented 2 major features using web-sockets.
 a. SHOW ONLINE STATUS of each user who are currently active on the appication.
-B. Realtime auto message update. Here user will not have to refresh the page to view new messages.
+B. Realtime automatic message update. Where user will not have to refresh the page to view new messages.
 
-*************
+//-----------------------
 
 1. This projects focuses on modular directory structure which ensures scalability and maintainable codebase prepared for future updates.
 
@@ -66,7 +65,7 @@ B. Realtime auto message update. Here user will not have to refresh the page to 
 
 3. It has a responsive UI which helps to adapts seamlessly across multiple devices.
 
-//-----------------------------------------------------------------------------------------------------------
+---
 
 #### => NOTES APP 
 
