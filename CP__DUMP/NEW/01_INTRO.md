@@ -1,8 +1,6 @@
-Hi Sir, I’m Rishi Raj
+Good Morning/Afternoon/Evening, Sir/Ma'm.
 
-First of all, I want to thank you for giving me this opportunity.
-
-I'm a hard-working engineering graduate specialised in Computer Science Engineering with a current CGPA of 8.05. I am set to graduate from my college IIIT Bhagalpur in 2025.
+I'm Rishi Raj a hard-working engineering graduate specialised in Computer Science Engineering with a current CGPA of 8.05. I am set to graduate from my college IIIT Bhagalpur in 2025.
 
 #### 1. TECHNICAL SKILLS
 
