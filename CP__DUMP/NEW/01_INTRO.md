@@ -22,7 +22,7 @@ I’ve had the chance to work as a Flutter Developer Intern at Duckart, where
 
 I was also appointed as the Tech Lead of the App-Dev Club at my college, where
 1. I organized project-based learning initiatives.
-2. Promoted GitHub for collaborative project work.
+2. Promoted Version Control System(Git/GitHub) for collaborative project work.
 3. And led code review sessions to enhance code quality and best practices.
 
 #### 3. PROJECTS
