@@ -22,36 +22,7 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
-int getNumPerfectPackaging(vector<int>& p) {
-    const int MOD = 1e9 + 7;
-    vector<int> dp0(6, 1);
-    vector<int> dp1(6, 0);
 
-    for (int i = 1; i < p.size(); ++i) {
-        vector<int> c(6, 0);
-        for (int s = 1; s < 6; ++s) {
-            c[s] = (c[s - 1] + dp0[s]) % MOD;
-        }
-        int tot = c[5];
-        for (int s = 1; s < 6; ++s) {
-            if (p[i] > p[i - 1]) {
-                dp1[s] = c[s - 1];
-            } else if (p[i] < p[i - 1]) {
-                dp1[s] = (tot - c[s]) % MOD;
-            } else {
-                dp1[s] = (tot - dp0[s]) % MOD;
-            }
-        }
-        dp0 = dp1;
-        dp1 = vector<int>(6, 0);
-    }
-
-    int result = 0;
-    for (int i = 1; i < 6; ++i) {
-        result = (result + dp0[i]) % MOD;
-    }
-    return result;
-}
 
 int32_t main()
 {
@@ -61,7 +32,7 @@ int32_t main()
     while(T--)
     {
         vi v = {5};
-        cout<<getNumPerfectPackaging(v);
+        
         
     }
 
