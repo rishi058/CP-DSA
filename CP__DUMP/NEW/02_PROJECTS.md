@@ -53,7 +53,7 @@ complete this part.
 
 2. This feature is comes in handy while developing the application as it's helps to make debugging process more effecient. 
 
-3 I've implemented 2 major features using web-sockets.
+3. I've implemented 2 major features using web-sockets.
 a. SHOW ONLINE STATUS of each user who are currently active on the appication.
 B. Realtime automatic message update. Where user will not have to refresh the page to view new messages.
 

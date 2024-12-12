@@ -22,18 +22,20 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
-
+int gcd(int a, int b){
+    if(a>b){swap(a,b);}
+    if(a==0){return b;}
+    return gcd(b%a, a);
+}
 
 int32_t main()
 {
     RISHI
     int T = 1;
-    // cin>>T;
+    cin>>T;
     while(T--)
     {
-        vi v = {5};
-        
-        
+        cout<<gcd(18, 81);
     }
 
 }

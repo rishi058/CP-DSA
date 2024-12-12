@@ -22,6 +22,8 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
+
+
 int getAvg(int x, int y, vector<vector<int>>&img, int r){
     int n = img.size(), m = img[0].size();
     int sum = 0, ct = 0;

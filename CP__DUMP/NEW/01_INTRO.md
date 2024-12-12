@@ -4,7 +4,7 @@ I'm Rishi Raj a hard-working engineering graduate specialised in Computer Scienc
 
 #### 1. TECHNICAL SKILLS
 
-I have a solid foundation in programming languages like C/C++, JavaScript and Dart. And I am familiar with SQL, TypeScript and Python. I have a good knowledge on toolkits like VS Code and Android Studio and frameworks like Flutter, Firebase, ReactJS, NodeJS, and NextJS.
+I have a solid foundation in programming languages like C/C++, JavaScript/Typescript and Dart. And I am familiar with SQL and Python. I have a good knowledge on toolkits like VS Code and Android Studio and frameworks like Flutter, Firebase, ReactJS, NodeJS, and NextJS.
 
 In terms of coursework, I excel in subjects such as DSA, OOP, DBMS, OS, CN.
 

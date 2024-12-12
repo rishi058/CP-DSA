@@ -1,22 +1,555 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Tab Switch Counter</title>
-</head>
-<body>
-    <h1>Tab Switch Counter</h1>
-    <p>Number of times you've switched tabs: <span id="counter">0</span></p>
+<html lang="en" translate="no">
 
-    <script>
-        let counter = 0;
-
-        // Increment counter on visibility change (tab switch)
-        document.addEventListener("visibilitychange", function() {
-            if (document.visibilityState === "hidden") {
-                counter++;
-                document.getElementById("counter").innerText = counter;
-            }
-        });
+<head nonce="464389e8-d8c9-4399-a536-24f00af8e7c8">
+    <meta charSet="utf-8" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/outlier/favicons/apple-touch-icon.svg" />
+    <link rel="icon" type="image/svg" sizes="32x32" href="/static/img/outlier/favicons/favicon-32x32.svg" />
+    <link rel="icon" type="image/svg" sizes="16x16" href="/static/img/outlier/favicons/favicon-16x16.svg" />
+    <link rel="shortcut icon" href="/static/img/outlier/favicons/favicon-32x32.svg" />
+    <link rel="manifest" href="/static/img/favicons/manifest.json" />
+    <link rel="mask-icon" href="/static/img/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="theme-color" content="#311263" />
+    <meta name="description" content="Make money doing tasks. Start earning from home today!" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@outlier" />
+    <meta name="twitter:creator" content="@outlier" />
+    <meta name="twitter:title" content="Outlier" />
+    <meta name="twitter:description" content="Make money doing tasks. Start earning from home today!" />
+    <meta name="twitter:image" content="/static/img/outlier/favicons/favicon-32x32.svg" />
+    <meta property="og:url" content="https://app.outlier.aiundefined" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Outlier" />
+    <meta property="og:description" content="Make money doing tasks. Start earning from home today!" />
+    <meta property="og:image" content="/static/img/outlier/favicons/favicon-32x32.svg" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <meta name="google-site-verification" content="uU4kAc_cN6upyJ6QnTKRW0Rth-CswQkMHKT1_JwxLCg" />
+    <meta http-equiv="Accept-CH"
+        content="Sec-Ch-Ua, Sec-Ch-Ua-Arch, Sec-Ch-Ua-Full-Version, Sec-Ch-Ua-Mobile, Sec-Ch-Ua-Model, Sec-Ch-Ua-Platform, Sec-Ch-Ua-Platform-Version, Device-Memory, DPR, Viewport-Width" />
+    <title>Outlier</title>
+    <meta name="next-head-count" content="24" />
+    <meta name="google" content="notranslate" />
+    <link rel="stylesheet" href="/static/css/react-s-alert/s-alert-default.css" />
+    <link rel="stylesheet" href="/static/css/react-s-alert/slide.css" />
+    <link nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" rel="preload"
+        href="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/css/fafbe0290bcd89b2.css"
+        as="style" />
+    <link nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" rel="stylesheet"
+        href="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/css/fafbe0290bcd89b2.css"
+        data-n-g="" /><noscript data-n-css="464389e8-d8c9-4399-a536-24f00af8e7c8"></noscript>
+    <script defer="" nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" nomodule=""
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/polyfills-5cd94c89d3acac5f.js">
     </script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/webpack-d64c439ec28674a2.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/framework-32bac8e59156647d.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/main-6e32de11585a4c29.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/pages/_app-82554c108e8c10e9.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/ec23b2e1-a0aaf8d8dbe005de.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/ff27826a-12df786603f8f613.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/c8b05f54-5f4097056b219ff1.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/e4cb05a9-2cdabe9dc3386d7d.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/12093-3eedf76a8f7aacbf.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/63943-bf608ce8aee68efb.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/52444-b1416e9d9be6ef4e.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/2345-9f9ce8d9c66ec4ba.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/26199-60aad04a344ac0f5.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/13959-c9a9efaf626c3395.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/90321-b4fb42f5444b8418.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/19059-f4f5af9811189811.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/84200-c8f306b96808262a.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/10377-86666b37c94dc56b.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/66256-8a7846c2d1191a9e.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/16367-b333cf14ec0ba1ba.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/67834-46d2c0f5b23cea21.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/61674-bb392d07d8b99027.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/54059-86ab65a8b1a8af29.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/84297-67d19232a5adea05.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/75143-29f945a2e9dba564.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/59612-b7a6cd17617c6c4d.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/24456-d823bd516d554002.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/90222-14eb7228a6af10c2.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/81789-4338e4611c7ff966.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/92794-77f37a7148484544.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/chunks/pages/expert-1bd551c14d87b0a3.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/fFUzgjiuagvznyMTrGXzf/_buildManifest.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/fFUzgjiuagvznyMTrGXzf/_ssgManifest.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <script
+        src="https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf/_next/static/fFUzgjiuagvznyMTrGXzf/_middlewareManifest.js"
+        nonce="464389e8-d8c9-4399-a536-24f00af8e7c8" defer=""></script>
+    <style id="__jsx-2407511624">
+        .spinner-wrapper.center.jsx-2407511624 {
+            width: 100%;
+            height: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center
+        }
+
+        .spinner.jsx-2407511624 {
+            font-size: 20px;
+            position: relative;
+            display: inline-block;
+            width: 1em;
+            height: 1em
+        }
+
+        .spinner.sssm.jsx-2407511624 {
+            font-size: 14px
+        }
+
+        .spinner.ssm.jsx-2407511624 {
+            font-size: 16px
+        }
+
+        .spinner.md.jsx-2407511624 {
+            font-size: 30px
+        }
+
+        .spinner.lg.jsx-2407511624 {
+            font-size: 40px
+        }
+
+        .spinner.jsx-2407511624 .spinner-blade.jsx-2407511624 {
+            position: absolute;
+            left: .4629em;
+            bottom: 0;
+            width: .074em;
+            height: .2777em;
+            -webkit-border-radius: .5em;
+            -moz-border-radius: .5em;
+            border-radius: .5em;
+            background-color: transparent;
+            -webkit-transform-origin: center -.2222em;
+            -moz-transform-origin: center -.2222em;
+            -ms-transform-origin: center -.2222em;
+            -o-transform-origin: center -.2222em;
+            transform-origin: center -.2222em;
+            -webkit-animation: spinner-fade 1s infinite linear;
+            -moz-animation: spinner-fade 1s infinite linear;
+            -o-animation: spinner-fade 1s infinite linear;
+            animation: spinner-fade 1s infinite linear
+        }
+
+        .spinner.jsx-2407511624 .spinner-blade.jsx-2407511624:nth-child(1) {
+            -webkit-animation-delay: 0s;
+            -moz-animation-delay: 0s;
+            -o-animation-delay: 0s;
+            animation-delay: 0s;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg)
+        }
+
+        .spinner.jsx-2407511624 .spinner-blade.jsx-2407511624:nth-child(2) {
+            -webkit-animation-delay: .083s;
+            -moz-animation-delay: .083s;
+            -o-animation-delay: .083s;
+            animation-delay: .083s;
+            -webkit-transform: rotate(30deg);
+            -moz-transform: rotate(30deg);
+            -ms-transform: rotate(30deg);
+            -o-transform: rotate(30deg);
+            transform: rotate(30deg)
+        }
+
+        .spinner.jsx-2407511624 .spinner-blade.jsx-2407511624:nth-child(3) {
+            -webkit-animation-delay: .166s;
+            -moz-animation-delay: .166s;
+            -o-animation-delay: .166s;
+            animation-delay: .166s;
+            -webkit-transform: rotate(60deg);
+            -moz-transform: rotate(60deg);
+            -ms-transform: rotate(60deg);
+            -o-transform: rotate(60deg);
+            transform: rotate(60deg)
+        }
+
+        .spinner.jsx-2407511624 .spinner-blade.jsx-2407511624:nth-child(4) {
+            -webkit-animation-delay: .249s;
+            -moz-animation-delay: .249s;
+            -o-animation-delay: .249s;
+            animation-delay: .249s;
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            transform: rotate(90deg)
+        }
+
+        .spinner.jsx-2407511624 .spinner-blade.jsx-2407511624:nth-child(5) {
+            -webkit-animation-delay: .332s;
+            -moz-animation-delay: .332s;
+            -o-animation-delay: .332s;
+            animation-delay: .332s;
+            -webkit-transform: rotate(120deg);
+            -moz-transform: rotate(120deg);
+            -ms-transform: rotate(120deg);
+            -o-transform: rotate(120deg);
+            transform: rotate(120deg)
+        }
+
+        .spinner.jsx-2407511624 .spinner-blade.jsx-2407511624:nth-child(6) {
+            -webkit-animation-delay: .415s;
+            -moz-animation-delay: .415s;
+            -o-animation-delay: .415s;
+            animation-delay: .415s;
+            -webkit-transform: rotate(150deg);
+            -moz-transform: rotate(150deg);
+            -ms-transform: rotate(150deg);
+            -o-transform: rotate(150deg);
+            transform: rotate(150deg)
+        }
+
+        .spinner.jsx-2407511624 .spinner-blade.jsx-2407511624:nth-child(7) {
+            -webkit-animation-delay: .498s;
+            -moz-animation-delay: .498s;
+            -o-animation-delay: .498s;
+            animation-delay: .498s;
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            transform: rotate(180deg)
+        }
+
+        .spinner.jsx-2407511624 .spinner-blade.jsx-2407511624:nth-child(8) {
+            -webkit-animation-delay: .581s;
+            -moz-animation-delay: .581s;
+            -o-animation-delay: .581s;
+            animation-delay: .581s;
+            -webkit-transform: rotate(210deg);
+            -moz-transform: rotate(210deg);
+            -ms-transform: rotate(210deg);
+            -o-transform: rotate(210deg);
+            transform: rotate(210deg)
+        }
+
+        .spinner.jsx-2407511624 .spinner-blade.jsx-2407511624:nth-child(9) {
+            -webkit-animation-delay: .664s;
+            -moz-animation-delay: .664s;
+            -o-animation-delay: .664s;
+            animation-delay: .664s;
+            -webkit-transform: rotate(240deg);
+            -moz-transform: rotate(240deg);
+            -ms-transform: rotate(240deg);
+            -o-transform: rotate(240deg);
+            transform: rotate(240deg)
+        }
+
+        .spinner.jsx-2407511624 .spinner-blade.jsx-2407511624:nth-child(10) {
+            -webkit-animation-delay: .747s;
+            -moz-animation-delay: .747s;
+            -o-animation-delay: .747s;
+            animation-delay: .747s;
+            -webkit-transform: rotate(270deg);
+            -moz-transform: rotate(270deg);
+            -ms-transform: rotate(270deg);
+            -o-transform: rotate(270deg);
+            transform: rotate(270deg)
+        }
+
+        .spinner.jsx-2407511624 .spinner-blade.jsx-2407511624:nth-child(11) {
+            -webkit-animation-delay: .83s;
+            -moz-animation-delay: .83s;
+            -o-animation-delay: .83s;
+            animation-delay: .83s;
+            -webkit-transform: rotate(300deg);
+            -moz-transform: rotate(300deg);
+            -ms-transform: rotate(300deg);
+            -o-transform: rotate(300deg);
+            transform: rotate(300deg)
+        }
+
+        .spinner.jsx-2407511624 .spinner-blade.jsx-2407511624:nth-child(12) {
+            -webkit-animation-delay: .913s;
+            -moz-animation-delay: .913s;
+            -o-animation-delay: .913s;
+            animation-delay: .913s;
+            -webkit-transform: rotate(330deg);
+            -moz-transform: rotate(330deg);
+            -ms-transform: rotate(330deg);
+            -o-transform: rotate(330deg);
+            transform: rotate(330deg)
+        }
+
+        @keyframes spinner-fade {
+            0% {
+                background-color: #000
+            }
+
+            100% {
+                background-color: transparent
+            }
+        }
+    </style>
+    <style id="__jsx-7669c5f147cae5b3">
+        .container.jsx-7669c5f147cae5b3 {
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background: #fff;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            height: 100%;
+            -webkit-justify-content: center;
+            justify-content: center;
+            left: 0;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            -webkit-transition: all.1s linear.4s;
+            -moz-transition: all.1s linear.4s;
+            -o-transition: all.1s linear.4s;
+            transition: all.1s linear.4s;
+            width: 100%;
+            z-index: 1000
+        }
+
+        .container--hide.jsx-7669c5f147cae5b3 {
+            opacity: 0;
+            pointer-events: none
+        }
+    </style>
+    <style id="__jsx-8083cb761544f315">
+        .s-alert-wrapper>div {
+            z-index: 100001
+        }
+
+        .s-alert-box {
+            font-family: var(--font-family) !important;
+            font-size: 14px !important;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            padding: 16px 24px 16px 16px;
+            -webkit-box-shadow: var(--box-shadow);
+            -moz-box-shadow: var(--box-shadow);
+            box-shadow: var(--box-shadow)
+        }
+
+        .s-alert-close {
+            width: 20px !important;
+            height: 20px !important;
+            -webkit-border-radius: 100% !important;
+            -moz-border-radius: 100% !important;
+            border-radius: 100% !important;
+            background-color: rgba(255, 255, 255, .4) !important;
+            -webkit-transition: all.3s;
+            -moz-transition: all.3s;
+            -o-transition: all.3s;
+            transition: all.3s
+        }
+
+        .s-alert-close:hover {
+            background-color: rgba(255, 255, 255, .6) !important
+        }
+
+        .s-alert-close:before,
+        .s-alert-close:after {
+            height: 10px !important;
+            width: 1px !important
+        }
+
+        .s-alert-info {
+            background: #fff !important;
+            color: var(--color-RemoGray75) !important;
+            border: none !important
+        }
+
+        .s-alert-info .s-alert-close {
+            background-color: var(--color-RemoGray01) !important
+        }
+
+        .s-alert-info .s-alert-close:before,
+        .s-alert-info .s-alert-close:after {
+            background: var(--color-RemoGray75) !important
+        }
+
+        .s-alert-success {
+            background: #e1ffbf !important;
+            color: #34570e !important
+        }
+
+        .s-alert-success .s-alert-close:before,
+        .s-alert-success .s-alert-close:after {
+            background: #34570e !important
+        }
+
+        .s-alert-warning {
+            background-color: #fffcd6 !important;
+            color: #926f00 !important
+        }
+
+        .s-alert-warning .s-alert-close:before,
+        .s-alert-warning .s-alert-close:after {
+            background: #926f00 !important
+        }
+
+        .s-alert-error {
+            background: #ffcebe !important;
+            color: #7a3019 !important
+        }
+
+        .s-alert-error .s-alert-close:before,
+        .s-alert-error .s-alert-close:after {
+            background: #7a3019 !important
+        }
+    </style>
+    <style id="jss-server-side"></style>
+</head>
+
+<body>
+    <div id="__next" data-reactroot="">
+        <div class="jsx-7669c5f147cae5b3 container container--hide">
+            <div class="jsx-2407511624 spinner-wrapper center">
+                <div class="jsx-2407511624 spinner sm">
+                    <div class="jsx-2407511624 spinner-blade"></div>
+                    <div class="jsx-2407511624 spinner-blade"></div>
+                    <div class="jsx-2407511624 spinner-blade"></div>
+                    <div class="jsx-2407511624 spinner-blade"></div>
+                    <div class="jsx-2407511624 spinner-blade"></div>
+                    <div class="jsx-2407511624 spinner-blade"></div>
+                    <div class="jsx-2407511624 spinner-blade"></div>
+                    <div class="jsx-2407511624 spinner-blade"></div>
+                    <div class="jsx-2407511624 spinner-blade"></div>
+                    <div class="jsx-2407511624 spinner-blade"></div>
+                    <div class="jsx-2407511624 spinner-blade"></div>
+                    <div class="jsx-2407511624 spinner-blade"></div>
+                </div>
+            </div>
+        </div>
+        <style data-emotion="css-global 1qjpcnq">
+            html {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                box-sizing: border-box;
+                -webkit-text-size-adjust: 100%;
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: inherit;
+            }
+
+            strong,
+            b {
+                font-weight: 700;
+            }
+
+            body {
+                margin: 0;
+                color: #374151;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 1.4;
+                font-family: 'Inter', -apple-system, Arial, Sans-Serif;
+                font-style: normal;
+                background-color: #FAFAFA;
+            }
+
+            @media print {
+                body {
+                    background-color: #fff;
+                }
+            }
+
+            body::backdrop {
+                background-color: #FAFAFA;
+            }
+        </style>
+        <div class="overflow-hidden scaleui scale-tailwind outlier-theme "></div>
+    </div>
+    <script nonce="464389e8-d8c9-4399-a536-24f00af8e7c8">
+        window.config = {"NODE_ENV":"production","REMOTASKS_FRONTEND_URL":"https://www.remotasks.com","REMOTASKS_FRONTEND_PROD_URL":"https://www.remotasks.com","OUTLIER_FRONTEND_URL":"https://app.outlier.ai","SCALE_FRONTEND_URL":"https://scale.com","SCALE_FRONTEND_PROD_URL":"https://scale.com","SCALE_DASHBOARD_FRONTEND_URL":"https://dashboard.scale.com","SCALE_DASHBOARD_FRONTEND_PROD_URL":"https://dashboard.scale.com","DOMAIN":"remotasks.com"};
+    </script>
+    <script id="__NEXT_DATA__" type="application/json" nonce="464389e8-d8c9-4399-a536-24f00af8e7c8">
+        {"props":{"initialI18nStore":{"en":{"accountSetup":{"welcome-header":"Getting Started","welcome-title":"Welcome to Remotasks!","welcome-text":"In order to get started working, you’ll need to learn a bit more about the platform and pass security onboarding. Here’s a quick overview of what you’ll be doing:","welcome-step-1-title":"Personalize your profile","welcome-step-1-body":"Set your preferences to tailor your experience","welcome-step-2-title":"Intro to Remotasks","welcome-step-2-body":"Learn about the platform and how you can earn money doing tasks","welcome-step-3-title":"Security Onboarding","welcome-step-3-body":"Learn best practices \u0026 get cleared to do work on our platform","next":"Next","skip":"Skip for now","question-page-header":"Personalize your profile","question-page-header-step":"Step 1","question-page-0-title":"","question-page-0-body":"","question-page-1-title":"","question-page-1-body":"","complete-page-title":"You're all set!","complete-page-body":"Taking you to your Introduction Course"},"common":{},"course":{"intro-top":"\u003cstrong\u003eNew Course!\u003c/strong\u003e Complete this short course to continue working on the","intro-pay":"Earn up to {{pay}} just by completing this course!","intro-learn-more":"Learn more","requirements":"Requirements","intro-welcome":"Welcome to","intro-curriculum":"Course Curriculum","intro-many-to-go-1":"After this course, you have","intro-many-to-go-2-plural":"more courses to go to get back to tasks!","intro-many-to-go-2-single":"1 more course to go to get back to tasks!","intro-one-to-go":"This is the last course to complete to return to tasking!","start":"Start","back":"Back","continue":"Continue","start-tasking":"Start Tasking","review-course":"Retake Course","instructions":"Instructions","check-answer":"Check Answer","try-again-timer":"Not quite! You can try again in","seconds":"seconds.","correct":"Correct!","refresh-scenario-status":"Refresh scenario status","scenario-not-done":"You have not completed the training scenario yet.","scenario-done":"You've successfully completed this training scenario!","keep-tab-open":"Please keep this tab open!","open-scenario":"Open training scenario","open-scenario-lidarlite":"Open training scenario in LidarLite","done-great-job":"Great job! You've successfully completed","passed-the-certification":"You passed the certification exam","failed-the-certification":"Sorry, you didn't pass the certification exam","certification-accuracy":"Accuracy","video":"Video","training-scenario":"Training scenario","pop-quiz":"Pop quiz!","certification-time-remaining":"Total time remaining"},"dashboard":{"header-dashboard":"Dashboard","header-task-log":"Task Log","header-missions":"Missions","header-balance":"Balance","header-achievements":"Achievements","header-remotasksTiers":"Remotasks Tiers","header-remotasksElite":"Remotasks Elite","header-training":"Onboarding","header-lidar-portal":"Lidar Portal","header-support":"Support","header-refer-earn":"Earn","header-your-account":"Your Account","header-feedback":"Feedback","remo-admin-tools":"Tools","header-qa-audit":"QA Audit","welcome-back":"Welcome back","intro-week-progress":"Here's your Remotasks progress this week.","last-updated":"Last updated","update-frequency":"updates every 5 minutes","earnings":"Earnings","approved-hours":"Approved hours","task-attempts":"Task attempts","task-reviews":"Task reviews","start-tasking-now":"Start tasking now","launch-queue":"Start Tasking","date-range":"Date range","all-time":"All time","dashboard-question":"How does the dashboard work?","task-window-explanation":"Only tasks for the selected period are displayed below. Pending tasks that were submitted before the period are in \u003cstrong\u003eAll Time\u003c/strong\u003e.","no-tasks-in-range":"You don't have any tasks in this date range.","your-3d-badges":"Your 3D Badges","verify-your-account":"Your account is not yet verified. Please verify your account in your account settings to receive tasks. Note: it may take up to 24 hours after submission to be approved.","recent-activity":"Recent Activity","hours-worked":"Hours Worked","quality-report-info":"Accuracy score is reported using your most recent attempts.","accuracy-description":"This is your current project quality and is calculated from your recent work. This score may be used to determine badge, promotion to review, or warning and/or disabling from the project","badge-description":"This is your current badge","missing-pay":"Configure your payment method before tasking."},"feedback":{"page-title":"Feedback Center","intro-text":"Welcome to your personal feedback center! Analyzing your errors can help you task more accurately, which will lead to higher payouts. If you have any questions, feel free to ask in Slack! You can get started on Slack using this link ","here":"here","announcement-section-title":"Announcement History","announcement-intro-text":"Reviewing past announcements can keep you up-to-date on areas to look out for and other tasking opportunities.","click-to-view-more":"Click to view more","no-announcements":"No announcements yet!","your-tasks-intro-title":"Your Tasks","your-tasks-intro-text":"You worked on these tasks, either as an attemper or a reviewer. Take a look at what you got wrong to improve your accuracy!","no-tasks":"Hmm seems like nothing is here yet, but check back later!","community-tasks-title":"Community Tasks","community-tasks-intro-text":"You didn’t work on these tasks, but they are still helpful to learn from! Take a look at these to ensure you don’t make the same mistakes.","no-community-tasks":"There are no community tasks selected for the projects you work on. You can check back later!","project-id-header":"Project and ID","date-header":"Date Completed","score-header":"Score","notes-header":"Notes","view-header":"View","view-action":"View"},"login":{"why-remotasks":"Why Remotasks?","consistent-work":"Consistent Work","consistent-work-description":"There are new projects always coming in \u0026 long term projects you can consistently work on","get-paid-often":"Get paid often","get-paid-often-description":"Cash out your earnings every week","earn-living":"Earn a living","earn-living-description":"While working from home, Remotaskers have earned over 15 million USD from home!","start-earning":"Start earning money from home today","remo-is-hiring":"Remotasks is hiring LIDAR annotators!","easy-to-start-earning":"It's easy to start earning on our platform with our highest-paying task type, \u003cem\u003eLIDAR Annotation\u003c/em\u003e","get-trained":"Get trained with our guides and video tutorials","take-exam":"Take the LIDAR annotation exam to prove your skill","complete-task-from-home":"Complete tasks from home, set your own hours, and get paid!","start-freelancing":"Start freelancing with Remotasks!","all-skills-welcome":"All skill levels welcome","we-are-hiring":"We're hiring for many different task types, from text categorization to LiDAR annotation and more!","flexible-work":"Flexible work","hours-from-home":"You can always set your own hours and work from home.","opportunities":"Advancement opportunities","as-you-gain-experience":"As you gain experience on the platform, you can get promoted to become a trusted reviewer and earn even more.","log-in-remotasks":"Log in to Remotasks","we-have-lots-of-tasks":"We have a lot of tasks waiting in the queue that need your help to get done!","available-examples":"Available task types include \u003cem\u003eLIDAR Annotation\u003c/em\u003e, \u003cem\u003eLane Annotation\u003c/em\u003e, and \u003cem\u003eCategorization\u003c/em\u003e.","log-in-to-start":"Log in to start tasking!","signup-remotasks":"Sign up for Remotasks","signup-to-start":"Sign up to get started","redirect-to-outlier":"Unfortunately, we aren't currently accepting new contributors from your location on Remotasks. However, we encourage you to check out exciting opportunities to train Generative AI on \u003ca href='https://outlier.ai/'\u003eOutlier.ai\u003c/a\u003e.","tos":"I agree to the \u003ca href='/terms' target='_blank'\u003eTerms of Service\u003c/a\u003e and \u003ca href='/legal/eu-dataprocessing' target='_blank'\u003eEU DPA\u003c/a\u003e","confidentiality":"I understand that I will be entrusted confidential information. I agree that I will not use the information except to perform tasks on Remotasks and will not disclose the information to anyone.","or-log-in":"or Log In","refer":"How did you hear about us?","existing-account":"Already have an account?","login-separator":"or","forgot-password":"Forgot password?","login":"Log in","create-account":"Need to create an account?","or":"- or -","signup":"Sign Up","logout-successful":"You have successfully logged out.","reset-password":"Reset Password","reset-password-help":"Input your registered email to reset your password","reset-password-info":"If your email corresponds to a valid user, we will send a link to reset your password.","reset-done":"Done Here?","submit":"Submit","facebook-info":"We are sorry that facebook login is unavailable at this time. To access your existing account on Remotasks, please continue and enter your email to set a password and use your password to log in.","continue":"Continue","signup-facebook":"Continue with Facebook","signup-google":"Continue with Google","login-facebook":"Continue with Facebook","login-google":"Continue with Google","email-placeholder":"Email","password-placeholder":"Password"},"priceDiscovery":{"greeting":"Hello Remotasker!","attempters":"Attempters","reviewers":"Reviewers","prediction":"{reviewLevel} with {quality}, while working on {project}, typically earn between {range} per task and spend {time} minutes working on a task.","question":"Given this pay and time, would you like to {temporarily} pause your permissions on {project} or would you like to continue to work on {project}?","ifyoupause":"If you select {reject} your permissions on {project} will be {temporarily} paused and {nolonger} until you either unpause the project from your dashboard or the pay for the project has changed","ifyouaccept":"If you select {accept} you will be taken to {project}'s queue","temporarily":"temporarily","quality":"quality similar to yours","warning":"Warning","nolonger":"you will no longer receive tasks from this project in your queue","option-reject":"Reject","option-accept":"Accept","tooltip-reject":"I do not want to work at this wage level. Pause my permissions","tooltip-accept":"I accept this wage level. Take me to the queue"},"projectSection":{"dropdown-title":"Manage your projects","pausing-description":"Pausing a project will temporarily remove unclaimed tasks associated with it from your queue. You will no longer receive any tasks from a paused project. You will still need to complete your assigned tasks to move forward.","resuming-description":"Resuming a project will allow you to receive tasks from that project again.","active-projects-title":"Active Projects","backup-projects-title":"Backup Projects","backup-projects-description":"If you have no active projects or there are no tasks remaining, you may receive tasks from your backup projects.","projects-section-title":"Your Active Projects","projects-section-kyc-blocking":"Please update your pay information","projects-section-kyc-blocking-text":"You will need to update your pay information before we can match you with your next project","projects-section-info-icon":"You'll mostly receive tasks in your Active Projects","no-active-project":"No Active Project","pause":"Pause","resume":"Resume","modal-description":"You always have the option to pause a project. Please help us understand why so that we can make tasking better for you.","select-a-reason":"Select a reason (required)","no-projects":"You currently have no active projects or backup projects or projects for which you have completed the training.","active":"Active","paused":"Paused","pause-project":"Pause Project","remotasks-error":"Remotasks error","difficult-project":"Difficult project","pay":"Pay","task-loading":"Tasks don't load correctly","instructions-loading":"Instructions don't load or are hard to read","error-submitting":"I get an unexpected error when trying to submit","edge-case":"Instructions are unclear about this situation","image-quality":"The images are fuzzy or have low quality","task-difficulty":"Not sure how to correctly complete tasks","qa-difficulty":"Not sure how to fix automatically-detected mistakes","task-length":"Tasks would take too long","too-little":"Pay is too low","unpredictable":"Pay is unpredictable"},"qaOperationsSection":{"qa-operations-section-title":"RemoAdmin Operations","claimable-operations-label-pre":"You have","claimable-operations-label-post":"operations available to be claimed","qa-operations-start-button-label":"Go To My Operations"},"track":{"main-copy":"Thank you for tracking your assistance. You may now continue exploring active projects.","call-to-action":"Continue to the Onboarding Center"},"trainingCenter":{"remotasks-bootcamp-banner-title":"Remotasks Bootcamps","remotasks-bootcamp-banner-intro":"Want to increase your pay? Sign up for an online Remotasks bootcamp!","remotasks-bootcamp-banner-body":"Our certified trainers will teach you how to work on the highest-paying tasks.","remotasks-bootcamp-banner-end":"Online bootcamps are free and you will get paid for live tasks completed during training.","sign-up":"Sign Up","onboarding-center-title":"Onboarding Center","start-tasks":"Start Tasks","3d-tasks":"3D Tasks","language-and-2d-tasks":"Language + 2D Tasks","warning-banner":"Please complete the Intro to Remotasks course in order to unlock projects.","featured-projects":"Featured Projects","certification-exams-title":"Certification Exams","certification-exams-body":"Complete certification exams to unlock opportunities to work on projects that require special skills. (Note that completing the exams won't directly grant you permissions to specific projects.)","browse-projects-title":"Browse Projects","assigned-projects-only-warning":"Completing a course will not give you new tasks today. However, the additional training may give you new projects and more tasks tomorrow. Please contact the Remotasks support team if you have any questions.","intro-to-remotasks-banner-title":"Intro to Remotasks","intro-to-remotasks-banner-header":"Get Started on Remotasks","intro-to-remotasks-banner-body":"Welcome to Remotasks! Start here. You need to complete this short tutorial before you can start working and earning money on Remotasks.","intro-to-remotasks-banner-body-2":"You'll learn how to unlock projects, work on tasks, and get paid!","intro-to-reviewer-banner-title":"Becoming a Reviewer","intro-to-reviewer-banner-header":"Becoming a Reviewer","intro-to-reviewer-banner-body":"Want to improve your skills and make more money? Take this short course,","intro-to-reviewer-banner-body-2":"Becoming a Reviewer","intro-to-reviewer-banner-body-3":"You'll learn about the benefits of being a reviewer, why reviewing tasks is different from attempting, and why reviewing pays more!","review":"Review","start":"Start","continue":"Continue","course":"Course","unlock-projects":"To Unlock Projects"},"unavailable":{"header":"Unfortunately, your account cannot be created","body-age":"You must be at least 18 years old to use Remotasks","body-country":"Remotasks is not available in your country","body-vpn":"Please disable your VPN and refresh your page"}}},"initialLanguage":"en","i18nServerInstance":null,"stop":false,"pageInitialProps":{"user":{"_id":"672cda51ea6eb9b6846b4239","id":"672cda51ea6eb9b6846b4239","email":"rishi.helloworld@gmail.com+outlier","firstName":"Rishi","lastName":"Raj","phoneNumber":"917255976477","signupFlow":"504f8b1f-9d09-4bff-92a0-f2bb5cf6291e","accountType":"expert","inviteCode":"PCHDVAB6","workerPayMultiplier":1,"createdDate":"2024-11-07T15:18:41.060Z","countryCode":"IN","ipCountryCode":"IN","accountRole":"user","customerReviewEnabled":false,"googleOAuthId":"110493268538235390130","scaleDiscourseId":"DIS-nBsCxTcr6FZ5U6C0","hubstaffUserId":null,"ostrichHubstaffUserId":null,"googleClickId":"","acceptedOutlierTermsDate":"2024-11-07T15:18:15.796Z","workerStatus":"pending","accountCreditCents":0,"lastOnlineDatetime":"2024-11-15T16:48:12.862Z","lastActive":"2024-11-13T16:28:43.636Z","tieredAssignedProjects":{"bursty":[],"primary":[],"secondary":[],"tertiary":[]},"teamRole":"admin","canEditTaskTypes":["imageannotation","segmentannotation","textcollection","documenttranscription","namedentityrecognition","videoplaybackannotation","lidarannotation","categorization","multimodaltranscription"],"trainingRewardsEligible":true,"trainingRewardsRequiredEarnings":0,"canAccessLidar":true,"phoneNumberVerified":true,"requiresOnboardingProfiling":true,"onboardingProfilingCompleted":true,"onboardingProfilingWorkerSkillsPending":false,"introCourseCompleted":false,"customerType":"self_service","cachedStats":{"estTotalPayoutCents":3984.6251500000003},"preferredTimezone":"utc","successfulLoginAttempts":["2024-11-13T15:29:05.622Z","2024-11-15T08:38:15.606Z","2024-11-15T16:40:11.227Z"],"requiresMfa":false,"verificationStatus":"unverified","activeWorkerTeam":"66f46fd45d520f5c3ca4d8f0","tags":["66353752ff3546607282aefe","66c898021d16eae1d7a0d269","5e7c1f6a5928830016a07a6f","66f5f0d64b7bbe347bbfb51d","65bb488c6de1bf11aff070c7","65bb521eaaea244608d37edf","670599be6529e263f6df9fde","66cf45f55629cd53cb55255e","66f5e07e491bf8dbc1240e78","651729a266b252577b03e1a1","66fa01a930b06b72bada1ad5","66fa02ab4f7fc1e0673517df","6735148c357513a11cfe6d27"],"rapidCustomer":false,"disableRapidEmails":false,"studioCustomer":false,"studioSubscriptionTier":"free","remoAdminPersonas":[],"assignedProjectLayers":[],"lastDismissedAnnouncements":{},"autogenerated":false,"projectGroups":[],"previousStripeCustomerId":"","last2FAPhoneVerificationDate":"2024-11-07T15:20:26.119Z","isPermanent2FABypass":false,"phoneNumberAlphabeticCountryCode":"IN","phoneNumberCallingCountryCode":"91","localPhoneNumber":"7255976477","verifiedCountryCode":"IN","lastPhoneNumberResetDate":"2024-11-07T15:20:26.118Z","smsOptIn":true,"greenHouseResumeLink":"https://grnhse-use1-prod-s5-ghr.s3.amazonaws.com/person_attachments/data/405/903/280/original/Rishi%27s_Resume.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAVQGOLGY327KJ56ON%2F20241107%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20241107T151841Z\u0026X-Amz-Expires=604800\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=1c9bab06ce621db1a3013cbb944f3178a2ad880010c65fdeb0d68277ec620ec9","utmSource":"/en/expert/signup?signup_flow=504f8b1f-9d09-4bff-92a0-f2bb5cf6291e\u0026utm_campaign=website\u0026utm_medium=email\u0026utm_source=sendgrid.com","hyperwalletUserToken":"usr-0ffc3ad3-81d7-40a1-a859-105de3cc1e0b","hyperwalletBankAccountToken":"","hyperwalletBankAccount4Digits":"","hyperwalletPaypalToken":"trm-0e66fa29-fb95-4bbe-b035-1a3f676d108e","hyperwalletPaypalEmail":"rishiqwerty01@gmail.com","hyperwalletPaypalDenied":false,"genAiTasker":true,"dummyAccountEmails":[],"lastEmptyQueueEvent":{"serverSideRequestId":"87e8ff8f-e2d0-4e35-9c8c-54ddf37ae960","userId":"672cda51ea6eb9b6846b4239","activeWorkerTeam":"66f46fd45d520f5c3ca4d8f0","currentPrimaryTeamAssignments":[{"projectId":"65e0193998ec58b0e786a945","projectName":"genai-sxs-quality-extensions-3","reviewLevel":-1},{"projectId":"66e8688b421ccd9ce4197a9b","reviewLevel":-1,"projectName":"eac-scaling-single-sided-evals"},{"projectId":"66f03142f4efece1a033f13c","projectName":"eac-scaling-double-sided-evals","reviewLevel":-1},{"projectId":"671ad0f91946b714affc0714","reviewLevel":-1,"projectName":"Gaius Extensions Evals Capacity Building"}],"currentSecondaryTeamAssignments":[{"projectId":"6712802f69c3df3a5595afb0","reviewLevel":-1}],"currentAssignedProjectLayers":[],"emptyQueueReasons":{"65e0193998ec58b0e786a945":{"allReviewLevels":"Disabled"},"66e8688b421ccd9ce4197a9b":{"-1":"NoTasks"},"66f03142f4efece1a033f13c":{"allReviewLevels":"Disabled"},"671ad0f91946b714affc0714":{"-1":"NoTasks"},"6712802f69c3df3a5595afb0":{"allReviewLevels":"InvalidWorkerSource"}},"requestedAt":"2024-11-15T16:48:15.080Z"},"isCorporateUser":false,"spoofed":false,"corpRoles":[],"allowedTaskTypes":["chat","textcollection"],"isReviewer":false,"isRemotaskPro":false,"hasTrainingFeedbackPermission":false,"forceSeonTransaction":false,"personaVerificationCourseBypass":false,"reverificationInfo":{"lastTriggeredAt":"2024-11-08T06:23:20.729Z","lastTriggerReason":"payment_method_update"},"featureFlags":{"quality-AB-course-subtitles":true,"instruction-refresher-modal":true}},"serverRendered":true,"canAccessNewNavBar":false},"pageProps":{"user":{"_id":"672cda51ea6eb9b6846b4239","id":"672cda51ea6eb9b6846b4239","email":"rishi.helloworld@gmail.com+outlier","firstName":"Rishi","lastName":"Raj","phoneNumber":"917255976477","signupFlow":"504f8b1f-9d09-4bff-92a0-f2bb5cf6291e","accountType":"expert","inviteCode":"PCHDVAB6","workerPayMultiplier":1,"createdDate":"2024-11-07T15:18:41.060Z","countryCode":"IN","ipCountryCode":"IN","accountRole":"user","customerReviewEnabled":false,"googleOAuthId":"110493268538235390130","scaleDiscourseId":"DIS-nBsCxTcr6FZ5U6C0","hubstaffUserId":null,"ostrichHubstaffUserId":null,"googleClickId":"","acceptedOutlierTermsDate":"2024-11-07T15:18:15.796Z","workerStatus":"pending","accountCreditCents":0,"lastOnlineDatetime":"2024-11-15T16:48:12.862Z","lastActive":"2024-11-13T16:28:43.636Z","tieredAssignedProjects":{"bursty":[],"primary":[],"secondary":[],"tertiary":[]},"teamRole":"admin","canEditTaskTypes":["imageannotation","segmentannotation","textcollection","documenttranscription","namedentityrecognition","videoplaybackannotation","lidarannotation","categorization","multimodaltranscription"],"trainingRewardsEligible":true,"trainingRewardsRequiredEarnings":0,"canAccessLidar":true,"phoneNumberVerified":true,"requiresOnboardingProfiling":true,"onboardingProfilingCompleted":true,"onboardingProfilingWorkerSkillsPending":false,"introCourseCompleted":false,"customerType":"self_service","cachedStats":{"estTotalPayoutCents":3984.6251500000003},"preferredTimezone":"utc","successfulLoginAttempts":["2024-11-13T15:29:05.622Z","2024-11-15T08:38:15.606Z","2024-11-15T16:40:11.227Z"],"requiresMfa":false,"verificationStatus":"unverified","activeWorkerTeam":"66f46fd45d520f5c3ca4d8f0","tags":["66353752ff3546607282aefe","66c898021d16eae1d7a0d269","5e7c1f6a5928830016a07a6f","66f5f0d64b7bbe347bbfb51d","65bb488c6de1bf11aff070c7","65bb521eaaea244608d37edf","670599be6529e263f6df9fde","66cf45f55629cd53cb55255e","66f5e07e491bf8dbc1240e78","651729a266b252577b03e1a1","66fa01a930b06b72bada1ad5","66fa02ab4f7fc1e0673517df","6735148c357513a11cfe6d27"],"rapidCustomer":false,"disableRapidEmails":false,"studioCustomer":false,"studioSubscriptionTier":"free","remoAdminPersonas":[],"assignedProjectLayers":[],"lastDismissedAnnouncements":{},"autogenerated":false,"projectGroups":[],"previousStripeCustomerId":"","last2FAPhoneVerificationDate":"2024-11-07T15:20:26.119Z","isPermanent2FABypass":false,"phoneNumberAlphabeticCountryCode":"IN","phoneNumberCallingCountryCode":"91","localPhoneNumber":"7255976477","verifiedCountryCode":"IN","lastPhoneNumberResetDate":"2024-11-07T15:20:26.118Z","smsOptIn":true,"greenHouseResumeLink":"https://grnhse-use1-prod-s5-ghr.s3.amazonaws.com/person_attachments/data/405/903/280/original/Rishi%27s_Resume.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAVQGOLGY327KJ56ON%2F20241107%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20241107T151841Z\u0026X-Amz-Expires=604800\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=1c9bab06ce621db1a3013cbb944f3178a2ad880010c65fdeb0d68277ec620ec9","utmSource":"/en/expert/signup?signup_flow=504f8b1f-9d09-4bff-92a0-f2bb5cf6291e\u0026utm_campaign=website\u0026utm_medium=email\u0026utm_source=sendgrid.com","hyperwalletUserToken":"usr-0ffc3ad3-81d7-40a1-a859-105de3cc1e0b","hyperwalletBankAccountToken":"","hyperwalletBankAccount4Digits":"","hyperwalletPaypalToken":"trm-0e66fa29-fb95-4bbe-b035-1a3f676d108e","hyperwalletPaypalEmail":"rishiqwerty01@gmail.com","hyperwalletPaypalDenied":false,"genAiTasker":true,"dummyAccountEmails":[],"lastEmptyQueueEvent":{"serverSideRequestId":"87e8ff8f-e2d0-4e35-9c8c-54ddf37ae960","userId":"672cda51ea6eb9b6846b4239","activeWorkerTeam":"66f46fd45d520f5c3ca4d8f0","currentPrimaryTeamAssignments":[{"projectId":"65e0193998ec58b0e786a945","projectName":"genai-sxs-quality-extensions-3","reviewLevel":-1},{"projectId":"66e8688b421ccd9ce4197a9b","reviewLevel":-1,"projectName":"eac-scaling-single-sided-evals"},{"projectId":"66f03142f4efece1a033f13c","projectName":"eac-scaling-double-sided-evals","reviewLevel":-1},{"projectId":"671ad0f91946b714affc0714","reviewLevel":-1,"projectName":"Gaius Extensions Evals Capacity Building"}],"currentSecondaryTeamAssignments":[{"projectId":"6712802f69c3df3a5595afb0","reviewLevel":-1}],"currentAssignedProjectLayers":[],"emptyQueueReasons":{"65e0193998ec58b0e786a945":{"allReviewLevels":"Disabled"},"66e8688b421ccd9ce4197a9b":{"-1":"NoTasks"},"66f03142f4efece1a033f13c":{"allReviewLevels":"Disabled"},"671ad0f91946b714affc0714":{"-1":"NoTasks"},"6712802f69c3df3a5595afb0":{"allReviewLevels":"InvalidWorkerSource"}},"requestedAt":"2024-11-15T16:48:15.080Z"},"isCorporateUser":false,"spoofed":false,"corpRoles":[],"allowedTaskTypes":["chat","textcollection"],"isReviewer":false,"isRemotaskPro":false,"hasTrainingFeedbackPermission":false,"forceSeonTransaction":false,"personaVerificationCourseBypass":false,"reverificationInfo":{"lastTriggeredAt":"2024-11-08T06:23:20.729Z","lastTriggerReason":"payment_method_update"},"featureFlags":{"quality-AB-course-subtitles":true,"instruction-refresher-modal":true}},"serverRendered":true,"canAccessNewNavBar":false},"user":{"_id":"672cda51ea6eb9b6846b4239","id":"672cda51ea6eb9b6846b4239","email":"rishi.helloworld@gmail.com+outlier","firstName":"Rishi","lastName":"Raj","phoneNumber":"917255976477","signupFlow":"504f8b1f-9d09-4bff-92a0-f2bb5cf6291e","accountType":"expert","inviteCode":"PCHDVAB6","workerPayMultiplier":1,"createdDate":"2024-11-07T15:18:41.060Z","countryCode":"IN","ipCountryCode":"IN","accountRole":"user","customerReviewEnabled":false,"googleOAuthId":"110493268538235390130","scaleDiscourseId":"DIS-nBsCxTcr6FZ5U6C0","hubstaffUserId":null,"ostrichHubstaffUserId":null,"googleClickId":"","acceptedOutlierTermsDate":"2024-11-07T15:18:15.796Z","workerStatus":"pending","accountCreditCents":0,"lastOnlineDatetime":"2024-11-15T16:48:12.862Z","lastActive":"2024-11-13T16:28:43.636Z","tieredAssignedProjects":{"bursty":[],"primary":[],"secondary":[],"tertiary":[]},"teamRole":"admin","canEditTaskTypes":["imageannotation","segmentannotation","textcollection","documenttranscription","namedentityrecognition","videoplaybackannotation","lidarannotation","categorization","multimodaltranscription"],"trainingRewardsEligible":true,"trainingRewardsRequiredEarnings":0,"canAccessLidar":true,"phoneNumberVerified":true,"requiresOnboardingProfiling":true,"onboardingProfilingCompleted":true,"onboardingProfilingWorkerSkillsPending":false,"introCourseCompleted":false,"customerType":"self_service","cachedStats":{"estTotalPayoutCents":3984.6251500000003},"preferredTimezone":"utc","successfulLoginAttempts":["2024-11-13T15:29:05.622Z","2024-11-15T08:38:15.606Z","2024-11-15T16:40:11.227Z"],"requiresMfa":false,"verificationStatus":"unverified","activeWorkerTeam":"66f46fd45d520f5c3ca4d8f0","tags":["66353752ff3546607282aefe","66c898021d16eae1d7a0d269","5e7c1f6a5928830016a07a6f","66f5f0d64b7bbe347bbfb51d","65bb488c6de1bf11aff070c7","65bb521eaaea244608d37edf","670599be6529e263f6df9fde","66cf45f55629cd53cb55255e","66f5e07e491bf8dbc1240e78","651729a266b252577b03e1a1","66fa01a930b06b72bada1ad5","66fa02ab4f7fc1e0673517df","6735148c357513a11cfe6d27"],"rapidCustomer":false,"disableRapidEmails":false,"studioCustomer":false,"studioSubscriptionTier":"free","remoAdminPersonas":[],"assignedProjectLayers":[],"lastDismissedAnnouncements":{},"autogenerated":false,"projectGroups":[],"previousStripeCustomerId":"","last2FAPhoneVerificationDate":"2024-11-07T15:20:26.119Z","isPermanent2FABypass":false,"phoneNumberAlphabeticCountryCode":"IN","phoneNumberCallingCountryCode":"91","localPhoneNumber":"7255976477","verifiedCountryCode":"IN","lastPhoneNumberResetDate":"2024-11-07T15:20:26.118Z","smsOptIn":true,"greenHouseResumeLink":"https://grnhse-use1-prod-s5-ghr.s3.amazonaws.com/person_attachments/data/405/903/280/original/Rishi%27s_Resume.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAVQGOLGY327KJ56ON%2F20241107%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20241107T151841Z\u0026X-Amz-Expires=604800\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=1c9bab06ce621db1a3013cbb944f3178a2ad880010c65fdeb0d68277ec620ec9","utmSource":"/en/expert/signup?signup_flow=504f8b1f-9d09-4bff-92a0-f2bb5cf6291e\u0026utm_campaign=website\u0026utm_medium=email\u0026utm_source=sendgrid.com","hyperwalletUserToken":"usr-0ffc3ad3-81d7-40a1-a859-105de3cc1e0b","hyperwalletBankAccountToken":"","hyperwalletBankAccount4Digits":"","hyperwalletPaypalToken":"trm-0e66fa29-fb95-4bbe-b035-1a3f676d108e","hyperwalletPaypalEmail":"rishiqwerty01@gmail.com","hyperwalletPaypalDenied":false,"genAiTasker":true,"dummyAccountEmails":[],"lastEmptyQueueEvent":{"serverSideRequestId":"87e8ff8f-e2d0-4e35-9c8c-54ddf37ae960","userId":"672cda51ea6eb9b6846b4239","activeWorkerTeam":"66f46fd45d520f5c3ca4d8f0","currentPrimaryTeamAssignments":[{"projectId":"65e0193998ec58b0e786a945","projectName":"genai-sxs-quality-extensions-3","reviewLevel":-1},{"projectId":"66e8688b421ccd9ce4197a9b","reviewLevel":-1,"projectName":"eac-scaling-single-sided-evals"},{"projectId":"66f03142f4efece1a033f13c","projectName":"eac-scaling-double-sided-evals","reviewLevel":-1},{"projectId":"671ad0f91946b714affc0714","reviewLevel":-1,"projectName":"Gaius Extensions Evals Capacity Building"}],"currentSecondaryTeamAssignments":[{"projectId":"6712802f69c3df3a5595afb0","reviewLevel":-1}],"currentAssignedProjectLayers":[],"emptyQueueReasons":{"65e0193998ec58b0e786a945":{"allReviewLevels":"Disabled"},"66e8688b421ccd9ce4197a9b":{"-1":"NoTasks"},"66f03142f4efece1a033f13c":{"allReviewLevels":"Disabled"},"671ad0f91946b714affc0714":{"-1":"NoTasks"},"6712802f69c3df3a5595afb0":{"allReviewLevels":"InvalidWorkerSource"}},"requestedAt":"2024-11-15T16:48:15.080Z"},"isCorporateUser":false,"spoofed":false,"corpRoles":[],"allowedTaskTypes":["chat","textcollection"],"isReviewer":false,"isRemotaskPro":false,"hasTrainingFeedbackPermission":false,"forceSeonTransaction":false,"personaVerificationCourseBypass":false,"reverificationInfo":{"lastTriggeredAt":"2024-11-08T06:23:20.729Z","lastTriggerReason":"payment_method_update"},"featureFlags":{"quality-AB-course-subtitles":true,"instruction-refresher-modal":true}},"pathname":"/expert","config":{"NODE_ENV":"production","REMOTASKS_FRONTEND_URL":"https://www.remotasks.com","REMOTASKS_FRONTEND_PROD_URL":"https://www.remotasks.com","OUTLIER_FRONTEND_URL":"https://app.outlier.ai","SCALE_FRONTEND_URL":"https://scale.com","SCALE_FRONTEND_PROD_URL":"https://scale.com","SCALE_DASHBOARD_FRONTEND_URL":"https://dashboard.scale.com","SCALE_DASHBOARD_FRONTEND_PROD_URL":"https://dashboard.scale.com","DOMAIN":"remotasks.com"},"timeout":{"error":false},"host":"app.outlier.ai","nonce":"464389e8-d8c9-4399-a536-24f00af8e7c8"},"page":"/expert","query":{},"buildId":"fFUzgjiuagvznyMTrGXzf","assetPrefix":"https://static.remotasks.com/remotasks.com/fFUzgjiuagvznyMTrGXzf","runtimeConfig":{"AwsResources":{"suffix":"amazonaws.com","staticAssetsBucket":"scale-static-assets","customerS3IntegrationRoleName":"ScaleAI-Integration"},"DOMAIN":"remotasks.com","DEPLOYMENT":"commercial","FACEBOOK_OAUTH_CLIENT_ID":"118817275449497","NODE_ENV":"production","REMOTASKS_FRONTEND_URL":"https://www.remotasks.com","REMOTASKS_FRONTEND_PROD_URL":"https://www.remotasks.com","WORKQUESTS_FRONTEND_URL":"https://workquests.com","WORKQUESTS_API_URL":"internal/wq","WORKQUESTS_OAUTH_URL":"https://workquests.com/workquests","OUTLIER_FRONTEND_URL":"https://app.outlier.ai","OUTLIER_API_URL":"internal","OUTLIER_OAUTH_URL":"https://tryoutlier.com","SCALE_FRONTEND_URL":"https://scale.com","SCALE_FRONTEND_PROD_URL":"https://scale.com","SCALE_DASHBOARD_FRONTEND_URL":"https://dashboard.scale.com","SCALE_DASHBOARD_FRONTEND_PROD_URL":"https://dashboard.scale.com","NEXT_DIR":"remotasks.com","SEGMENT_KEY_CORP":"2SdaxAEoiuQfvM0G3xRuWioRNCvOfYre","SEGMENT_KEY_CUSTOMERS":"SJT1qKU8SfNyoPhSRnZjuvNjc1r155nN","SEGMENT_KEY_SCALERS":"a6dKvuuC1DiNIimyLB8oRlTbtYV8hFvn","SEGMENT_KEY_CONTRIBUTORS":"DqctVBaWsWu1ktHGtyzoVkggj9QmMX9B","STRIPE_KEY":"pk_live_QUS1ISPRQUHMMKNf8XQKLRVp","APP_NAME":"remotasks-frontend","AWS_REGION":"us-west-2","STACK":"production","DATADOG_CLIENT_TOKEN":"pub1c4afdacefc9ead1d09359ee3a4f6825","DATADOG_RUM_APP_ID":"b2d6c0b8-03e2-43fb-9f94-fbbaa453e839","DATADOG_RUM_CLIENT_TOKEN":"pub532e9886d435db947553e1302f812bcd","OPS_HUB_DATADOG_RUM_APP_ID":"c247bf65-902a-4450-a254-a6a0cb49f116","OPS_HUB_DATADOG_RUM_CLIENT_TOKEN":"pub02fa1a74a1816d288986a016a2e5bc52","OPS_HUB_DATADOG_RUM_SITE":"datadoghq.com","OPS_HUB_DATADOG_RUM_SERVICE":"genai-ops-hub","MIST_DATADOG_RUM_APP_ID":"9fcd055e-e04e-4edf-a4c9-40243a36d033","MIST_DATADOG_RUM_CLIENT_TOKEN":"pub433476b12ac129b67f0698e04140d4a2","MIST_DATADOG_RUM_SITE":"datadoghq.com","MIST_DATADOG_RUM_SERVICE":"mist","REMOTASK_DATADOG_RUM_APP_ID":"563b064c-36f1-43b9-9f5a-57683713bc9b","REMOTASK_DATADOG_RUM_CLIENT_TOKEN":"pub113ccb698cf251bb9dbab1f6f29cdc7e","SERVICE_NAME":"remotasks-production","RECAPTCHA_SITE_KEY":"6LcCJ0IaAAAAAKJewKcVkXREe0brdwlk-JFlaP7H","SAPLING_API_KEY":"dummy_sapling_api_key","CHAT_SERVICE_FRONTEND_CLIENT_MODE":"live","CHAT_SERVICE_FRONTEND_CLIENT_BASEPATH":"https://dashboard.scale.com/fractal/api","IDENTITY_SERVICE_DASHBOARD_PASSWORD_LOGIN_URL":"https://auth.dashboard.scale.com/dashboard/loginNext","IDENTITY_SERVICE_DASHBOARD_PASSWORD_LOGIN_ENABLED":true,"IDENTITY_SERVICE_ASSUME_PROFILE":"https://auth.dashboard.scale.com/dashboard/assumeProfile","QUICK_LINTER_SANDBOX_ENDPOINT":"https://ntjjnsn7gjagwpmuns4iz34agq0ketpo.lambda-url.us-west-2.on.aws","JUPYTER_URL":"https://dashboard.scale.com/jupyter","LOGIN_MODE":"local,saml,social"},"isFallback":false,"customServer":true,"gip":true,"appGip":true,"scriptLoader":[]}
+    </script>
+    <div id="alert-dialog-hack"></div>
 </body>
+
 </html>
