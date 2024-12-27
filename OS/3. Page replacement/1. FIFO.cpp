@@ -21,6 +21,63 @@ typedef long double ld;
 typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
+// Best implementation is using Linked List
+// First In First Out
+
+class Queue {
+
+    struct ListNode {
+        int val;
+        ListNode* next;
+        ListNode(int x) : val(x), next(nullptr) {}
+    };
+
+    ListNode *head, *tail;
+    int ct = 0;
+
+public:
+    Queue() : head(nullptr), tail(nullptr) {} 
+
+    void push(int x) { 
+        ListNode* newNode = new ListNode(x);
+        if (!tail) { head = tail = newNode; } // If the queue is empty
+        else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+        ct++;
+    }
+
+    int pop() {
+        if (!head) {throw std::underflow_error("Queue is empty");}
+
+        int result = head->val;
+        ListNode* temp = head;
+        head = head->next;
+        if (!head) { tail = nullptr; } // If the queue becomes empty
+
+        delete temp; ct--;
+        return result;
+    }
+
+    int peek() { 
+        if (!head) {throw std::underflow_error("Queue is empty");}
+        return head->val;
+    }
+
+    bool size() { 
+        return ct;
+    }
+
+    ~Queue() { // Destructor to free allocated memory
+        while (head) {
+            ListNode* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+};
+
 
 int32_t main()
 {

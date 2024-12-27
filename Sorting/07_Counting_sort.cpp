@@ -6,7 +6,6 @@ using namespace std;
 #define all(v) v.begin(), v.end()
 
 typedef long double ld;
-typedef vector<int> vi;
 
 //------------------------------------------------------
 
@@ -40,13 +39,13 @@ Counting sort is not a stable algorithm. But it can be made stable with some cod
 
 */
 
-void countSort(vi &arr)
-{
+void countSort(vector<int> &arr){
     int max = *max_element(arr.begin(), arr.end());
     int min = *min_element(arr.begin(), arr.end());
     int range = max - min + 1;
  
-    vi count(range), output(arr.size());
+    vector<int> count(range), output(arr.size());
+    
     for (int i = 0; i < arr.size(); i++)
         count[arr[i] - min]++;
  
@@ -72,7 +71,7 @@ int32_t main()
     int t; cin>>t;
     while(t--)
     {
-        vi array = {10, -3, 21, -9, 12, 31} ;
+        vector<int> array = {10, -3, 21, -9, 12, 31} ;
         countSort(array);
         for(int x : array){
             cout<<x<<" ";

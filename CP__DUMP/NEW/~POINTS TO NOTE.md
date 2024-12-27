@@ -21,6 +21,16 @@
 
 #### IMP POINTS
 
+If you need 10 seconds to think during an interview, respond confidently and politely. Here's what you can say:
+
+"That's a great question. Let me take a moment to think about it."
+
+"I’d like to gather my thoughts to provide the best answer. Just a moment, please."
+
+"Let me take a second to organize my thoughts for a clear response."
+
+---
+
 => Jo bhi question puche `(uss question ko repeat karo taaki tmhare dimaag me ghuss jaye question.)`
 
 => Fir 5-10 sec Analyse karo ki Kya bolna h ENGLISH me.  

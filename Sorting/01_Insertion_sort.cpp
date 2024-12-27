@@ -48,27 +48,57 @@ Insertion sort is used when number of elements is small. It can also be useful w
 
 /*
 
-Step 1 -> First element ko key maanlo fir , second pos se iterate karo and ""usse"" chota element dhundo,
-            agar usse chota element mil gya to - jitna bhi element key se lekar chota element k piche tak hai.
-            sabko pos +1 kardo fir key element ka space khali ho jayega to usme chota element ko daaldo..
+Step 1 :
 
-Step 2 -> Usi loop ko continue karo, agar koi element key se chota ho to uske key k piche(LhS) k saare element
-            se compare karo aur Sahi Pos me usko insert kardo By swap all elements infont of that sahi element..
-            SAHI element == jo element founded se bhi chota ho !..
+arr[0] | arr[1], arr[2], ...., arr[n-1]
+
+1. Currently arr is divided into 2 parts [left(1 element) & right(n-1 elements)], left is sorted & right isn't.
+
+2. Store the first element of Right part in 'key' var.
+
+3. We have to insert 'key' in its correct position in left part such that the size of left part inc by 1.
+
+4. We can do it in two ways : 
+
+let 'j' = idx of 'key';
+
+4.1. By swaping adjacent elements till if(arr[j-1] > arr[j]){swap(arr[j-1], arr[j]); j--;}
+
+4.2. Traditional Card Sorting : Shift elements which are left side of key by 1 pos, which are greater than key.
+     if(arr[j-1] > key){arr[j] = arr[j-1]; j--;}
+
+
 
 */
+
+void print(int i, vector<int> &v){
+    for(int k=0; k<v.size(); k++){
+        cout<<v[k]<<", ";
+        if(i==k){cout<<"| ";}
+    }
+    cout<<"\n";
+}
+
 void insertionSort(vi &arr){
     int n = arr.size();
 
     for(int i=1; i<n; i++){
-        int key = arr[i];
-        int j = i - 1;
-        /* Move elements of arr[0..i-1], that are greater than key, to one position ahead of their current position */
-        while(j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j];
+        //! Multiple SWAPING  
+        // int j = i;
+        // while(j>0 && (arr[j-1]>arr[j])){
+        //     swap(arr[j-1], arr[j]);
+        //     j--;
+        // }
+
+        //! Card Sorting (Shifting)
+        int key = arr[i], j = i;
+        while(j>0 && arr[j-1]>key) {
+            arr[j] = arr[j-1];
             j--;
         }
-        arr[j + 1] = key;
+        arr[j] = key;
+
+        // print(i, arr);
     }
 
 }
@@ -83,7 +113,7 @@ int32_t main()
     int t; cin>>t;
     while(t--)
     {
-        vi array = {3, 3, 4, 3, 1, 3, 3, 0, 2, 3, 2, 2, 1, 3, 2, 3} ;
+        vi array = {4,6,5,1,3,2} ;
         insertionSort(array);
         for(int x : array){
             cout<<x<<" ";

@@ -13,19 +13,32 @@ You have to move all N discs from rod A to C (Use Rod B for convenience). but 3 
 WRITE THE STEPS TO MOVE 2 AND 3 DISC FROM ROD A TO C ON YOUR OWN..
 FOLLOW THE SAME STEPS TO MOVE N DISCS...
 
+--
+
+A, B, C
+A, C, B
+C, B, A
+
+TO MOVE DISKS FROM A TO B :
+FIRST MOVE IT FROM A TO C,
+THEN MOVE IT FROM C TO B,
+
 */
 
 
-void TOH(int n, char from_rod, char to_rod, char aux_rod){
+void solveTower(int n, char from='A', char to='B', char aux='C'){
     if(n == 0){return;}
-    TOH(n - 1, from_rod, aux_rod, to_rod);
-    cout << "Move disk " << n << " from rod " << from_rod <<  " to rod " << to_rod << endl;
-    TOH(n - 1, aux_rod, to_rod, from_rod);
+
+    solveTower(n - 1, from, aux, to);
+
+    cout<<"Move disk "<<n<<" from rod "<<from<<" to rod "<<to<<"\n";
+
+    solveTower(n - 1, aux, to, from);
 }
 
-int main()
-{
+int main(){
+    // Tower of Hanoi
     int n; cin>>n;
-    TOH(n, 'A', 'B', 'C');
+    solveTower(n);
     return 0;
 }

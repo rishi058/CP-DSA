@@ -18,8 +18,7 @@ The algorithm maintains two subarrays in a given array.
 
 */
 
-void selectionSort(vi &arr)
-{
+void selectionSort(vi &arr){
 
     int min_idx, n=arr.size();
  

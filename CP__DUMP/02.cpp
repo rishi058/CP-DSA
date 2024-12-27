@@ -23,36 +23,31 @@ typedef vector<int> vi;
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
 
+int subarrayGCD(vector<int>& nums, int gcdK) {
+    int cnt = 0, n = nums.size();
 
-int getAvg(int x, int y, vector<vector<int>>&img, int r){
-    int n = img.size(), m = img[0].size();
-    int sum = 0, ct = 0;
-
-    for(int i=x-r; i<=x+r; i++){
-        for(int j=y-r; j<=y+r; j++){
-            if(i==x && j==y){continue;}
-            if(i>=0 && j>=0 && i<n && j<m){
-                sum += img[i][j];
-                ct++;
-            }
+    for (int idx = 0; idx < n; idx++){
+        if (nums[idx] == gcdK){
+            cnt++;
         }
     }
 
-    int ok = sum/ct;
-    return (ok+img[x][y])/2;
-}
+    for (int idx = 0; idx < n; idx++) {
+        bool flag = false;
+        int curr = nums[idx];
 
-vector<vector<int>> Blur(vector<vector<int>>&img, int r){
-    int n = img.size(), m = img[0].size();
-    vector<vector<int>> ans(n, vector<int>(m, 0));
+        for (int jdx = idx + 1; jdx < n; jdx++) {
+            if (nums[jdx] % gcdK != 0){break;}
 
-    for(int i=0; i<n; i++){
-        for(int j=0; j<m; j++){
-            ans[i][j] = getAvg(i, j, img, r);
+            curr = __gcd(curr, nums[jdx]);
+
+            if (curr == gcdK){flag = true;}
+
+            if (flag){cnt++;}
         }
     }
 
-    return ans;
+    return cnt;
 }
 
 int32_t main()
@@ -62,12 +57,6 @@ int32_t main()
     cin>>T;
     while(T--)
     {
-        vector<vector<int>> img = {{9,6},{3,0}};
-        vector<vector<int>> ans = Blur(img, 1);
-
-        for(auto &it : ans){
-            print(it);
-        }
         
     }
 

@@ -32,7 +32,7 @@ Let me tell you about my 3 good projects are :-
 It helps programmers to understand Recursion in a better way & increase their problems solving skill. Generally Recursion & DP based problems.It is made using NextJS, TypeScript & C++. Currently hosted on vercel.
 
 
-2. Radio Player App: This radio app made with flutter features an open source Radio Api enabling it to provide upto 45000+ radio channels across worldwide. This app is currently published it on playstore.
+2. Radio Player App: This radio app made with flutter features an open source Radio Api enabling it to provide upto 45000+ radio channels across worldwide. This app is currently published on playstore.
 
 3. Discussify Chat App: A real-time chat application using ReactJS, MongoDB and SOCKET.IO. featuring JWT-based authorization and a responsive UI. Currently hosted on Render.
 

@@ -1,49 +1,54 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+
 using namespace std;
 
-#define int long long
-#define tuple array<int, 3>
-#define all(v) v.begin(), v.end()
-#define F(a,b,i) for (int i = a; i < b; i++)
-#define Rev(a,b,i) for (int i = a; i >= b; i--)
-#define RISHI ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+int main() {
+    int t;
+    cin >> t;
 
-template <typename dStruct>
-void print(dStruct& vName){for(auto &it : vName){cout<<it<<" ";} cout<<"\n";}
-template <typename dStruct>
-void print2(dStruct& vName){for(auto &it : vName){cout<<"{"<<it.first<<", "<<it.second<<"} ";} cout<<"\n";}
+    while (t--) {
+        int n, m, q;
+        cin >> n >> m >> q;
 
-const int mod = 1e9 + 7;
-#define inf LONG_LONG_MAX
-#define Min LONG_LONG_MIN
+        vector<int> operations(q);
+        for (int i = 0; i < q; ++i) {
+            cin >> operations[i];
+        }
 
-typedef long double ld;
-typedef vector<int> vi;
+        unordered_set<int> possible_joker_positions;
+        possible_joker_positions.insert(m);
 
-//!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
+        vector<int> result(q);
+        for (int i = 0; i < q; ++i) {
+            int card_position = operations[i];
 
-int gcd(int a, int b){
-    if(a>b){swap(a,b);}
-    if(a==0){return b;}
-    return gcd(b%a, a);
-}
+            // Calculate the potential new joker positions after moving the card
+            unordered_set<int> new_positions;
+            for (int pos : possible_joker_positions) {
+                if (pos < card_position) {
+                    new_positions.insert(pos);
+                    new_positions.insert(pos + 1);
+                } else if (pos > card_position) {
+                    new_positions.insert(pos);
+                    new_positions.insert(pos - 1);
+                } else {
+                    // Joker is on the moved card
+                    new_positions.insert(1);
+                    new_positions.insert(n);
+                }
+            }
 
-int32_t main()
-{
-    RISHI
-    int T = 1;
-    cin>>T;
-    while(T--)
-    {
-        cout<<gcd(18, 81);
+            possible_joker_positions = new_positions;
+            result[i] = possible_joker_positions.size();
+        }
+
+        for (int i = 0; i < q; ++i) {
+            cout << result[i] << " ";
+        }
+        cout << endl;
     }
 
+    return 0;
 }
-
-
-//      ██╗  █████╗  ██╗    ██████╗ ██╗  ██╗ ██████╗  ███████╗ ███████╗   ██████╗   █████╗  ███╗   ███╗
-//      ██║ ██╔══██╗ ██║   ██╔════╝ ██║  ██║ ██╔══██╗ ██╔════╝ ██╔════╝   ██╔══██╗ ██╔══██╗ ████╗ ████║
-//      ██║ ███████║ ██║   ╚█████╗  ███████║ ██████╔╝ █████╗   █████╗     ██████╔╝ ███████║ ██╔████╔██║
-// ██╗  ██║ ██╔══██║ ██║    ╚═══██╗ ██╔══██║ ██╔══██╗ ██╔══╝   ██╔══╝     ██╔══██╗ ██╔══██║ ██║╚██╔╝██║
-// ╚█████╔╝ ██║  ██║ ██║   ██████╔╝ ██║  ██║ ██║  ██║ ███████╗ ███████╗   ██║  ██║ ██║  ██║ ██║ ╚═╝ ██║
-//  ╚════╝  ╚═╝  ╚═╝ ╚═╝   ╚═════╝  ╚═╝  ╚═╝ ╚═╝  ╚═╝ ╚══════╝ ╚══════╝   ╚═╝  ╚═╝ ╚═╝  ╚═╝ ╚═╝     ╚═╝

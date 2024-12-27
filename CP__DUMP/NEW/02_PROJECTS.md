@@ -22,7 +22,7 @@ complete this part.
 
 1. This radio app made with flutter features an open source Radio Api enabling it to provide upto 45000+ radio channels across worldwide. This app is currently published it on playstore.
 
-2. Inside this app, one can get top-voted radio channels & top countries based on radio channels on their homepage. Here, I've also implemented search of radio channels based on tags like [channel_names, countries, genre & language]. One can also add radio-channels to thier fav-list, This fav-list data is stored in cloud storage known as Firestore database. 
+2. Inside this app, one can get top-voted radio channels & top countries based on radio on the homepage. Here, I've also implemented search of channels based on tags like [channel_names, countries, genre & language]. One can also add radio-channels to thier fav-list, This fav-list data is stored in cloud storage known as Firestore database. 
 
 3. While building it, I focused on creating a smooth and intuitive UI by integrating Hero Animations for transitions and a Carousel Slider for easy horizontal navigation.
 

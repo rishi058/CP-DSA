@@ -5,13 +5,12 @@ using namespace std;
 // Radix Sort using Bin Method..
 
 
-struct node {
+struct node{
 	int data;
 	node* next;
 };
 
-struct node* create(int x)
-{
+struct node* create(int x){
 	node* temp = new node();
 	temp->data = x;
 	temp->next = NULL;
