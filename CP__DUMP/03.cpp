@@ -1,45 +1,43 @@
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <limits>
+#include <bits/stdc++.h>
 using namespace std;
 
+#define int long long
+#define tuple array<int, 3>
+#define all(v) v.begin(), v.end()
+#define F(a,b,i) for (int i = a; i < b; i++)
+#define Rev(a,b,i) for (int i = a; i >= b; i--)
+#define RISHI ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 
-int inf = 1e9+7;
+template <typename dStruct>
+void print(dStruct& vName){for(auto &it : vName){cout<<it<<" ";} cout<<"\n";}
+template <typename dStruct>
+void print2(dStruct& vName){for(auto &it : vName){cout<<"{"<<it.first<<", "<<it.second<<"} ";} cout<<"\n";}
 
-// Function to calculate collision time between two cars
-double getCollisionTime(pair<int, int> a, pair<int, int> b) {
-    int posDiff = b.first - a.first, velDiff = a.second - b.second;
-    return (velDiff == 0 || posDiff * velDiff <= 0) ? inf : double(posDiff) / velDiff;
-}
+const int mod = 1e9 + 7;
+#define inf LONG_LONG_MAX
+#define Min LONG_LONG_MIN
 
-int main() {
-    int n, M;
-    cin >> n >> M;
-    vector<pair<int, int>> cars(n);
-    for (auto &car : cars) cin >> car.first >> car.second;
+typedef long double ld;
+typedef vector<int> vi;
 
-    priority_queue<pair<double, pair<int, int>>, vector<pair<double, pair<int, int>>>, greater<>> pq;
-    for (int i = 0; i < n; ++i)
-        for (int j = i + 1; j < n; ++j)
-            pq.push({getCollisionTime(cars[i], cars[j]), {i, j}});
+//!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
-    vector<bool> removed(n, false);
-    while (!pq.empty() && M > 0) {
-        auto [time, carsPair] = pq.top(); pq.pop();
-        auto [i, j] = carsPair;
-        if (!removed[i] && !removed[j]) removed[i] = true, M--;
+int32_t main()
+{
+    RISHI
+    int T = 1;
+    cin>>T;
+    while(T--)
+    {
+        
     }
 
-    double maxTime = inf;
-    for (int i = 0; i < n; ++i) if (!removed[i])
-        for (int j = i + 1; j < n; ++j) if (!removed[j])
-            maxTime = min(maxTime, getCollisionTime(cars[i], cars[j]));
-
-    
-	if(maxTime==inf){cout << -1 << endl; return 0;}
-	int ans = maxTime*100000;
-	cout<<ans<<"\n";
-
-    return 0;
 }
+
+
+//      ██╗  █████╗  ██╗    ██████╗ ██╗  ██╗ ██████╗  ███████╗ ███████╗   ██████╗   █████╗  ███╗   ███╗
+//      ██║ ██╔══██╗ ██║   ██╔════╝ ██║  ██║ ██╔══██╗ ██╔════╝ ██╔════╝   ██╔══██╗ ██╔══██╗ ████╗ ████║
+//      ██║ ███████║ ██║   ╚█████╗  ███████║ ██████╔╝ █████╗   █████╗     ██████╔╝ ███████║ ██╔████╔██║
+// ██╗  ██║ ██╔══██║ ██║    ╚═══██╗ ██╔══██║ ██╔══██╗ ██╔══╝   ██╔══╝     ██╔══██╗ ██╔══██║ ██║╚██╔╝██║
+// ╚█████╔╝ ██║  ██║ ██║   ██████╔╝ ██║  ██║ ██║  ██║ ███████╗ ███████╗   ██║  ██║ ██║  ██║ ██║ ╚═╝ ██║
+//  ╚════╝  ╚═╝  ╚═╝ ╚═╝   ╚═════╝  ╚═╝  ╚═╝ ╚═╝  ╚═╝ ╚══════╝ ╚══════╝   ╚═╝  ╚═╝ ╚═╝  ╚═╝ ╚═╝     ╚═╝

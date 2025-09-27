@@ -2,6 +2,7 @@
 *.prob
 *.vscode
 *.cph
+*.exe
 
 .*
 !/.gitignore

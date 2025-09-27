@@ -22,34 +22,6 @@ typedef vector<int> vi;
 
 //!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
 
-
-int subarrayGCD(vector<int>& nums, int gcdK) {
-    int cnt = 0, n = nums.size();
-
-    for (int idx = 0; idx < n; idx++){
-        if (nums[idx] == gcdK){
-            cnt++;
-        }
-    }
-
-    for (int idx = 0; idx < n; idx++) {
-        bool flag = false;
-        int curr = nums[idx];
-
-        for (int jdx = idx + 1; jdx < n; jdx++) {
-            if (nums[jdx] % gcdK != 0){break;}
-
-            curr = __gcd(curr, nums[jdx]);
-
-            if (curr == gcdK){flag = true;}
-
-            if (flag){cnt++;}
-        }
-    }
-
-    return cnt;
-}
-
 int32_t main()
 {
     RISHI

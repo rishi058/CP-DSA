@@ -1,189 +1,43 @@
-def calculate(expression):
-
-  """
-
-  Evaluates a mathematical expression string with support for addition, subtraction,
-
-  multiplication, division, parentheses, and operator precedence.
-
-
-
-  Args:
-
-    expression: A string representing the mathematical expression.
-
-
-
-  Returns:
-
-    The result of the evaluated expression.
-
-
-
-  Raises:
-
-    ValueError: If the expression is invalid (e.g., misplaced operators or parentheses).
-
-  """
-
-
-
-  if not expression:
-
-    return ""
-
-
-
-  def find_closing_parenthesis(expr, start_index):
-
-    """Helper function to find the matching closing parenthesis."""
-
-    count = 1
-
-    for i in range(start_index + 1, len(expr)):
-
-      if expr[i] == '(':
-
-        count += 1
-
-      elif expr[i] == ')':
-
-        count -= 1
-
-        if count == 0:
-
-          return i
-
-    raise ValueError("Mismatched parentheses")
-
-
-
-  def evaluate_expression(expr):
-
-    """Evaluates the expression considering operator precedence."""
-
-    nums = []
-
-    ops = []
-
-    i = 0
-
-
-
-    def compute():
-
-      if not nums or not ops:
-
-        return
-
-      num2 = nums.pop()
-
-      num1 = nums.pop()
-
-      op = ops.pop()
-
-      if op == '+':
-
-        nums.append(num1 + num2)
-
-      elif op == '-':
-
-        nums.append(num1 - num2)
-
-      elif op == '*':
-
-        nums.append(num1 * num2)
-
-      elif op == '/':
-
-        if num2 == 0:
-
-          raise ValueError("Division by zero")
-
-        nums.append(num1 // num2)
-
-
-
-    while i < len(expr):
-
-      char = expr[i]
-
-
-
-        
-
-      if char==' ':
-
-        i += 1
-
-        continue
-
-      if char.isdigit() or char == '.':
-
-        start = i
-
-        while i < len(expr) and (expr[i].isdigit() or expr[i] == '.'):
-
-          i += 1
-
-        nums.append(float(expr[start:i]))
-
-        continue
-
-      elif char == '(':
-
-        end = find_closing_parenthesis(expr, i)
-
-        nums.append(evaluate_expression(expr[i + 1:end]))
-
-        i = end
-
-      elif char in '+-':
-
-        while ops and ops[-1] in "*/":
-
-          compute()
-
-        ops.append(char)
-
-      elif char in "*/":
-
-        while ops and ops[-1] in "*/":
-
-          compute()
-
-        ops.append(char)
-
-      i += 1
-
-
-
-    while ops:
-
-      compute()
-
-    return nums[0] if nums else 0
-
-
-
-  if expression.isdigit() or (expression.startswith("-") and expression[1:].replace(".", "", 1).isdigit()):
-
-    return float(expression)
-
-
-
-  return evaluate_expression(expression)
-
-
-def main():
-    # Example mathematical expressions
-    expression = "3 + 5 * (2 - 8) / 4"
+def count_good_special_subsets(n, s):
+    MOD = 1000000007
     
-    try:
-        result = calculate(expression)
-        print(f"The result of the expression '{expression}' is: {result}")
-    except ValueError as e:
-        print(f"Error evaluating expression: {e}")
+    # Helper function to check if a sequence of characters forms a palindrome
+    def is_palindrome(chars):
+        return chars == chars[::-1]
+    
+    # Function to generate all possible subsequences with their permutations
+    def generate_permutations(curr_indices, used, result):
+        # Add current permutation if it forms a palindrome
+        if curr_indices:
+            chars = [s[i-1] for i in curr_indices]  # Convert 1-based to 0-based indexing
+            if is_palindrome(chars):
+                result.add(tuple(curr_indices))
+        
+        # Try adding each unused index
+        for i in range(1, n + 1):
+            if not used[i]:
+                used[i] = True
+                curr_indices.append(i)
+                generate_permutations(curr_indices, used, result)
+                curr_indices.pop()
+                used[i] = False
+    
+    # Set to store all valid permutations
+    good_permutations = set()
+    
+    # Generate all permutations
+    used = [False] * (n + 1)
+    generate_permutations([], used, good_permutations)
+    
+    # Count total good permutations
+    return len(good_permutations) % MOD
+
+# Read input and process
+def main():
+    n = int(input())
+    s = input().strip()
+    result = count_good_special_subsets(n, s)
+    print(result)
 
 if __name__ == "__main__":
     main()
