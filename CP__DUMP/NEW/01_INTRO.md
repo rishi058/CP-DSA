@@ -1,16 +1,16 @@
 Good Morning/Afternoon/Evening, Sir/Ma'm.
 
-My name is Rishi Raj. I am a 2025 B.Tech graduate in CSE from IIIT Bhagalpur with a CGPA of 8.
+My name is Rishi Raj. I am a 2025 B.Tech graduate specialised in CSE from IIIT Bhagalpur with a CGPA of 8.
 
 #### 1. TECHNICAL SKILLS
 
-I have a solid foundation in programming languages like C++, Python & JavaScript. I have a good knowledge on toolkits & frameworks like VS Code, Android Studio, Flutter, Firebase, ReactJS, NodeJS, and NextJS.
+I have a solid foundation in programming languages like C++, Python & JavaScript. I have a good knowledge on toolkits & frameworks like VS Code, Android Studio, Flutter, Firebase, MERN and NextJS.
 
 In terms of coursework, I excel in subjects such as DSA, OOP, DBMS, OS, CN.
 
 #### 2. EXPERIENCE
 
-TALKKING ABOUT MY EXPEREINCE :-
+TALKING ABOUT MY EXPEREINCE :-
 
 1. I’m currently working at Infosys as a Specialist Programmer in the Agentic AI domain.
 2. Previously, I completed a 6-month internship at SanDisk as a Data Analyst, gaining hands-on experience in Python, Advanced Excel, Power BI & tableau.   

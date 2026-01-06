@@ -1,43 +1,39 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <map>
+
 using namespace std;
 
-#define int long long
-#define tuple array<int, 3>
-#define all(v) v.begin(), v.end()
-#define F(a,b,i) for (int i = a; i < b; i++)
-#define Rev(a,b,i) for (int i = a; i >= b; i--)
-#define RISHI ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+typedef long long ll;
 
-template <typename dStruct>
-void print(dStruct& vName){for(auto &it : vName){cout<<it<<" ";} cout<<"\n";}
-template <typename dStruct>
-void print2(dStruct& vName){for(auto &it : vName){cout<<"{"<<it.first<<", "<<it.second<<"} ";} cout<<"\n";}
+map<ll, ll> mp;
 
-const int mod = 1e9 + 7;
-#define inf LONG_LONG_MAX
-#define Min LONG_LONG_MIN
-
-typedef long double ld;
-typedef vector<int> vi;
-
-//!------------------------ Practice like you've never won. Perform like you've never lost. ------------------------
-
-int32_t main()
-{
-    RISHI
-    int T = 1;
-    cin>>T;
-    while(T--)
-    {
-        
+ll f(ll k, int m, const vector<int>& a) {
+    if (k == 0) return 1;
+    if (mp.count(k)) return mp[k];
+    
+    ll res = 0;
+    for (int i = 0; i < m; i++) {
+        res += f(k / a[i], m, a);
     }
-
+    return mp[k] = res;
 }
 
+int main() {
+    ll n = 5;
+    int m = 2;
+    vector<int> a = {2, 3};
 
-//      ██╗  █████╗  ██╗    ██████╗ ██╗  ██╗ ██████╗  ███████╗ ███████╗   ██████╗   █████╗  ███╗   ███╗
-//      ██║ ██╔══██╗ ██║   ██╔════╝ ██║  ██║ ██╔══██╗ ██╔════╝ ██╔════╝   ██╔══██╗ ██╔══██╗ ████╗ ████║
-//      ██║ ███████║ ██║   ╚█████╗  ███████║ ██████╔╝ █████╗   █████╗     ██████╔╝ ███████║ ██╔████╔██║
-// ██╗  ██║ ██╔══██║ ██║    ╚═══██╗ ██╔══██║ ██╔══██╗ ██╔══╝   ██╔══╝     ██╔══██╗ ██╔══██║ ██║╚██╔╝██║
-// ╚█████╔╝ ██║  ██║ ██║   ██████╔╝ ██║  ██║ ██║  ██║ ███████╗ ███████╗   ██║  ██║ ██║  ██║ ██║ ╚═╝ ██║
-//  ╚════╝  ╚═╝  ╚═╝ ╚═╝   ╚═════╝  ╚═╝  ╚═╝ ╚═╝  ╚═╝ ╚══════╝ ╚══════╝   ╚═╝  ╚═╝ ╚═╝  ╚═╝ ╚═╝     ╚═╝
+    mp.clear();
+    cout << "Test Case 1 (N=5, M=2, A={2,3}): " << f(n, m, a) << endl;
+
+    n = 2; m = 2; a = {2, 2};
+    mp.clear();
+    cout << "Test Case 2 (N=2, M=2, A={2,2}): " << f(n, m, a) << endl;
+
+    n = 3; m = 3; a = {2, 3, 3};
+    mp.clear();
+    cout << "Test Case 3 (N=3, M=3, A={2,3,3}): " << f(n, m, a) << endl;
+
+    return 0;
+}

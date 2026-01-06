@@ -5,10 +5,10 @@ vector<vector<int>> ss, subarray;
 
 
 void Index_subset (int num, int size, vector<int> subset) {
-    if ( num > size ){
+    if(num > size){
         ss.push_back(subset);
     }
-   else {
+    else{
        subset.push_back(num);
        Index_subset(num+1, size, subset);
        subset.pop_back();

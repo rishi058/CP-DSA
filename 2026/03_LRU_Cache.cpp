@@ -21,13 +21,12 @@ public:
             tail = newNode;
         }
         else{
-            newNode->prev = NULL;
             head = tail = newNode;
         }
     }
 
     void move_to_tail(Node *node){
-        if(!node || node==tail){return;}
+        if(node==tail){return;}
 
         Node *curr_prev = node->prev;
         Node *curr_next = node->next;
@@ -35,26 +34,19 @@ public:
         if(curr_prev){curr_prev->next = curr_next;}
         else{head=curr_next;}
 
-        if(curr_next){curr_next->prev = curr_prev;}
+        curr_next->prev = curr_prev;
 
-        if(tail){
-            tail->next = node;
-            node->prev = tail;
-            node->next = NULL;
-            tail = node;
-        }
-        else{
-            node->prev = node->next = NULL;
-            head = tail = node;
-        }
-        
+        tail->next = node;
+        node->prev = tail;
+        node->next = NULL;
+        tail = node;
     }
 
     void delete_head_node(){
         Node *temp = head->next;
         delete head;
         head = temp;
-        if(head){temp->prev = NULL;}
+        if(head){temp->prev = NULL;}  // Chek if it was the only node
         else{tail=NULL;}
     }
 
@@ -64,7 +56,7 @@ class LRUCache {
 public:
 
     int n;
-    DLL list;
+    DLL list;  // LRU....MRU
     unordered_map<int,Node*> mp; // key,node 
 
     LRUCache(int capacity) {
@@ -92,9 +84,8 @@ public:
         // Now add new tail-node and make its entry in mp..
         else{
             if(mp.size()==n){
-                int evictKey = list.head ? list.head->key : -1;
+                mp.erase(list.head->key);
                 list.delete_head_node();
-                if(evictKey != -1) mp.erase(evictKey);
             }
             Node *newNode = new Node(key, value);
             list.push_back(newNode);

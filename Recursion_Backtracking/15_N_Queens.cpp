@@ -13,7 +13,7 @@ Output --> All Combinations of positions of n queens so that no queen can attack
 bool is_safe(int row, int col){
 
     int x = row, y = col;
-    //check for same row
+    //check in that row for above col 
     while(y>=0){
         if(board[x][y]==1){return false;}
         y--;

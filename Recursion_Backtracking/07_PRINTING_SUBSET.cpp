@@ -4,10 +4,10 @@ using namespace std;
 vector<vector<int>> ss;
 
 void Index_subset (int num, vector<int>& value, vector<int> &subset) {
-    if ( num > value.size()-1 ){
+    if( num > value.size()-1 ){
         ss.push_back(subset);
     }
-   else {
+    else {
        subset.push_back(value[num]);
        Index_subset(num+1, value, subset);
        subset.pop_back();
