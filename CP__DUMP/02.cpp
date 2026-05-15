@@ -1,44 +1,48 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
+
 
 using namespace std;
 
-int solve(int N, vector<int> A, vector<int> Z) {
-    long long MOD = 1e9 + 7;
-    vector<long long> dp(N, 0);
-    long long total_count = 0;
+vector<int> findKthNextHigherDemandLevels(vector<int> demandLevels, int k) {
+    int n = demandLevels.size();
+    vector<int> res(n, -1);
+    vector<priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>> pqs(k + 1);
 
-    for (int i = 0; i < N; i++) {
-        dp[i] = 1;
-        int limit = i - Z[i] + 1;
-        for (int j = i - 1; j >= max(0, limit); j--) {
-            if (A[i] > A[j]) {
-                if (A[i] % A[j] != 0 && A[j] % A[i] != 0) {
-                    dp[i] = (dp[i] + dp[j]) % MOD;
+    for (int i = 0; i < n; ++i) {
+        int val = demandLevels[i];
+        
+        for (int j = k; j >= 1; --j) {
+            while (!pqs[j].empty() && pqs[j].top().first < val) {
+                pair<int, int> p = pqs[j].top();
+                pqs[j].pop();
+                
+                if (j == k) {
+                    res[p.second] = i + 1;
+                } else {
+                    pqs[j + 1].push(p);
                 }
             }
         }
-        total_count = (total_count + dp[i]) % MOD;
+        pqs[1].push({val, i});
     }
-    return (int)total_count;
+    
+    return res;
+}
+
+void runTest(vector<int> arr, int k) {
+    vector<int> ans = findKthNextHigherDemandLevels(arr, k);
+    for (int x : ans) {
+        cout << x << " ";
+    }
+    cout << "\n";
 }
 
 int main() {
-    // Case 1: N=2, A=[2,3], Z=[1,1] -> Exp: 2
-    cout << "Case 1: " << solve(2, {2, 3}, {1, 1}) << " (Exp: 2)" << endl;
+    runTest({1, 4, 2, 5, 3}, 2);
     
-    // Case 2: N=2, A=[2,3], Z=[1,2] -> Exp: 3
-    cout << "Case 2: " << solve(2, {2, 3}, {1, 2}) << " (Exp: 3)" << endl;
-
-    // Case 3: N=3, A=[1,2,3], Z=[1,2,3] -> Exp: 4
-    cout << "Case 3: " << solve(3, {1, 2, 3}, {1, 2, 3}) << " (Exp: 4)" << endl;
-
-    // Hard Case: N=5, A=[2,4,3,7,5], Z=[1,2,3,4,5]
-    // 1-len: {2}, {4}, {3}, {7}, {5} (5)
-    // 2-len: {2,3}, {2,7}, {2,5}, {4,3}, {4,7}, {4,5}, {3,7}, {3,5}, {7,5} (Invalid)
-    // Applying divisibility: 4%2==0 (No), 7%3!=0, 5%7!=0 etc.
-    cout << "Hard Case: " << solve(5, {2, 4, 3, 7, 5}, {1, 2, 3, 4, 5}) << endl;
-
+    runTest({3, 4, 2, 6, 5}, 2);
+    
+    runTest({3, 1, 2, 4, 5}, 2);
+    
     return 0;
 }
